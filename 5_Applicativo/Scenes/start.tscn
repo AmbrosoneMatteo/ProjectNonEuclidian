@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://xfe30m1h5gn3"]
+[gd_scene load_steps=7 format=3 uid="uid://xfe30m1h5gn3"]
 
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
+[ext_resource type="PackedScene" uid="uid://cknjhojmvdgjt" path="res://Models/Player.tscn" id="3_0i3cj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8y3ue"]
 
@@ -89,3 +90,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 10, 21.7011, 0)
 
 [node name="portal-2" parent="structure" instance=ExtResource("1_ltm22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, -10, 21.7029, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_0i3cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9647, 13.1732, -9.01856)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.119011, 0.992893, 0, -0.992893, -0.119011, 0, 23.1359, 0)

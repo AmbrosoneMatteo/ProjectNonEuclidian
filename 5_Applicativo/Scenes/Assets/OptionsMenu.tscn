@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bbcoam01sihfy"]
+
+[node name="OptionsMenu" type="Node2D"]
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 106.0
+offset_top = 213.0
+offset_right = 338.0
+offset_bottom = 295.0
+theme_override_font_sizes/font_size = 50
+text = "OPZIONI"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 101.0
+offset_right = 140.0
+offset_bottom = 141.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio" type="HScrollBar" parent="Control"]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 210.0
+offset_right = 536.0
+offset_bottom = 262.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music" type="HScrollBar" parent="Control"]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 283.0
+offset_right = 552.0
+offset_bottom = 335.0
+metadata/_edit_use_anchors_ = true
+
+[node name="to_menu_button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 349.0
+offset_right = 275.0
+offset_bottom = 402.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 101.0
+offset_right = 140.0
+offset_bottom = 141.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio_txt" type="TextEdit" parent="Text"]
+offset_left = 3.0
+offset_top = 209.0
+offset_right = 259.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME AUDIO:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music_txt" type="TextEdit" parent="Text"]
+offset_left = 3.0
+offset_top = 283.0
+offset_right = 276.0
+offset_bottom = 337.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME MUSICA:"
+editable = false
+metadata/_edit_use_anchors_ = true

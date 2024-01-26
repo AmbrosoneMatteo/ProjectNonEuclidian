@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2fkkm7lvyv67"]
+
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_woyb3"]
+[ext_resource type="Script" path="res://Scripts/OptionMenu.gd" id="2_r3q2a"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-3, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 948.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 75
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1365, 355)
+scale = Vector2(0.822, 0.687)
+texture = ExtResource("1_woyb3")
+
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_r3q2a")
+
+[node name="start_button" type="Button" parent="Control"]
+offset_left = 16.0
+offset_top = 124.0
+offset_right = 294.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "NUOVA PARTITA"
+alignment = 0
+
+[node name="continue_button" type="Button" parent="Control"]
+offset_left = 16.0
+offset_top = 194.0
+offset_right = 183.0
+offset_bottom = 259.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "CONTINUA"
+alignment = 0
+
+[node name="option_button" type="Button" parent="Control"]
+offset_left = 16.0
+offset_top = 263.0
+offset_right = 164.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "OPZIONI"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="Control"]
+offset_left = 16.0
+offset_top = 332.0
+offset_right = 94.0
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "ESCI"
+alignment = 0

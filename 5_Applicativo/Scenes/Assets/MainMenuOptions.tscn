@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgyl8nmmdbr31"]
+
+[sub_resource type="Theme" id="Theme_5i5fi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 360.0
+offset_right = 453.0
+offset_bottom = 672.0
+theme = SubResource("Theme_5i5fi")
+theme_override_constants/separation = 20
+
+[node name="start_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "NUOVA PARTITA"
+alignment = 0
+
+[node name="continue_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "CONTINUA"
+alignment = 0
+
+[node name="option_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "OPZIONI"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "ESCI"
+alignment = 0

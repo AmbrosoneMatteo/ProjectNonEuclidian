@@ -1,0 +1,174 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2fkkm7lvyv67"]
+
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_woyb3"]
+[ext_resource type="Script" path="res://Scripts/OptionMenu.gd" id="2_r3q2a"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-3, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 948.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 75
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1365, 355)
+scale = Vector2(0.822, 0.687)
+texture = ExtResource("1_woyb3")
+
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_r3q2a")
+
+[node name="MainMenuOptions" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start_button" type="Button" parent="Control/MainMenuOptions"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 124.0
+offset_right = 294.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "NUOVA PARTITA"
+alignment = 0
+
+[node name="continue_button" type="Button" parent="Control/MainMenuOptions"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 194.0
+offset_right = 183.0
+offset_bottom = 259.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "CONTINUA"
+alignment = 0
+
+[node name="option_button" type="Button" parent="Control/MainMenuOptions"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 263.0
+offset_right = 164.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "OPZIONI"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="Control/MainMenuOptions"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 332.0
+offset_right = 94.0
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+action_mode = 0
+text = "ESCI"
+alignment = 0
+
+[node name="OptionsMenu" type="Node2D" parent="Control"]
+
+[node name="TextEdit" type="TextEdit" parent="Control/OptionsMenu"]
+offset_left = 6.0
+offset_top = 112.0
+offset_right = 238.0
+offset_bottom = 194.0
+theme_override_font_sizes/font_size = 50
+text = "OPZIONI"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="Sprite2D" parent="Control/OptionsMenu"]
+position = Vector2(1365, 355)
+scale = Vector2(0.822, 0.687)
+texture = ExtResource("1_woyb3")
+
+[node name="MenuButton" type="MenuButton" parent="Control/OptionsMenu"]
+offset_right = 8.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="Control/OptionsMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_r3q2a")
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio" type="HScrollBar" parent="Control/OptionsMenu/Control"]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 210.0
+offset_right = 536.0
+offset_bottom = 262.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music" type="HScrollBar" parent="Control/OptionsMenu/Control"]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 283.0
+offset_right = 552.0
+offset_bottom = 335.0
+metadata/_edit_use_anchors_ = true
+
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 349.0
+offset_right = 275.0
+offset_bottom = 402.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Control" parent="Control/OptionsMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio_txt" type="TextEdit" parent="Control/OptionsMenu/Text"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 209.0
+offset_right = 259.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME AUDIO:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music_txt" type="TextEdit" parent="Control/OptionsMenu/Text"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 283.0
+offset_right = 276.0
+offset_bottom = 337.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME MUSICA:"
+editable = false
+metadata/_edit_use_anchors_ = true
