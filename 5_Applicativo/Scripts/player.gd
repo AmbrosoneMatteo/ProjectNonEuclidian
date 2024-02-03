@@ -1,10 +1,13 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 
+const SPEED = 5.0
+const JUMP_VELOCITY = 5.5
+
+@export var portal = 0
 @export var sensivity = 0.01
+@export var desination_position = Vector3(0,0,0)
 
 var twist_input := 0.0
 var pitch_input := 0.0
@@ -13,7 +16,7 @@ var pitch_input := 0.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var gravitation = -1.0
+var gravitation = 1.0
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	gravity = gravity * gravitation
@@ -57,3 +60,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			pitch_input = - event.relative.y * sensivity * gravitation
 			
 
+
+
+func _on_visibility_changed():
+	pass # Replace with function body.
+
+
+func _on_area_3d_area_entered(area):
+	if area.is_in_group("Portal"):
+		portal = (portal+1)%2
+		position = desination_position
+		

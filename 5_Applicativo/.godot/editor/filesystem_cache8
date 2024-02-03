@@ -1,0 +1,48 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1693553656
+icon.png::CompressedTexture2D::3673533945690424011::1706280056::1706859682::1::::<><>::
+icon.svg::CompressedTexture2D::2794437820726655770::1706280056::1706859682::1::::<><>::
+::res://Assets/::1706884640
+::res://Assets/MainMenu/::1706884640
+icon.png::CompressedTexture2D::5652406016115818908::1706280056::1706859682::1::::<><>::
+::res://Models/::1705658726
+Player.tscn::PackedScene::5502126417865090565::1706884722::0::1::::<><>::res://Scripts/player.gd
+::res://Models/Rooms/::1706860776
+::res://Models/Rooms/2RoomsInOne/::1706862778
+2rooms_in_one.dae::PackedScene::7942577086035758681::1706862544::1706884688::1::::<><>::
+2rooms_in_one.glb::PackedScene::4157995666252048123::1706862060::1706884688::1::::<><>::
+::res://Models/Rooms/Bridge/::1706882042
+::res://Models/Rooms/Castle/::1706863816
+castle.dae::PackedScene::5900370224474284702::1706866322::1706884688::1::::<><>::
+::res://Models/Rooms/CubeLabirynth/::1706866942
+cubelabirynth.dae::PackedScene::3751041152207345648::1706868138::1706884688::1::::<><>::
+::res://Models/Rooms/New Folder/::1706869208
+CORTILE.dae::PackedScene::4268628015248288488::1706875896::1706884914::1::::<><>::
+::res://Models/Rooms/New Folder(1)/::1706876752
+::res://Models/Rooms/New Folder(2)/::1706878338
+::res://Models/Rooms/New Folder(3)/::1706882046
+::res://Models/Rooms/Ramp/::1706878336
+ramp.dae::PackedScene::7104220293102804892::1706880092::1706884690::1::::<><>::
+::res://Models/Rooms/ShowRoom/::1706876748
+show room.dae::PackedScene::706172044534638370::1706877150::1706884690::1::::<><>::
+::res://Models/Rooms/TheCube/::1706862792
+TheCube.dae::PackedScene::73945699704584619::1706863480::1706884690::1::::<><>::
+::res://Scenes/::1706884642
+Area3DPortal2.gd::GDScript::-1::1706865064::0::1::::<>Area3D<>::
+Area3DPortal.gd::GDScript::-1::1706873328::0::1::::<>Area3D<>::
+MainMenu.tscn::PackedScene::1548335187934117313::1706280056::0::1::::<><>::uid://cmsckiiwxaqi3
+portal.tscn::PackedScene::9194292679902266492::1706883784::0::1::::<><>::res://Scenes/Area3DPortal.gd
+room_001.tscn::PackedScene::4936568747758804994::1706883784::0::1::::<><>::
+start.gd::GDScript::-1::1706883744::0::1::::<>Node3D<>::
+start.tscn::PackedScene::1624959495458715150::1706883784::0::1::::<><>::res://Scenes/start.gd<>uid://d381wlwbggi2w::::res://Scenes/portal.tscn<>uid://cknjhojmvdgjt::::res://Models/Player.tscn
+::res://Scenes/Assets/::1706884642
+LoadGame.tscn::PackedScene::3481317656034312716::1706280056::0::1::::<><>::
+MainMenuOptions.tscn::PackedScene::2857826331628521550::1706280056::0::1::::<><>::
+OptionsMenu.tscn::PackedScene::2461588990843993406::1706280056::0::1::::<><>::
+::res://Scripts/::1706884642
+Menu.gd::GDScript::-1::1706280056::0::1::::<>Node<>::
+player.gd::GDScript::-1::1706881680::0::1::::<>CharacterBody3D<>::
+::res://Sounds/::1706880710
+::res://Sounds/Music/::1706880718
+license.txt::TextFile::-1::1706880862::0::1::::<><>::
+soundtrack.mp3::AudioStreamMP3::7225557774015787254::1706881860::1706884912::1::::<><>::

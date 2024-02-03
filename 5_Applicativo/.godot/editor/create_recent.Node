@@ -1,0 +1,9 @@
+MeshInstance3D
+DirectionalLight3D
+Sprite3D
+Camera3D
+SubViewport
+Control
+VehicleWheel3D
+CollisionShape3D
+Area3D
