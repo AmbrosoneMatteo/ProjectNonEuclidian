@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://booqc366lyjx7"
-path="res://.godot/imported/show room.dae-cb23132d7ce4d97cca2edf885f73fa6e.scn"
+uid="uid://5sdta6clk7eq"
+path="res://.godot/imported/castle.dae-2d26abab3b1c3a11f81d42c5c9a2a7c1.scn"
 
 [deps]
 
-source_file="res://Models/Rooms/ShowRoom/show room.dae"
-dest_files=["res://.godot/imported/show room.dae-cb23132d7ce4d97cca2edf885f73fa6e.scn"]
+source_file="res://Models/castle.dae"
+dest_files=["res://.godot/imported/castle.dae-2d26abab3b1c3a11f81d42c5c9a2a7c1.scn"]
 
 [params]
 

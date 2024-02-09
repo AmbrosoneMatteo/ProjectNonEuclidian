@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cknjhojmvdgjt"]
+[gd_scene load_steps=5 format=3 uid="uid://cknjhojmvdgjt"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_xi7pf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ce12s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xp2n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8my77"]
+height = 2.00772
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xi7pf")
@@ -17,6 +20,12 @@ mesh = SubResource("CapsuleMesh_ce12s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
 shape = SubResource("CapsuleShape3D_4xp2n")
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28424, 0)
+shape = SubResource("CapsuleShape3D_8my77")
+
 [node name="RigidBody3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
@@ -26,3 +35,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.846047, -0.123887)
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
