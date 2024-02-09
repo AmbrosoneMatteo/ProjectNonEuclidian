@@ -2,3 +2,13 @@ res://Scenes/start.tscn
 res://Scenes/room_001.tscn
 res://Scenes/portal.tscn
 res://Models/Player.tscn
+res://Scripts/player.gd
+res://Scenes/start.gd
+res://Scenes/Assets/OptionsMenu.tscn
+res://Global.gd
+res://Scenes/Assets/LoadGame.tscn
+res://Scenes/Assets/MainMenuOptions.tscn
+res://Scenes/MainMenu.tscn
+res://Scripts/AudioControl.gd
+res://Scripts/Soundtrack.gd
+res://Scenes/TutorialDialog.tscn
