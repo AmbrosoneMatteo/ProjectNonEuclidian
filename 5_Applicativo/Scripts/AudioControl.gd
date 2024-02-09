@@ -15,7 +15,4 @@ func _process(delta):
 		$volume_audio.value=Global.sound_volume
 	Global.music_volume=$volume_music.value
 	Global.sound_volume=$volume_audio.value
-	print(Global.sound_volume)
-	print(Global.music_volume)
-	print(count_delta)
 

@@ -20,6 +20,7 @@ var pitch_input := 0.0
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var Variables = get_node("/root/Global")
+@onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravitation = 1.0
@@ -39,13 +40,15 @@ func _physics_process(delta):
 		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 	if(Input.is_action_just_pressed("pickup_object")):
 		pickup_sound.play()
+	if Input.is_action_just_pressed("Accept"):
+		remove_child(tutorial)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta 
 
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
 		velocity.y = JUMP_VELOCITY*gravitation
 
 	# Get the input direction and handle the movement/deceleration.
@@ -57,6 +60,7 @@ func _physics_process(delta):
 		velocity.z = direction.z * SPEED
 	else:
 		sound_player.play()
+		print('moving')
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -85,5 +89,4 @@ func _on_area_3d_area_entered(area):
 	if area.is_in_group("Portal"):
 		portal = (portal+1)%2
 		position = desination_position
-		print("funzionaaaa")
 		
