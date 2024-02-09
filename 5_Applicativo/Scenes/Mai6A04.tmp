@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2fkkm7lvyv67"]
+
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_woyb3"]
+[ext_resource type="Script" path="res://Scripts/OptionMenu.gd" id="2_r3q2a"]
+[ext_resource type="PackedScene" uid="uid://bgyl8nmmdbr31" path="res://Scenes/Assets/MainMenuOptions.tscn" id="3_swyxi"]
+[ext_resource type="PackedScene" uid="uid://bi3lijbgu78ri" path="res://Scenes/Assets/Options_Menu.tscn" id="4_v21kn"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-3, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 948.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 75
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1365, 355)
+scale = Vector2(0.822, 0.687)
+texture = ExtResource("1_woyb3")
+
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_r3q2a")
+
+[node name="MainMenu" parent="Control" instance=ExtResource("3_swyxi")]
+layout_mode = 1
+
+[node name="OptionMenu" parent="Control" instance=ExtResource("4_v21kn")]

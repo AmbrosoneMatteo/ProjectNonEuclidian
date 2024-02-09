@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfj1pu57v0ac6"]
+
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_woyb3"]
+[ext_resource type="Script" path="res://Scripts/OptionMenu.gd" id="2_r3q2a"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_r3q2a")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 942.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 75
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1380, 409)
+texture = ExtResource("1_woyb3")

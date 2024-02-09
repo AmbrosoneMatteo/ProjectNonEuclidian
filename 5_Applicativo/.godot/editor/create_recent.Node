@@ -1,0 +1,12 @@
+Panel
+Control
+CanvasLayer
+AudioStreamPlayer
+MeshInstance3D
+DirectionalLight3D
+Sprite3D
+Camera3D
+SubViewport
+VehicleWheel3D
+CollisionShape3D
+Area3D

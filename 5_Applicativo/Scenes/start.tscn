@@ -1,11 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://xfe30m1h5gn3"]
+[gd_scene load_steps=17 format=3 uid="uid://xfe30m1h5gn3"]
 
+[ext_resource type="Script" path="res://Scripts/start.gd" id="1_63jby"]
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="3_nh3m2"]
+[ext_resource type="AudioStream" uid="uid://da7d47j0n81n3" path="res://Scenes/Sounds/Music/soundtrack.mp3" id="4_j4wb4"]
+[ext_resource type="Script" path="res://Scripts/Soundtrack.gd" id="5_ds0kf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8y3ue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gu40"]
 size = Vector3(30, 0.1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wuapv"]
+albedo_color = Color(0.878431, 0.647059, 0.188235, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5ys4x"]
 size = Vector3(10, 0.1, 30)
@@ -13,7 +20,25 @@ size = Vector3(10, 0.1, 30)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bp55e"]
 size = Vector3(10, 0.1, 30)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_4a7kn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kehu"]
+albedo_color = Color(0.176471, 0.745098, 0.792157, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_42kgf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_11k15"]
+viewport_path = NodePath("structure/Control/SubViewport")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ce12s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xp2n"]
+
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
+script = ExtResource("1_63jby")
 
 [node name="structure" type="Node3D" parent="."]
 
@@ -70,6 +95,7 @@ shape = SubResource("BoxShape3D_4gu40")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 20, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="structure/platform-1"]
+material_override = SubResource("StandardMaterial3D_wuapv")
 mesh = SubResource("BoxMesh_5ys4x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="structure/platform-1"]
@@ -85,7 +111,70 @@ mesh = SubResource("BoxMesh_5ys4x")
 shape = SubResource("BoxShape3D_bp55e")
 
 [node name="portal-1" parent="structure" instance=ExtResource("1_ltm22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 10, 21.7011, 0)
+transform = Transform3D(0.749615, 0, 0, 0, 1.003, 0, 0, 0, 0.3, 10, 21.7011, 0)
 
 [node name="portal-2" parent="structure" instance=ExtResource("1_ltm22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, -10, 21.7029, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 21.7029, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81484, 20.7483, 4.02191)
+mesh = SubResource("CylinderMesh_4a7kn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="structure"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.9188, 21.4124, 5.93531)
+material_override = SubResource("StandardMaterial3D_5kehu")
+mesh = SubResource("BoxMesh_42kgf")
+skeleton = NodePath("../Control/SubViewport/Camera3D")
+
+[node name="Control" type="Control" parent="structure"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/Control"]
+size = Vector2i(1024, 1024)
+
+[node name="Camera3D" type="Camera3D" parent="structure/Control/SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.84655, 21.1673, -0.324631)
+fov = 86.9
+near = 0.008
+far = 33.27
+
+[node name="Sprite3D" type="Sprite3D" parent="structure"]
+transform = Transform3D(-0.358519, 0, 8.74228e-08, 0, 0.357403, 0, -3.13427e-08, 0, -1, -10.0264, 21.709, 0.13777)
+texture = SubResource("ViewportTexture_11k15")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2171, 21.2777, -6.53533)
+script = ExtResource("3_nh3m2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291429, 0)
+mesh = SubResource("CapsuleMesh_ce12s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
+shape = SubResource("CapsuleShape3D_4xp2n")
+
+[node name="RigidBody3D" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
+
+[node name="TwistPivot" type="Node3D" parent="Player"]
+
+[node name="PitchPivot" type="Node3D" parent="Player/TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.846047, -0.123887)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.119011, 0.992893, 0, -0.992893, -0.119011, 0, 32.5939, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j4wb4")
+volume_db = -40.0
+autoplay = true
+max_polyphony = 6
+script = ExtResource("5_ds0kf")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://g4ew366vbe0b"]
+
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_rv3oa"]
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="2_54dg7"]
+[ext_resource type="PackedScene" uid="uid://bgyl8nmmdbr31" path="res://Scenes/Assets/MainMenuOptions.tscn" id="3_l4uaq"]
+[ext_resource type="PackedScene" uid="uid://bbcoam01sihfy" path="res://Scenes/Assets/OptionsMenu.tscn" id="4_yoa5d"]
+[ext_resource type="PackedScene" uid="uid://bpum175w73wl5" path="res://Scenes/Assets/LoadGame.tscn" id="5_hya2b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1185.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 90
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1348, 453)
+texture = ExtResource("1_rv3oa")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_54dg7")
+
+[node name="MainMenuOptions" parent="Control" instance=ExtResource("3_l4uaq")]
+layout_mode = 1
+
+[node name="OptionsMenu" parent="Control" instance=ExtResource("4_yoa5d")]
+visible = false
+
+[node name="LoadGame" parent="Control" instance=ExtResource("5_hya2b")]
+visible = false
+layout_mode = 1
