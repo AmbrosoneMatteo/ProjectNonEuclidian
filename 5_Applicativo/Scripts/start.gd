@@ -17,7 +17,7 @@ func _ready():
 	c.set_layer_mask_value(2,2)
 	a.set_layer_mask_value(2,2)
 	b.set_layer_mask_value(2,2)
-	pass # Replace with function body.
+	get_tree().paused=false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

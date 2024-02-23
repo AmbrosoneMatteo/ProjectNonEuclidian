@@ -17,6 +17,7 @@ var pickup_stream = load("res://Scenes/Sounds/SoundEffects/pickup.mp3")
 
 var tutorial_voice = AudioStreamPlayer.new()
 var tutorial_stream = load("res://Scenes/Sounds/SoundEffects/tutorial_eng.mp3")
+var fall_counter:float = 0.0
 
 var twist_input := 0.0
 var pitch_input := 0.0
@@ -52,8 +53,10 @@ func _physics_process(delta):
 		tutorial.visible = false
 		tutorial_voice.stop()
 	if(Input.is_action_just_pressed("esc")):
+		get_tree().paused=true
 		tutorial.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		sound_player.stop()
 		tutorial_voice.stop()
 		$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
 	if not tutorial_finished:
@@ -66,7 +69,9 @@ func _physics_process(delta):
 		
 	# Add the gravity.
 	if not is_on_floor():
+		sound_player.stop()
 		velocity.y -= gravity * delta 
+		fall_counter+=delta
 
 
 	# Handle Jump.
@@ -81,7 +86,8 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED 
 		velocity.z = direction.z * SPEED
 	else:
-		sound_player.play()
+		if is_on_floor():
+			sound_player.play()
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 

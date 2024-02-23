@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://xfe30m1h5gn3"]
+[gd_scene load_steps=37 format=3 uid="uid://xfe30m1h5gn3"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_63jby"]
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
@@ -208,6 +208,12 @@ fog_enabled = true
 
 [sub_resource type="Theme" id="Theme_6stwp"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_8mknn"]
+size = Vector3(2, 20, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_imbqc"]
+size = Vector3(2, 20, 1)
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
 script = ExtResource("1_63jby")
@@ -323,6 +329,7 @@ transform = Transform3D(1, 0, 0, 0, -0.119011, 0.992893, 0, -0.992893, -0.119011
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+process_mode = 4
 stream = ExtResource("4_j4wb4")
 volume_db = -40.0
 autoplay = true
@@ -330,7 +337,7 @@ max_polyphony = 6
 script = ExtResource("5_ds0kf")
 
 [node name="bridge" type="Node3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 45.1814)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.98841, 24.984, 22.0877)
 
 [node name="Cube" type="MeshInstance3D" parent="bridge"]
 transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 0)
@@ -347,6 +354,7 @@ transform = Transform3D(1, 0, 0, 0, -0.673464, 0.73922, 0, -0.73922, -0.673464, 
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82283, 20.9378, -6.78805)
+floor_snap_length = 0.0
 script = ExtResource("3_nh3m2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -369,6 +377,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.846047, -0.123887)
 environment = SubResource("Environment_ld0q1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/TwistPivot/PitchPivot/Camera3D"]
+process_mode = 3
+process_priority = 4
 script = ExtResource("7_3uupe")
 
 [node name="GameMenu" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
@@ -605,6 +615,24 @@ offset_right = 136.0
 offset_bottom = 52.0
 text = "Operator:
 "
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.670336, -0.742058, 0, 0.742058, 0.670336, -11.1804, 24.3959, 8.79144)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_8mknn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_imbqc")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0219021, -0.99976, 0, 0.99976, -0.0219021, -11.1804, 30.4514, 26.0079)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_8mknn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_imbqc")
 
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/save_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_save_button_pressed"]

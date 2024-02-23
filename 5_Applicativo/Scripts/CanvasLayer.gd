@@ -27,6 +27,7 @@ func _process(delta):
 func _on_continue_button_pressed():
 	$GameMenu.visible=false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	get_tree().paused=false
 
 
 func _on_to_menu_button_pressed():

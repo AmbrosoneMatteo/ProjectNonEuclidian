@@ -1,3 +1,6 @@
+CollisionShape3D
+MeshInstance3D
+StaticBody3D
 Button
 AnimationPlayer
 ColorRect
@@ -10,8 +13,6 @@ RichTextLabel
 Panel
 Control
 AudioStreamPlayer
-MeshInstance3D
 Camera3D
 VehicleWheel3D
-CollisionShape3D
 Area3D
