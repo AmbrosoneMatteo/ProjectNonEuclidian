@@ -1,12 +1,9 @@
-Panel
-Control
-CanvasLayer
-AudioStreamPlayer
 MeshInstance3D
-DirectionalLight3D
-Sprite3D
 Camera3D
 SubViewport
+Control
+Sprite3D
+DirectionalLight3D
 VehicleWheel3D
 CollisionShape3D
 Area3D
