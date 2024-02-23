@@ -10,8 +10,3 @@ func _ready():
 func _process(delta):
 	pass
 
-
-
-func _on_button_pressed():
-	for i in get_children():
-		remove_child(i)

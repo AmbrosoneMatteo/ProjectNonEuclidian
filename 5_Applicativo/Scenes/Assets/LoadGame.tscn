@@ -2,6 +2,7 @@
 
 [node name="Control2" type="Control"]
 layout_mode = 3
+anchors_preset = 0
 grow_horizontal = 2
 grow_vertical = 2
 

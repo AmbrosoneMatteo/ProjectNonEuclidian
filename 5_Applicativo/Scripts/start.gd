@@ -21,7 +21,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if player.portal == 0:
 		player.desination_position = Vector3(10,20,1)
 	else:
@@ -30,3 +30,4 @@ func _process(delta):
 		
 	viewport_camera.rotation.x = player_pitch.rotation.x
 	viewport_camera.rotation.y = player_twist.rotation.y
+

@@ -31,12 +31,12 @@ action_mode = 0
 text = "NUOVA PARTITA"
 alignment = 0
 
-[node name="continue_button" type="Button" parent="VBoxContainer"]
+[node name="load_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
-text = "CONTINUA"
+text = "CARICA"
 alignment = 0
 
 [node name="option_button" type="Button" parent="VBoxContainer"]

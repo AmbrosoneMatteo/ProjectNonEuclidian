@@ -11,7 +11,7 @@ func _on_body_entered(body: PhysicsBody3D):
 func _on_body_exited(body: PhysicsBody3D):
 	entered = false
 
-func _process(delta):
+func _process(_delta):
 	#print(player)
 	if entered:
 		if Input.is_action_just_pressed("ui_accept"):

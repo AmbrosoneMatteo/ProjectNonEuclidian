@@ -1,11 +1,12 @@
+Button
+AnimationPlayer
+ColorRect
 CanvasLayer
 SubViewport
 Sprite3D
 Tree
 DirectionalLight3D
-Button
 RichTextLabel
-ColorRect
 Panel
 Control
 AudioStreamPlayer

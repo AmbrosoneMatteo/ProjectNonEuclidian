@@ -21,27 +21,33 @@ var pitch_input := 0.0
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var Variables = get_node("/root/Global")
 @onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer
+@onready var camera = $TwistPivot/PitchPivot/Camera3D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravitation = 1.0
 func _ready():
 	sound_player.volume_db = -40.0 + Global.sound_volume/2
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	add_child(sound_player)
 	add_child(pickup_sound)
 	gravity = gravity * gravitation
 	sound_player.stream = audio_stream
 	pickup_sound.stream = pickup_stream
 
+func _process(_delta):
+	if Input.is_action_just_pressed("Accept"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _physics_process(delta):
-	if(Input.is_action_just_pressed("esc")):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 	if(Input.is_action_just_pressed("pickup_object")):
 		pickup_sound.play()
 	if Input.is_action_just_pressed("Accept"):
-		remove_child(tutorial)
+		tutorial.visible = false
+	if(Input.is_action_just_pressed("esc")):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		camera.add_child(preload("res://Scenes/Assets/GameMenu.tscn").instantiate())
+
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta 
@@ -60,7 +66,6 @@ func _physics_process(delta):
 		velocity.z = direction.z * SPEED
 	else:
 		sound_player.play()
-		print('moving')
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -90,3 +95,5 @@ func _on_area_3d_area_entered(area):
 		portal = (portal+1)%2
 		position = desination_position
 		
+
+
