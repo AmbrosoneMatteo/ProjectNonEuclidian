@@ -32,11 +32,13 @@ func cross():
 	
 func crossed():
 	if len(area.get_overlapping_bodies()) == 0:
-		destination_portal.enabled = true
+		pass
+	enabled = true
+#	destination_portal.enabled = true
 
-func set_exit_position(player_position):
-	if position.z > player_position:
-		exit_position = position + Vector3(0,-1,0)
-	else:
-		exit_position = position - Vector3(0,1,0)
+#func set_exit_position(player_position):
+#	if position.z > player_position:
+#		exit_position = position + Vector3(0,-1,0)
+#	else:
+#		exit_position = position - Vector3(0,1,0)
 

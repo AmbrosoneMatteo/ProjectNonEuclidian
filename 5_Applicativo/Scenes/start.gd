@@ -61,8 +61,9 @@ func _process(delta):
 		
 	near_portal()
 	
-#	if not portal.is_enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
-#		portal.destination_portal.is_enabled = true
+	if not portal.enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
+		portal.crossed()
+		print("crossed")
 #		print("Portal 1 ",portal.is_enabled)
 #		print("Portal 2 ",portal.destination_portal.is_enabled)
 	
@@ -75,13 +76,15 @@ func near_portal():
 	for i in range(len(portals)):
 		if is_near(portals[i].position,3):
 			if not portal.enabled:
-				print("yep")
+				print("yep  ",portal.destination_portal.position)
 			else:
-				reset_portals()
+				print("nop  ",portal.destination_portal.position)
+				player.desination_position = portal.destination_portal.position
 				portal = portals[i]
+				reset_portals()
 				portal.checkpoint_enabled = true
 #				portal.destination_portal.set_exit_position(player.position.z)
-				player.desination_position = portal.destination_portal.position
+				
 #				player.desination_position = portal.destination_portal.exit_position
 			
 
