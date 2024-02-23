@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bpum175w73wl5"]
+[gd_scene load_steps=2 format=3 uid="uid://bpum175w73wl5"]
+
+[ext_resource type="Script" path="res://Scripts/loadGames.gd" id="1_umj6m"]
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -16,6 +18,7 @@ offset_right = 500.0
 offset_bottom = 260.0
 grow_vertical = 2
 theme_override_constants/separation = 10
+script = ExtResource("1_umj6m")
 
 [node name="Slot-1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -54,8 +57,9 @@ toggle_mode = true
 text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+[node name="reload" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 60
-text = "CARICA PARTITA"
+text = "RICARICA
+"

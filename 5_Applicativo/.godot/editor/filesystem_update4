@@ -12,6 +12,5 @@ res://Scenes/MainMenu.tscn
 res://Scenes/Assets/OptionsMenu.tscn
 res://Models/Player.tscn
 res://Scenes/Assets/GameMenu.tscn
-res://Scripts/start.gd
-res://Scripts/Area3DPortal.gd
 res://Scripts/player.gd
+res://Scripts/loadGames.gd

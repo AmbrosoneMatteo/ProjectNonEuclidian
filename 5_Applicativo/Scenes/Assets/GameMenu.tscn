@@ -144,6 +144,8 @@ text = "VOLUME MUSICA:"
 editable = false
 metadata/_edit_use_anchors_ = true
 
+[node name="continue_butron" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/option_button" to="VBoxContainer" method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit_button" to="VBoxContainer" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Control/to_menu_button" to="VBoxContainer" method="_on_to_menu_button_pressed"]

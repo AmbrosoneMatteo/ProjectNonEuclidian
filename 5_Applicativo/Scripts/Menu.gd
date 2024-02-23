@@ -4,7 +4,6 @@ extends Node
 @onready var load_button = $MainMenuOptions/VBoxContainer/load_button
 @onready var option_button = $MainMenuOptions/VBoxContainer/option_button
 @onready var exit_button = $MainMenuOptions/VBoxContainer/exit_button
-@onready var continue_button = $MainMenuOptions/VBoxContainer/continue_button
 @onready var to_menu_button = $OptionsMenu/Control/to_menu_button
 @onready var to_main_button = $LoadGame/VBoxContainer/to_menu_button
 

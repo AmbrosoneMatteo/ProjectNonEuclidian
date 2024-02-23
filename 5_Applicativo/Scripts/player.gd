@@ -15,12 +15,16 @@ var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
 var pickup_sound = AudioStreamPlayer.new()
 var pickup_stream = load("res://Scenes/Sounds/SoundEffects/pickup.mp3")
 
+var tutorial_voice = AudioStreamPlayer.new()
+var tutorial_stream = load("res://Scenes/Sounds/SoundEffects/tutorial_eng.mp3")
+
 var twist_input := 0.0
 var pitch_input := 0.0
+var tutorial_finished: bool = false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var Variables = get_node("/root/Global")
-@onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer
+@onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control
 @onready var camera = $TwistPivot/PitchPivot/Camera3D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -30,9 +34,12 @@ func _ready():
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
 	add_child(sound_player)
 	add_child(pickup_sound)
+	add_child(tutorial_voice)
 	gravity = gravity * gravitation
 	sound_player.stream = audio_stream
 	pickup_sound.stream = pickup_stream
+	tutorial_voice.stream = tutorial_stream
+	tutorial_voice.play()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Accept"):
@@ -43,10 +50,19 @@ func _physics_process(delta):
 		pickup_sound.play()
 	if Input.is_action_just_pressed("Accept"):
 		tutorial.visible = false
+		tutorial_voice.stop()
 	if(Input.is_action_just_pressed("esc")):
+		tutorial.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		camera.add_child(preload("res://Scenes/Assets/GameMenu.tscn").instantiate())
-
+		tutorial_voice.stop()
+		$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
+	if not tutorial_finished:
+		if tutorial_voice.playing:
+			Global.music_volume = 30
+		else:
+			while(Global.music_volume<80):
+				Global.music_volume+=1
+			tutorial_finished =true
 		
 	# Add the gravity.
 	if not is_on_floor():
@@ -96,4 +112,23 @@ func _on_area_3d_area_entered(area):
 		position = desination_position
 		
 
+
+
+
+func _on_slot_button_pressed(slot):
+	var data_to_save = {"player_position": self.global_transform.origin,
+	"player_rotation": $TwistPivot/PitchPivot/Camera3D.global_rotation,
+	"graviy_direction": "upwards",
+	 "saved_date": Time.get_date_dict_from_system(),
+	 "statues_captured": {},
+	 "rock_picked": {} }
+	var json_string := JSON.stringify(data_to_save)
+	var save_path := "user://player_data-%s.json"
+	var file_access	:= FileAccess.open(save_path % slot as String , FileAccess.WRITE)
+	if not file_access:
+		print("An error happened while saving data: ", FileAccess.get_open_error())
+		return
+	file_access.store_line(json_string)
+	file_access.close()
+	print("game has been saved")
 

@@ -1,8 +1,8 @@
 extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
-@onready var continue_button = $GameMenu/VBoxContainer/continue_button
+
 func _ready():
-	continue_button.connect("pressed", Callable(self, "_continue_play"))
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -23,9 +23,11 @@ func _process(delta):
 #		print("removing children")
 
 
-func _continue_play():
-	print("continuing")
-
 
 func _on_continue_button_pressed():
-	print("continuing, from signals")
+	$GameMenu.visible=false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _on_to_menu_button_pressed():
+	pass # Replace with function body.

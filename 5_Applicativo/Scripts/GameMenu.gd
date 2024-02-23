@@ -12,10 +12,8 @@ func _process(_delta):
 
 func _on_option_button_pressed():
 	for i in get_children():
-		if i.name.contains("button"):
-			i.visible = false
-		else:
-			i.visible = true
+		i.visible=false
+	$Control.visible=true
 
 
 func _on_exit_button_pressed():
@@ -25,9 +23,11 @@ func _on_exit_button_pressed():
 
 func _on_to_menu_button_pressed():
 	for i in get_children():
-		if i.name.contains("button"):
-			i.visible = true
-		else:
-			i.visible = false
+		i.visible=true
+	$Control2.visible=false
+	$Control.visible=false
 
-
+func _on_save_button_pressed():
+	for i in get_children():
+		i.visible=false
+	$Control2.visible=true
