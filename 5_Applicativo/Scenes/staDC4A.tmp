@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://x7l06kx506fg"]
+[gd_scene load_steps=34 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_5o44o"]
@@ -37,51 +37,19 @@ size = Vector3(0.2, 4, 0.2)
 size = Vector3(2.76956, 0.642517, 2.77135)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8jenj"]
-viewport_path = NodePath("structure/portal-1/Control/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cek7a"]
-emission_enabled = true
-emission = Color(0, 0.678431, 0.803922, 1)
-emission_energy_multiplier = 3.57
-
-[sub_resource type="BoxMesh" id="BoxMesh_3nbjk"]
-material = SubResource("StandardMaterial3D_cek7a")
+viewport_path = NodePath("Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_afy25"]
-viewport_path = NodePath("structure/portal-2/Control/SubViewport")
+viewport_path = NodePath("Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_261od"]
-viewport_path = NodePath("structure/portal-3/Control/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1slou"]
-emission_enabled = true
-emission = Color(1, 0, 1, 1)
-emission_energy_multiplier = 10.86
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_dhhlf"]
-material = SubResource("StandardMaterial3D_1slou")
+viewport_path = NodePath("Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fbqa7"]
-viewport_path = NodePath("structure/portal-4/Control/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vclna"]
-emission_enabled = true
-emission = Color(0, 1, 0, 1)
-emission_energy_multiplier = 10.93
-
-[sub_resource type="SphereMesh" id="SphereMesh_vfpj3"]
-material = SubResource("StandardMaterial3D_vclna")
+viewport_path = NodePath("Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wg7kx"]
-viewport_path = NodePath("structure/portal-5/Control/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hepjt"]
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 11.3
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_nmme1"]
-material = SubResource("StandardMaterial3D_hepjt")
+viewport_path = NodePath("Control/SubViewport")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4a7kn"]
 
@@ -258,10 +226,6 @@ offset_bottom = 40.0
 size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/portal-1/Control/SubViewport"]
-cull_mask = 1048574
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/Control/SubViewport/Camera3D"]
-mesh = SubResource("BoxMesh_3nbjk")
 
 [node name="portal-2" type="Node3D" parent="structure"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10, 21.7029, 0)
@@ -329,10 +293,6 @@ offset_bottom = 40.0
 size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/portal-2/Control/SubViewport"]
-cull_mask = 1048574
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/Control/SubViewport/Camera3D"]
-mesh = SubResource("BoxMesh_3nbjk")
 
 [node name="portal-3" type="Node3D" parent="structure"]
 transform = Transform3D(-0.0125312, 0, -0.999922, 0, 1, 0, 0.999922, 0, -0.0125312, -5.09831, 21.7029, 6.62209)
@@ -400,10 +360,6 @@ offset_bottom = 40.0
 size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/portal-3/Control/SubViewport"]
-cull_mask = 1048574
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/Control/SubViewport/Camera3D"]
-mesh = SubResource("CapsuleMesh_dhhlf")
 
 [node name="portal-4" type="Node3D" parent="structure"]
 transform = Transform3D(-1, 8.7073e-08, 7.81242e-09, 0, 0.0893636, -0.995999, -8.74228e-08, -0.995999, -0.0893636, 10.6592, 34.622, -5.01152)
@@ -471,10 +427,6 @@ offset_bottom = 40.0
 size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/portal-4/Control/SubViewport"]
-cull_mask = 1048574
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/Control/SubViewport/Camera3D"]
-mesh = SubResource("SphereMesh_vfpj3")
 
 [node name="portal-5" type="Node3D" parent="structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78285, 0)
@@ -542,11 +494,6 @@ offset_bottom = 40.0
 size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/portal-5/Control/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9716, 0)
-cull_mask = 1048574
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/Control/SubViewport/Camera3D"]
-mesh = SubResource("CylinderMesh_nmme1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81484, 20.7483, 4.02191)

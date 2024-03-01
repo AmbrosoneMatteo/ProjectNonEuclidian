@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbtruugcclr8p"]
+
+[ext_resource type="Script" path="res://Scripts/fountain.gd" id="1_0y8by"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jvdcv"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xxap"]
+size = Vector3(10, 0.1, 10)
+
+[node name="Fountain" type="Node3D"]
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_jvdcv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_7xxap")
+
+[node name="ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.92175, 0)
+script = ExtResource("1_0y8by")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ceiling"]
+mesh = SubResource("BoxMesh_jvdcv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling"]
+shape = SubResource("BoxShape3D_7xxap")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35428, 11.308)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]

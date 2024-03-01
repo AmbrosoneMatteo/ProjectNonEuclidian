@@ -1,8 +1,11 @@
+MeshInstance3D
+RigidBody3D
+Camera3D
+CollisionShape3D
+CollisionPolygon3D
+StaticBody3D
 AudioStreamPlayer
 CanvasLayer
-CollisionShape3D
-MeshInstance3D
-StaticBody3D
 Button
 AnimationPlayer
 ColorRect
@@ -13,6 +16,5 @@ DirectionalLight3D
 RichTextLabel
 Panel
 Control
-Camera3D
 VehicleWheel3D
 Area3D

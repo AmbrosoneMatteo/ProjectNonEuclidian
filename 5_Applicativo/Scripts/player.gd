@@ -114,6 +114,7 @@ func _on_visibility_changed():
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("Portal"):
+		print("going from: ",position," -> ", desination_position)
 		portal = (portal+1)%2
 		position = desination_position
 		

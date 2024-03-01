@@ -14,3 +14,8 @@ res://Scenes/Assets/GameMenu.tscn
 res://Scenes/start.tscn
 res://Scripts/player.gd
 res://Scripts/start.gd
+res://Scripts/portal.gd
+res://Scenes/fountain.tscn
+res://Scripts/fountain.gd
+res://Global.gd
+res://Scripts/loadGames.gd

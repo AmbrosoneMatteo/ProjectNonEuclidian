@@ -252,4 +252,5 @@ theme_override_font_sizes/font_size = 60
 text = "RICARICA
 "
 
+[connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/reload" to="Control/LoadGame/VBoxContainer" method="_on_reload_pressed"]

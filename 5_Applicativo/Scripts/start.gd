@@ -22,6 +22,8 @@ var portals := [] # Lista dei portali presenti in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Global.player_position!=null:
+		player.position=Global.player_position
 	get_tree().paused=false
 	viewport_camera.set_cull_mask(2)
 	c.set_layer_mask_value(2,2)
@@ -87,19 +89,26 @@ func _process(delta):
 # e lo imposta come portale attivo.
 func near_portal():
 	for i in range(len(portals)):
+		var portal = portals[i]  
 		if is_near(portals[i].position,3):
 			if not portal.enabled:
 				print("yep  ",portal.destination_portal.position)
 			else:
-				#print("nop  ",portal.destination_portal.position)
-				player.desination_position = portal.destination_portal.position
+				print("nop  ",portal.destination_portal.position)
+				portal.enabled=false
+				portals[portal.connection].enabled=false
+				player.position = portal.destination_portal.position-Vector3(0,1,0)
 				portal = portals[i]
-				reset_portals()
 				portal.checkpoint_enabled = true
+		else:
+			portal.enabled= true
 #				portal.destination_portal.set_exit_position(player.position.z)
 				
 #				player.desination_position = portal.destination_portal.exit_position
-
+		var camera_node_path = "structure/portal-"+str(i+1)+"/Control/SubViewport/Camera3D"
+		var camera = get_node(camera_node_path)
+		camera.global_position = portals[portal.connection].position;
+		camera.global_rotation= $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
 #func near_portal():
 #	for i in range(len(portals)):
 #		if is_near(portals[i].position,3):
@@ -107,17 +116,15 @@ func near_portal():
 #			portals[i].checkpoint_enabled = true
 #			player.desination_position = portals[i].destination_portal.position + Vector3(0,0,1)			
 
-	wall_1.set_layer_mask_value(2,2)
-	set_portals()
+#	wall_1.set_layer_mask_value(2,2)
+#	portals[0].viewport = $"structure/Control2/SubViewport"
+#	portals[0].get_node("Sprite3D").set_texture(portals[0].viewport.get_texture())
+#	portals[0].destination_portal = portals[1]
+#
+#	portals[1].viewport = $"structure/Control/SubViewport"
+#	portals[1].get_node("Sprite3D").set_texture(portals[1].viewport.get_texture())
+#	portals[1].destination_portal = portals[0]
 	
-	portals[0].viewport = $"structure/Control2/SubViewport"
-	portals[0].get_node("Sprite3D").set_texture(portals[0].viewport.get_texture())
-	portals[0].destination_portal = portals[1]
-	
-	portals[1].viewport = $"structure/Control/SubViewport"
-	portals[1].get_node("Sprite3D").set_texture(portals[1].viewport.get_texture())
-	portals[1].destination_portal = portals[0]
-	pass # Replace with function body.
 
 
 
@@ -131,11 +138,7 @@ func is_near(pos,max_distance):
 		return true
 	return false
 
-# [Portali]
-# Disattiva i checkpoint di tutti i portali (li setta su false)
-func reset_portals():
-	for i in range(len(portals)):
-		portals[i].checkpoint_enabled = false
+
 
 
 	
@@ -155,24 +158,17 @@ func set_portals():
 	portals.append($"structure/portal-2")
 	portals.append($"structure/portal-3")
 	portals.append($"structure/portal-4")
+	portals.append($"structure/portal-5")
+	for i in range(len(portals)):
+		portals[i].enabled = true
+		portals[i].viewport = $"structure/Control/SubViewport"
+		var x = randi()%len(portals)
+		while x == i: 
+			x = randi()%len(portals)
+		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
+		portals[i].destination_portal = portals[x]
+		portals[i].connection = x
 	
-	portals[0].viewport = $"structure/Control/SubViewport"
-	portals[0].get_node("Sprite3D").set_texture(portals[0].viewport.get_texture())
-	portals[0].destination_portal = portals[1]
-	
-	portals[1].viewport = $"structure/Control/SubViewport"
-	portals[1].get_node("Sprite3D").set_texture(portals[1].viewport.get_texture())
-	portals[1].destination_portal = portals[0]
-	
-	portals[2].viewport = $"structure/Control/SubViewport"
-	portals[2].get_node("Sprite3D").set_texture(portals[2].viewport.get_texture())
-	portals[2].destination_portal = portals[3]
-	
-	portals[3].viewport = $"structure/Control/SubViewport"
-	portals[3].get_node("Sprite3D").set_texture(portals[3].viewport.get_texture())
-	portals[3].destination_portal = portals[2]
-	
-	portal = portals[1]
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
