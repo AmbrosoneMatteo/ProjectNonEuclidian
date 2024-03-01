@@ -16,6 +16,7 @@ func _on_option_button_pressed():
 	$Control.visible=true
 
 
+
 func _on_exit_button_pressed():
 	print("exiting to menu")
 	get_tree().paused = false
@@ -25,7 +26,7 @@ func _on_exit_button_pressed():
 func _on_to_menu_button_pressed():
 	for i in get_children():
 		i.visible=true
-	$Control2.visible=false
+	$Control/Control.visible=false
 	$Control.visible=false
 
 func _on_save_button_pressed():

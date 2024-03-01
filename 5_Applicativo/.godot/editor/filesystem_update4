@@ -1,9 +1,8 @@
-res://Scenes/start.tscn
+res://Scenes/room_001.tscn
 res://Scripts/CanvasLayer.gd
 res://Scripts/GameMenu.gd
 res://Scripts/Menu.gd
 res://Assets/Shaders/sky.gdshader
-res://Scenes/room_001.tscn
 res://Scenes/portal.tscn
 res://Scenes/Assets/LoadGame.tscn
 res://Scenes/Assets/MainMenuOptions.tscn
@@ -12,6 +11,5 @@ res://Scenes/MainMenu.tscn
 res://Scenes/Assets/OptionsMenu.tscn
 res://Models/Player.tscn
 res://Scenes/Assets/GameMenu.tscn
+res://Scenes/start.tscn
 res://Scripts/player.gd
-res://Scripts/loadGames.gd
-res://Scripts/start.gd

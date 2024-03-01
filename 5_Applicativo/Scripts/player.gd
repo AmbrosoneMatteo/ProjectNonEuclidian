@@ -25,7 +25,7 @@ var tutorial_finished: bool = false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var Variables = get_node("/root/Global")
-@onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control
+@onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial
 @onready var camera = $TwistPivot/PitchPivot/Camera3D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

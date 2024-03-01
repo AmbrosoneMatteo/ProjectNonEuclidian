@@ -30,5 +30,3 @@ func _on_continue_button_pressed():
 	get_tree().paused=false
 
 
-func _on_to_menu_button_pressed():
-	pass # Replace with function body.
