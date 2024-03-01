@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b18ln2vd2ljy3"
+uid="uid://cqcgiaj0sk44a"
 path="res://.godot/imported/castle.dae-619e8b1728ed8e026c16c813a5ec9ead.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/castle.dae-619e8b1728ed8e026c16c813a5ec9ead.s
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true

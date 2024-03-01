@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5jlwjfxa0icc"
+uid="uid://btpbdnkkahwt1"
 path="res://.godot/imported/cubelabirynth.dae-915ecd579fa5d54c55f126e2953d145b.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/cubelabirynth.dae-915ecd579fa5d54c55f126e2953
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true

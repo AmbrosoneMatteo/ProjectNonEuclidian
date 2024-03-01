@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bjaued4g57b8b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBox"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 4.0
+offset_right = 1152.0
+offset_bottom = 300.0
+theme_override_font_sizes/normal_font_size = 35
+text = "Hey!, Welcome to our test facility where we experiment with reality, you'll see things that are out of the ordinary so don't panic. To start go on the other platform"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogBox"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 136.0
+offset_bottom = 52.0
+text = "Operator:
+"

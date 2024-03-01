@@ -5,6 +5,7 @@ extends Node3D
 @onready var player_pitch := $Player/TwistPivot/PitchPivot
 @onready var viewport_camera := $structure/Control/SubViewport/Camera3D
 
+
 @onready var a := $structure/MeshInstance3D2
 @onready var b := $structure/MeshInstance3D
 @onready var c := $"structure/platform-1/MeshInstance3D"
@@ -18,13 +19,14 @@ extends Node3D
 @onready var portal := $"structure/portal-1" # Portale attivo
 var portals := [] # Lista dei portali presenti in game
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().paused=false
 	viewport_camera.set_cull_mask(2)
 	c.set_layer_mask_value(2,2)
 	a.set_layer_mask_value(2,2)
 	b.set_layer_mask_value(2,2)
-
 	d.set_layer_mask_value(2,2)
 	wall_1.set_layer_mask_value(2,2)
 	wall_2.set_layer_mask_value(2,2)

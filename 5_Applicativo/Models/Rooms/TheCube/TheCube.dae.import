@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://uuwh8hdi6dub"
+uid="uid://bb240l58ufdb"
 path="res://.godot/imported/TheCube.dae-5bb9912ec16b1ba103aec0b38847f3f5.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/TheCube.dae-5bb9912ec16b1ba103aec0b38847f3f5.
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true

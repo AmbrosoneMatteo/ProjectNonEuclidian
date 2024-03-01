@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://booqc366lyjx7"
+uid="uid://kccsyi67g8h7"
 path="res://.godot/imported/show room.dae-cb23132d7ce4d97cca2edf885f73fa6e.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/show room.dae-cb23132d7ce4d97cca2edf885f73fa6
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
