@@ -13,3 +13,4 @@ res://Models/Player.tscn
 res://Scenes/Assets/GameMenu.tscn
 res://Scenes/start.tscn
 res://Scripts/player.gd
+res://Scripts/start.gd

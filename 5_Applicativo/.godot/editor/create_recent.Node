@@ -1,3 +1,4 @@
+AudioStreamPlayer
 CanvasLayer
 CollisionShape3D
 MeshInstance3D
@@ -12,7 +13,6 @@ DirectionalLight3D
 RichTextLabel
 Panel
 Control
-AudioStreamPlayer
 Camera3D
 VehicleWheel3D
 Area3D

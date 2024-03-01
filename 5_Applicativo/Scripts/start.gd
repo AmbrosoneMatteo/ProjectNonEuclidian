@@ -89,8 +89,7 @@ func near_portal():
 	for i in range(len(portals)):
 		if is_near(portals[i].position,3):
 			if not portal.enabled:
-				pass
-				#print("yep  ",portal.destination_portal.position)
+				print("yep  ",portal.destination_portal.position)
 			else:
 				#print("nop  ",portal.destination_portal.position)
 				player.desination_position = portal.destination_portal.position

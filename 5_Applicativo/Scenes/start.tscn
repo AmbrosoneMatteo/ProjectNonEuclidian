@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://x7l06kx506fg"]
+[gd_scene load_steps=25 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/CanvasLayer.gd" id="5_tuosa"]
 [ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="6_8n0jj"]
 [ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="7_jus54"]
+[ext_resource type="AudioStream" uid="uid://da7d47j0n81n3" path="res://Scenes/Sounds/Music/soundtrack.mp3" id="9_6hu53"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8y3ue"]
 
@@ -282,6 +283,12 @@ theme = SubResource("Theme_6stwp")
 theme_override_constants/separation = 20
 script = ExtResource("6_8n0jj")
 
+[node name="continue_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTINUA"
+alignment = 0
+
 [node name="option_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -383,18 +390,16 @@ text = "VOLUME MUSICA:"
 editable = false
 metadata/_edit_use_anchors_ = true
 
-[node name="continue_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "CONTINUA"
-alignment = 0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_6hu53")
+autoplay = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.119011, 0.992893, 0, -0.992893, -0.119011, 0, 32.5939, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
+[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/option_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_option_button_pressed" flags=18]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/exit_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_exit_button_pressed" flags=18]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control/to_menu_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
-[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
