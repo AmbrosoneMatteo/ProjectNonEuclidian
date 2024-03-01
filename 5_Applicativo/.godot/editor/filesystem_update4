@@ -1,7 +1,6 @@
-res://Scenes/start.tscn
 res://Scenes/room_001.tscn
+res://Scenes/portal.gd
+res://Scenes/start.gd
 res://Scenes/portal.tscn
 res://Models/Player.tscn
-res://Scenes/start.gd
-res://Scenes/portal.gd
-res://Scripts/player.gd
+res://Scenes/start.tscn

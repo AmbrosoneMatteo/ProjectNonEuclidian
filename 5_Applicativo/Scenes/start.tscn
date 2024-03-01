@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=13 format=3 uid="uid://xfe30m1h5gn3"]
-=======
-[gd_scene load_steps=12 format=3 uid="uid://xfe30m1h5gn3"]
->>>>>>> c832fe9d0629cb088f35aef510a9b4461c34e881
+[gd_scene load_steps=13 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scenes/start.gd" id="1_cswqa"]
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
@@ -114,15 +110,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0484, 21.7011, 0.0308604)
 
 [node name="portal-2" parent="structure" instance=ExtResource("1_ltm22")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10, 21.7029, 0)
-<<<<<<< HEAD
 
 [node name="portal-3" parent="structure" instance=ExtResource("1_ltm22")]
 transform = Transform3D(-0.0125312, 0, -0.999922, 0, 1, 0, 0.999922, 0, -0.0125312, -5.09831, 21.7029, 6.62209)
 
 [node name="portal-4" parent="structure" instance=ExtResource("1_ltm22")]
 transform = Transform3D(-1, 8.7073e-08, 7.81242e-09, 0, 0.0893636, -0.995999, -8.74228e-08, -0.995999, -0.0893636, 10.6592, 34.622, -5.01152)
-=======
->>>>>>> c832fe9d0629cb088f35aef510a9b4461c34e881
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81484, 20.7483, 4.02191)
@@ -157,15 +150,9 @@ size = Vector2i(2048, 2048)
 
 [node name="Camera3D" type="Camera3D" parent="structure/Control/SubViewport"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 9.84655, 20.5878, -0.808724)
-<<<<<<< HEAD
 fov = 80.0
 near = 0.015
 far = 41.96
-=======
-fov = 98.4
-near = 0.015
-far = 19.38
->>>>>>> c832fe9d0629cb088f35aef510a9b4461c34e881
 
 [node name="Player" parent="." instance=ExtResource("3_0i3cj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2171, 21.2777, -6.53533)

@@ -67,11 +67,5 @@ func _on_visibility_changed():
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("Portal"):
-<<<<<<< HEAD
 		position = desination_position - Vector3(0,1,0)
-=======
-		portal = (portal+1)%2
-		position.x = desination_position.x
-		position.z = desination_position.z
->>>>>>> c832fe9d0629cb088f35aef510a9b4461c34e881
-		
+
