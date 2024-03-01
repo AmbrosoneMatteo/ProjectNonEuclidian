@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://x7l06kx506fg"]
 
-[ext_resource type="Script" path="res://Scenes/start.gd" id="1_cswqa"]
+[ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="PackedScene" uid="uid://d381wlwbggi2w" path="res://Scenes/portal.tscn" id="1_ltm22"]
 [ext_resource type="PackedScene" uid="uid://cknjhojmvdgjt" path="res://Models/Player.tscn" id="3_0i3cj"]
 
@@ -32,7 +32,7 @@ metallic_specular = 1.0
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
-script = ExtResource("1_cswqa")
+script = ExtResource("1_5eacx")
 
 [node name="structure" type="Node3D" parent="."]
 

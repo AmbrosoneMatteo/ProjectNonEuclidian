@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d381wlwbggi2w"]
 
-[ext_resource type="Script" path="res://Scenes/Area3DPortal.gd" id="1_amlmw"]
-[ext_resource type="Script" path="res://Scenes/portal.gd" id="1_fja3j"]
+[ext_resource type="Script" path="res://Scripts/portal.gd" id="1_cpmuh"]
+[ext_resource type="Script" path="res://Scripts/Area3DPortal.gd" id="2_ak8rp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xq43t"]
 
@@ -15,7 +15,7 @@ size = Vector3(2.76956, 0.642517, 2.77135)
 viewport_path = NodePath("Control/SubViewport")
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_fja3j")
+script = ExtResource("1_cpmuh")
 
 [node name="part-1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
@@ -59,7 +59,7 @@ shape = SubResource("BoxShape3D_hiygh")
 
 [node name="Area3D" type="Area3D" parent="." groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
-script = ExtResource("1_amlmw")
+script = ExtResource("2_ak8rp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
