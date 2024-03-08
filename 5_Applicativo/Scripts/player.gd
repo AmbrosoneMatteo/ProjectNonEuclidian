@@ -43,13 +43,13 @@ func _ready():
 	#tutorial_voice.play()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("Accept"):
+	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
 	if(Input.is_action_just_pressed("pickup_object")):
 		pickup_sound.play()
-	if Input.is_action_just_pressed("Accept"):
+	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		tutorial.visible = false
 		tutorial_voice.stop()
 	if(Input.is_action_just_pressed("esc")):

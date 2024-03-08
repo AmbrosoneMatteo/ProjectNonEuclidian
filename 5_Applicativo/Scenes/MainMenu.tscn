@@ -245,17 +245,9 @@ toggle_mode = true
 text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
-[node name="reload" type="Button" parent="Control/LoadGame/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 60
-text = "RICARICA
-"
-
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-2" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [2]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-3" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [3]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-4" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [4]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-5" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [5]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-6" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [6]]
-[connection signal="pressed" from="Control/LoadGame/VBoxContainer/reload" to="Control/LoadGame/VBoxContainer" method="_on_reload_pressed"]

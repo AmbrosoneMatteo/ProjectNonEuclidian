@@ -83,7 +83,6 @@ func _process(delta):
 		camera.global_rotation.y = (vectors[0].direction_to(vectors[1])).dot(Vector2(0,1).rotated(player.rotation.y))
 		camera.global_rotation.z = portal.global_rotation.z
 		camera.global_rotation.x = portal.global_rotation.x
-		dprint("portal: ",portal.connection," rotation -> ",portal.destination_portal.global_rotation_degrees)
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
 		print(camera.global_rotation.y," portal -> ",i)

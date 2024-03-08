@@ -204,13 +204,6 @@ toggle_mode = true
 text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
-[node name="reload" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 60
-text = "RICARICA
-"
-
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
