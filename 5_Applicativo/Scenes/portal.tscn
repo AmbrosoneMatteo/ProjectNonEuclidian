@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d381wlwbggi2w"]
+[gd_scene load_steps=9 format=3 uid="uid://d381wlwbggi2w"]
 
 [ext_resource type="Script" path="res://Scripts/portal.gd" id="1_cpmuh"]
 [ext_resource type="Script" path="res://Scripts/Area3DPortal.gd" id="2_ak8rp"]
+[ext_resource type="Shader" path="res://Assets/Shaders/portal.gdshader" id="3_e72eh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xq43t"]
 
@@ -11,8 +12,14 @@ size = Vector3(0.2, 4, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3cbms"]
 size = Vector3(2.76956, 0.642517, 2.77135)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tgrn3"]
-viewport_path = NodePath("Control/SubViewport")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7d4i"]
+render_priority = 0
+shader = ExtResource("3_e72eh")
+shader_parameter/fade_out_distance_max = 10.0
+shader_parameter/fade_out_distance_min = 8.0
+shader_parameter/fade_out_color = Vector4(0, 0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vmd5s"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_cpmuh")
@@ -65,9 +72,10 @@ script = ExtResource("2_ak8rp")
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
-texture = SubResource("ViewportTexture_tgrn3")
+material_override = SubResource("ShaderMaterial_w7d4i")
+mesh = SubResource("QuadMesh_vmd5s")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

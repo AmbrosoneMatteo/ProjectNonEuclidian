@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	volume_db = -40.0 + Global.music_volume/2
+	volume = -40.0 + Global.music_volume/2

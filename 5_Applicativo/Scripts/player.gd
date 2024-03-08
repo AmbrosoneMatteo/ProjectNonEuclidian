@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 
-const SPEED = 5.0
+var SPEED = 8.0
 const JUMP_VELOCITY = 5.5
 
 @export var portal = 0
@@ -59,6 +59,10 @@ func _physics_process(delta):
 		sound_player.stop()
 		tutorial_voice.stop()
 		$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
+	if Input.is_key_pressed(KEY_SHIFT):
+		SPEED=14.0
+	else:
+		SPEED=5.0
 	if not tutorial_finished:
 		if tutorial_voice.playing:
 			Global.music_volume = 30
@@ -95,7 +99,7 @@ func _physics_process(delta):
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
-	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-90),deg_to_rad(42))
+	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	twist_input = 0.0
 	pitch_input = 0.0
 

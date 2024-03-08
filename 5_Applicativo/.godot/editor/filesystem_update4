@@ -17,3 +17,8 @@ res://Scripts/start.gd
 res://Global.gd
 res://Scripts/player.gd
 res://Scripts/loadGames.gd
+res://Assets/Shaders/skybox.tres
+res://Scripts/AudioControl.gd
+res://Scripts/Soundtrack.gd
+res://default_bus_layout.tres
+res://Assets/Shaders/portal.gdshader

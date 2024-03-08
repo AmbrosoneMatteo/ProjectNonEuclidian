@@ -3,7 +3,7 @@ extends Node3D
 @onready var player := $Player
 @onready var player_twist := $Player/TwistPivot
 @onready var player_pitch := $Player/TwistPivot/PitchPivot
-
+@onready var audiostreamer = $AudioStreamPlayer
 
 @onready var a := $structure/MeshInstance3D2
 @onready var b := $structure/MeshInstance3D
@@ -52,6 +52,41 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	audiostreamer.volume_db=Global.music_volume
+	for i in range(len(portals)):
+		var portal = portals[i]  
+		if is_near(portals[i].position,2):
+			if not portal.enabled:
+				pass
+				#print("yep  ",portal.destination_portal.position)
+			else:
+				#print("nop  ",portal.destination_portal.position)
+				portal.enabled=false
+				portals[portal.connection].enabled=false
+				player.position = portal.destination_portal.position-Vector3(0,1,0)
+				player.global_rotation.y = portal.destination_portal.global_rotation.y
+				portal = portals[i]
+				portal.checkpoint_enabled = true
+		else:
+			portal.enabled= true
+#				portal.destination_portal.set_exit_position(player.position.z)
+				
+#				player.desination_position = portal.destination_portal.exit_position
+		var camera_node_path = "Control/SubViewport/Camera3D"
+		var camera = portal.get_node(camera_node_path)
+	
+		camera.global_position = portal.position;
+#		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
+		var vectors = [Vector2(player.position.x, player.position.z), Vector2(portal.position.x,portal.position.z)]
+		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
+		
+		camera.global_rotation.y = (vectors[0].direction_to(vectors[1])).dot(Vector2(0,1).rotated(player.rotation.y))
+		camera.global_rotation.z = portal.global_rotation.z
+		camera.global_rotation.x = portal.global_rotation.x
+		dprint("portal: ",portal.connection," rotation -> ",portal.destination_portal.global_rotation_degrees)
+#to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
+		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
+		print(camera.global_rotation.y," portal -> ",i)
 #	portals[0].print_collsions(0)
 #	portals[1].print_collsions(1)
 #	portals[2].print_collsions(2)
@@ -71,8 +106,6 @@ func _process(delta):
 #		portal.cross()
 #		portal.enabled = false
 #		print(portal.enabled)
-		
-	near_portal()
 #
 #	if not portal.enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
 #		portal.crossed()
@@ -82,40 +115,6 @@ func _process(delta):
 	
 	
 	
-
-# Verifica quale sia il portale più vicino
-# e lo imposta come portale attivo.
-func near_portal():
-	for i in range(len(portals)):
-		var portal = portals[i]  
-		if is_near(portals[i].position,2):
-			if not portal.enabled:
-				print("yep  ",portal.destination_portal.position)
-			else:
-				print("nop  ",portal.destination_portal.position)
-				portal.enabled=false
-				portals[portal.connection].enabled=false
-				player.position = portal.destination_portal.position-Vector3(0,1,0)
-				portal = portals[i]
-				portal.checkpoint_enabled = true
-		else:
-			portal.enabled= true
-#				portal.destination_portal.set_exit_position(player.position.z)
-				
-#				player.desination_position = portal.destination_portal.exit_position
-		var camera_node_path = "Control/SubViewport/Camera3D"
-		var camera = portals[i].get_node(camera_node_path)
-	
-		camera.global_position = portals[portal.connection].position;
-		var destination = portal.destination_portal
-#		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
-		var vectors = [Vector2(player.position.x, player.position.z), Vector2(portal.position.x,portal.position.z)]
-		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
-		camera.global_rotation.y = (vectors[0]).dot(vectors[1])
-		
-#to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
-		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
-		print(camera.global_rotation.y," portal -> ",i)
 
 
 #func near_portal():
@@ -162,18 +161,23 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	for i in range(len(portals)):
+	while len(taken_portals)!=len(portals):
+		var i = randi()%len(portals)-1
+		while i in taken_portals:
+			i = randi()%len(portals)-1			
 		portals[i].enabled = true
-		var x = randi()%len(portals)
-		var count = 0
-		while x == i or x in taken_portals or count <100: 
+		var x = randi()%len(portals)-1		
+		while x == i or x in taken_portals: 
 			x = randi()%len(portals)
-			count+=1
 		#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
 		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
 		portals[i].destination_portal = portals[x]
 		portals[i].connection = x
+		portals[x].get_node("Sprite3D").set_texture(portals[i].get_node("Control/SubViewport").get_texture())			
+		portals[x].destination_portal = portals[i]
+		portals[x].connection = i
 		taken_portals.append(x)
+		taken_portals.append(i)
 		print(taken_portals)
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:

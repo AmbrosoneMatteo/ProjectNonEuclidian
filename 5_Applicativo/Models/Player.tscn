@@ -41,9 +41,9 @@ shape = SubResource("CapsuleShape3D_4xp2n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
 [node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787984, 0)
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.846047, -0.123887)
 environment = SubResource("Environment_ld0q1")
