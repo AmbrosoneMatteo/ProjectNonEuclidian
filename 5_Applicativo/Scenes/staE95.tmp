@@ -1,0 +1,815 @@
+[gd_scene load_steps=42 format=3 uid="uid://x7l06kx506fg"]
+
+[ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="3_5o44o"]
+[ext_resource type="Shader" path="res://Assets/Shaders/sky.gdshader" id="4_1u64n"]
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="5_hyirj"]
+[ext_resource type="Script" path="res://Scripts/CanvasLayer.gd" id="5_tuosa"]
+[ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="6_8n0jj"]
+[ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="7_jus54"]
+[ext_resource type="AudioStream" uid="uid://da7d47j0n81n3" path="res://Scenes/Sounds/Music/soundtrack.mp3" id="9_6hu53"]
+[ext_resource type="Script" path="res://Scripts/portal.gd" id="10_qm4wm"]
+[ext_resource type="Script" path="res://Scripts/Area3DPortal.gd" id="11_1yshf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8y3ue"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gu40"]
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djwtx"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wuapv"]
+albedo_color = Color(0.878431, 0.647059, 0.188235, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ys4x"]
+size = Vector3(10, 0.1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bp55e"]
+size = Vector3(10, 0.1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xq43t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hiygh"]
+size = Vector3(0.2, 4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3cbms"]
+size = Vector3(2.76956, 0.642517, 2.77135)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8jenj"]
+viewport_path = NodePath("structure/portal-1/Control/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cek7a"]
+emission_enabled = true
+emission = Color(0, 0.678431, 0.803922, 1)
+emission_energy_multiplier = 3.57
+
+[sub_resource type="BoxMesh" id="BoxMesh_3nbjk"]
+material = SubResource("StandardMaterial3D_cek7a")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_afy25"]
+viewport_path = NodePath("structure/portal-2/Control/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_261od"]
+viewport_path = NodePath("structure/portal-3/Control/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1slou"]
+emission_enabled = true
+emission = Color(1, 0, 1, 1)
+emission_energy_multiplier = 10.86
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dhhlf"]
+material = SubResource("StandardMaterial3D_1slou")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fbqa7"]
+viewport_path = NodePath("structure/portal-4/Control/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vclna"]
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 10.93
+
+[sub_resource type="SphereMesh" id="SphereMesh_vfpj3"]
+material = SubResource("StandardMaterial3D_vclna")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wg7kx"]
+viewport_path = NodePath("structure/portal-5/Control/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hepjt"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 11.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nmme1"]
+material = SubResource("StandardMaterial3D_hepjt")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4a7kn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kehu"]
+albedo_color = Color(0.176471, 0.745098, 0.792157, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_42kgf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ce12s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xp2n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywxjj"]
+shader = ExtResource("4_1u64n")
+
+[sub_resource type="Sky" id="Sky_6mili"]
+resource_local_to_scene = true
+sky_material = SubResource("ShaderMaterial_ywxjj")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_ld0q1"]
+background_mode = 2
+background_energy_multiplier = 2.2
+sky = SubResource("Sky_6mili")
+sky_custom_fov = 15.0
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+tonemap_exposure = 1.45
+fog_enabled = true
+
+[sub_resource type="Theme" id="Theme_6stwp"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
+script = ExtResource("1_5eacx")
+
+[node name="structure" type="Node3D" parent="."]
+
+[node name="floor" type="StaticBody3D" parent="structure"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/floor"]
+transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("BoxMesh_8y3ue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/floor"]
+shape = SubResource("BoxShape3D_4gu40")
+
+[node name="wall-1" type="StaticBody3D" parent="structure"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 15, 15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/wall-1"]
+transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("BoxMesh_8y3ue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/wall-1"]
+shape = SubResource("BoxShape3D_4gu40")
+
+[node name="wall-2" type="StaticBody3D" parent="structure"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -15, 15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/wall-2"]
+transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_djwtx")
+mesh = SubResource("BoxMesh_8y3ue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/wall-2"]
+shape = SubResource("BoxShape3D_4gu40")
+
+[node name="wall-3" type="StaticBody3D" parent="structure"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 15, 15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/wall-3"]
+transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("BoxMesh_8y3ue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/wall-3"]
+shape = SubResource("BoxShape3D_4gu40")
+
+[node name="wall-4" type="StaticBody3D" parent="structure"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 15, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/wall-4"]
+transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("BoxMesh_8y3ue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/wall-4"]
+shape = SubResource("BoxShape3D_4gu40")
+
+[node name="platform-1" type="StaticBody3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 20, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/platform-1"]
+material_override = SubResource("StandardMaterial3D_wuapv")
+mesh = SubResource("BoxMesh_5ys4x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/platform-1"]
+shape = SubResource("BoxShape3D_bp55e")
+
+[node name="platform-2" type="StaticBody3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 20, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/platform-2"]
+mesh = SubResource("BoxMesh_5ys4x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/platform-2"]
+shape = SubResource("BoxShape3D_bp55e")
+
+[node name="portal-1" type="Node3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0484, 21.7011, 0.0308604)
+script = ExtResource("10_qm4wm")
+
+[node name="part-1" type="StaticBody3D" parent="structure/portal-1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/part-1"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-1/part-1"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-2" type="StaticBody3D" parent="structure/portal-1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/part-2"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-1/part-2"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-3" type="StaticBody3D" parent="structure/portal-1"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/part-3"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-1/part-3"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-4" type="StaticBody3D" parent="structure/portal-1"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/part-4"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-1/part-4"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="Area3D" type="Area3D" parent="structure/portal-1" groups=["Portal"]]
+transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
+script = ExtResource("11_1yshf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-1/Area3D"]
+transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
+shape = SubResource("BoxShape3D_3cbms")
+
+[node name="Sprite3D" type="Sprite3D" parent="structure/portal-1"]
+transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
+texture = SubResource("ViewportTexture_8jenj")
+
+[node name="Control" type="Control" parent="structure/portal-1"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/portal-1/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/portal-1/Control/SubViewport"]
+cull_mask = 1048574
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-1/Control/SubViewport/Camera3D"]
+mesh = SubResource("BoxMesh_3nbjk")
+
+[node name="portal-2" type="Node3D" parent="structure"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10, 21.7029, 0)
+script = ExtResource("10_qm4wm")
+
+[node name="part-1" type="StaticBody3D" parent="structure/portal-2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/part-1"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-2/part-1"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-2" type="StaticBody3D" parent="structure/portal-2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/part-2"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-2/part-2"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-3" type="StaticBody3D" parent="structure/portal-2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/part-3"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-2/part-3"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-4" type="StaticBody3D" parent="structure/portal-2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/part-4"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-2/part-4"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="Area3D" type="Area3D" parent="structure/portal-2" groups=["Portal"]]
+transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
+script = ExtResource("11_1yshf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-2/Area3D"]
+transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
+shape = SubResource("BoxShape3D_3cbms")
+
+[node name="Sprite3D" type="Sprite3D" parent="structure/portal-2"]
+transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
+texture = SubResource("ViewportTexture_afy25")
+
+[node name="Control" type="Control" parent="structure/portal-2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/portal-2/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/portal-2/Control/SubViewport"]
+cull_mask = 1048574
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-2/Control/SubViewport/Camera3D"]
+mesh = SubResource("BoxMesh_3nbjk")
+
+[node name="portal-3" type="Node3D" parent="structure"]
+transform = Transform3D(-0.0125312, 0, -0.999922, 0, 1, 0, 0.999922, 0, -0.0125312, -5.09831, 21.7029, 6.62209)
+script = ExtResource("10_qm4wm")
+
+[node name="part-1" type="StaticBody3D" parent="structure/portal-3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/part-1"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-3/part-1"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-2" type="StaticBody3D" parent="structure/portal-3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/part-2"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-3/part-2"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-3" type="StaticBody3D" parent="structure/portal-3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/part-3"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-3/part-3"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-4" type="StaticBody3D" parent="structure/portal-3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/part-4"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-3/part-4"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="Area3D" type="Area3D" parent="structure/portal-3" groups=["Portal"]]
+transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
+script = ExtResource("11_1yshf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-3/Area3D"]
+transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
+shape = SubResource("BoxShape3D_3cbms")
+
+[node name="Sprite3D" type="Sprite3D" parent="structure/portal-3"]
+transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
+texture = SubResource("ViewportTexture_261od")
+
+[node name="Control" type="Control" parent="structure/portal-3"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/portal-3/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/portal-3/Control/SubViewport"]
+cull_mask = 1048574
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-3/Control/SubViewport/Camera3D"]
+mesh = SubResource("CapsuleMesh_dhhlf")
+
+[node name="portal-4" type="Node3D" parent="structure"]
+transform = Transform3D(-1, 8.7073e-08, 7.81242e-09, 0, 0.0893636, -0.995999, -8.74228e-08, -0.995999, -0.0893636, 10.6592, 34.622, -5.01152)
+script = ExtResource("10_qm4wm")
+
+[node name="part-1" type="StaticBody3D" parent="structure/portal-4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/part-1"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-4/part-1"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-2" type="StaticBody3D" parent="structure/portal-4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/part-2"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-4/part-2"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-3" type="StaticBody3D" parent="structure/portal-4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/part-3"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-4/part-3"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-4" type="StaticBody3D" parent="structure/portal-4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/part-4"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-4/part-4"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="Area3D" type="Area3D" parent="structure/portal-4" groups=["Portal"]]
+transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
+script = ExtResource("11_1yshf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-4/Area3D"]
+transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
+shape = SubResource("BoxShape3D_3cbms")
+
+[node name="Sprite3D" type="Sprite3D" parent="structure/portal-4"]
+transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
+texture = SubResource("ViewportTexture_fbqa7")
+
+[node name="Control" type="Control" parent="structure/portal-4"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/portal-4/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/portal-4/Control/SubViewport"]
+cull_mask = 1048574
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-4/Control/SubViewport/Camera3D"]
+mesh = SubResource("SphereMesh_vfpj3")
+
+[node name="portal-5" type="Node3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78285, 0)
+script = ExtResource("10_qm4wm")
+
+[node name="part-1" type="StaticBody3D" parent="structure/portal-5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/part-1"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-5/part-1"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-2" type="StaticBody3D" parent="structure/portal-5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/part-2"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-5/part-2"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-3" type="StaticBody3D" parent="structure/portal-5"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/part-3"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-5/part-3"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="part-4" type="StaticBody3D" parent="structure/portal-5"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/part-4"]
+transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_xq43t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-5/part-4"]
+shape = SubResource("BoxShape3D_hiygh")
+
+[node name="Area3D" type="Area3D" parent="structure/portal-5" groups=["Portal"]]
+transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
+script = ExtResource("11_1yshf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="structure/portal-5/Area3D"]
+transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
+shape = SubResource("BoxShape3D_3cbms")
+
+[node name="Sprite3D" type="Sprite3D" parent="structure/portal-5"]
+transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
+texture = SubResource("ViewportTexture_wg7kx")
+
+[node name="Control" type="Control" parent="structure/portal-5"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/portal-5/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/portal-5/Control/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9716, 0)
+cull_mask = 1048574
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure/portal-5/Control/SubViewport/Camera3D"]
+mesh = SubResource("CylinderMesh_nmme1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81484, 20.7483, 4.02191)
+mesh = SubResource("CylinderMesh_4a7kn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="structure"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.9188, 19.9951, 5.93531)
+material_override = SubResource("StandardMaterial3D_5kehu")
+mesh = SubResource("BoxMesh_42kgf")
+skeleton = NodePath("../Control/SubViewport/Camera3D")
+
+[node name="Control2" type="Control" parent="structure"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/Control2"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/Control2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6282, 21.2688, -0.335258)
+
+[node name="Control" type="Control" parent="structure"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="structure/Control"]
+size = Vector2i(2048, 2048)
+
+[node name="Camera3D" type="Camera3D" parent="structure/Control/SubViewport"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 9.84655, 20.5878, -0.808724)
+fov = 80.0
+near = 0.015
+far = 41.96
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2171, 21.2777, -6.53533)
+script = ExtResource("3_5o44o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291429, 0)
+mesh = SubResource("CapsuleMesh_ce12s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
+shape = SubResource("CapsuleShape3D_4xp2n")
+
+[node name="RigidBody3D" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
+
+[node name="TwistPivot" type="Node3D" parent="Player"]
+
+[node name="PitchPivot" type="Node3D" parent="Player/TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.846047, -0.123887)
+environment = SubResource("Environment_ld0q1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/TwistPivot/PitchPivot/Camera3D"]
+process_mode = 3
+script = ExtResource("5_tuosa")
+
+[node name="Tutorial" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" type="Panel" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="RichTextLabel" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial/DialogBox"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 4.0
+offset_right = 1152.0
+offset_bottom = 300.0
+theme_override_font_sizes/normal_font_size = 35
+text = "Hey!, Welcome to our test facility where we experiment with reality, you'll see things that are out of the ordinary so don't panic. To start go on the other platform"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial/DialogBox"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 136.0
+offset_bottom = 52.0
+text = "Operator:
+"
+
+[node name="GameMenu" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+position = Vector2(1635, 373)
+scale = Vector2(0.5645, 0.4635)
+texture = ExtResource("5_hyirj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -156.0
+offset_right = 322.0
+offset_bottom = 156.0
+grow_vertical = 2
+theme = SubResource("Theme_6stwp")
+theme_override_constants/separation = 20
+script = ExtResource("6_8n0jj")
+
+[node name="continue_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTINUA"
+alignment = 0
+
+[node name="option_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "OPZIONI"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "ESCI"
+alignment = 0
+
+[node name="Control" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+offset_top = -92.0
+offset_right = 824.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 50
+text = "OPZIONI"
+editable = false
+
+[node name="Control" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 0
+script = ExtResource("7_jus54")
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio" type="HScrollBar" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 800.0
+offset_bottom = 70.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music" type="HScrollBar" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_left = 300.0
+offset_top = 80.0
+offset_right = 800.0
+offset_bottom = 150.0
+step = 1.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="to_menu_button" type="Button" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.55
+anchor_right = 4.0
+anchor_bottom = 0.55
+offset_top = 160.0
+offset_right = 432.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU DI GIOCO"
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio_txt" type="TextEdit" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 5.0
+anchor_right = 0.125
+anchor_bottom = 5.0
+offset_right = 280.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME AUDIO:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music_txt" type="TextEdit" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME MUSICA:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_6hu53")
+autoplay = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.119011, 0.992893, 0, -0.992893, -0.119011, 0, 32.5939, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[connection signal="body_entered" from="structure/portal-1/Area3D" to="structure/portal-1/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="structure/portal-1/Area3D" to="structure/portal-1/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="structure/portal-2/Area3D" to="structure/portal-2/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="structure/portal-2/Area3D" to="structure/portal-2/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="structure/portal-3/Area3D" to="structure/portal-3/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="structure/portal-3/Area3D" to="structure/portal-3/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="structure/portal-4/Area3D" to="structure/portal-4/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="structure/portal-4/Area3D" to="structure/portal-4/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="structure/portal-5/Area3D" to="structure/portal-5/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="structure/portal-5/Area3D" to="structure/portal-5/Area3D" method="_on_body_exited" flags=18]
+[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/option_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_option_button_pressed" flags=18]
+[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/exit_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_exit_button_pressed" flags=18]
+[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control/to_menu_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]

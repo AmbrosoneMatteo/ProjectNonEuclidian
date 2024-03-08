@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpru2kr28dai5"]
+[gd_scene load_steps=6 format=3 uid="uid://bpru2kr28dai5"]
 
 [ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_ys6nj"]
 [ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="2_1rfk0"]
 [ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="3_ald0m"]
+[ext_resource type="Script" path="res://Scripts/loadGames.gd" id="4_6nolu"]
 
 [sub_resource type="Theme" id="Theme_6stwp"]
 
@@ -149,6 +150,69 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "CONTINUA"
 alignment = 0
+
+[node name="Load" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Load"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -260.0
+offset_right = 500.0
+offset_bottom = 260.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+script = ExtResource("4_6nolu")
+
+[node name="Slot-1" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-1"
+
+[node name="Slot-2" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-2"
+
+[node name="Slot-3" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-3"
+
+[node name="Slot-4" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-4"
+
+[node name="Slot-5" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-5"
+
+[node name="Slot-6" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-6"
+
+[node name="to_menu_button" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="reload" type="Button" parent="VBoxContainer/Load/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 60
+text = "RICARICA
+"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/option_button" to="VBoxContainer" method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit_button" to="VBoxContainer" method="_on_exit_button_pressed"]

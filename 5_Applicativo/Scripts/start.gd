@@ -16,7 +16,6 @@ extends Node3D
 @onready var wall_4 := $"structure/wall-4/MeshInstance3D"
 
 
-@onready var portal := $"structure/portal-1" # Portale attivo
 var portals := [] # Lista dei portali presenti in game
 
 
@@ -56,29 +55,27 @@ func _process(delta):
 #	portals[1].print_collsions(1)
 #	portals[2].print_collsions(2)
 #	portals[3].print_collsions(3)
-	
-	
-	
-	if abs(get_delta("x"))<2:
-		#viewport_camera.position.x = portals[0].position.x - get_delta("x")
-		viewport_camera.position.x = portal.destination_portal.position.x - get_delta("x")
-	if player.position.z > -4 and player.position.z <-2.5:
-		#viewport_camera.position.z = portals[0].position.z - get_delta("z") * 1.1
-		#viewport_camera.position.z = portal.destination_portal.position.z - get_delta("z") * 1.1
-		pass
+#
+#	if abs(get_delta("x"))<2:
+#		#viewport_camera.position.x = portals[0].position.x - get_delta("x")
+#		viewport_camera.position.x = portal.destination_portal.position.x - get_delta("x")
+#	if player.position.z > -4 and player.position.z <-2.5:
+#		#viewport_camera.position.z = portals[0].position.z - get_delta("z") * 1.1
+#		#viewport_camera.position.z = portal.destination_portal.position.z - get_delta("z") * 1.1
+#		pass
 		
 	viewport_camera.rotation.y = player_twist.rotation.y
 	
-	if len(portal.destination_portal.area.get_overlapping_bodies()) > 0:
-		portal.cross()
-		portal.enabled = false
-		print(portal.enabled)
+#	if len(portal.destination_portal.area.get_overlapping_bodies()) > 0:
+#		portal.cross()
+#		portal.enabled = false
+#		print(portal.enabled)
 		
 	near_portal()
-	
-	if not portal.enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
-		portal.crossed()
-		print("crossed")
+#
+#	if not portal.enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
+#		portal.crossed()
+#		print("crossed")
 #		print("Portal 1 ",portal.is_enabled)
 #		print("Portal 2 ",portal.destination_portal.is_enabled)
 	
@@ -108,7 +105,13 @@ func near_portal():
 		var camera_node_path = "structure/portal-"+str(i+1)+"/Control/SubViewport/Camera3D"
 		var camera = get_node(camera_node_path)
 		camera.global_position = portals[portal.connection].position;
-		camera.global_rotation= $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
+#		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
+		var vectors = [Vector3(player.position.x, portal.position.y, player.position.z), player.position, Vector3(portal.position.x,portal.position.y,player.position.z)]
+		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
+		camera.global_rotation_degrees.y = (vectors[1]-vectors[2]).dot(vectors[0]-vectors[2])
+		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
+		if i == 1:
+			print((vectors[1]-vectors[2]).dot(vectors[0]-vectors[2])," portal ->",i)
 #func near_portal():
 #	for i in range(len(portals)):
 #		if is_near(portals[i].position,3):
@@ -143,17 +146,18 @@ func is_near(pos,max_distance):
 
 	
 	
-
-func get_delta(axis = "x"):
-	match axis:
-		"x":
-			return portal.position.x - player.position.x
-		"y":
-			return portal.position.z - player.position.z
-		"z":
-			return portal.position.z - player.position.z
+#
+#func get_delta(axis = "x"):
+#	match axis:
+#		"x":
+#			return portal.position.x - player.position.x
+#		"y":
+#			return portal.position.z - player.position.z
+#		"z":
+#			return portal.position.z - player.position.z
 
 func set_portals():
+	var taken_portals = []
 	portals.append($"structure/portal-1")
 	portals.append($"structure/portal-2")
 	portals.append($"structure/portal-3")
@@ -163,12 +167,13 @@ func set_portals():
 		portals[i].enabled = true
 		portals[i].viewport = $"structure/Control/SubViewport"
 		var x = randi()%len(portals)
-		while x == i: 
+		while x == i or x in taken_portals: 
 			x = randi()%len(portals)
 		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
 		portals[i].destination_portal = portals[x]
 		portals[i].connection = x
-	
+		taken_portals.append(x)
+		print(taken_portals)
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
@@ -178,5 +183,3 @@ func get_delta_x(pos = portals[1].position):
 
 func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
-	
-

@@ -40,7 +40,7 @@ func _ready():
 	sound_player.stream = audio_stream
 	pickup_sound.stream = pickup_stream
 	tutorial_voice.stream = tutorial_stream
-	tutorial_voice.play()
+	#tutorial_voice.play()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Accept"):
