@@ -26,10 +26,10 @@ func _on_exit_button_pressed():
 func _on_to_menu_button_pressed():
 	for i in get_children():
 		i.visible=true
-	$Control/Control.visible=false
 	$Control.visible=false
+	$SaveGame.visible=false
 
 func _on_save_button_pressed():
 	for i in get_children():
 		i.visible=false
-	$Control2.visible=true
+	$SaveGame.visible=true

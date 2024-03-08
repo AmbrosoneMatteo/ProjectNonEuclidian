@@ -213,6 +213,9 @@ text = "RICARICA
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SALVA"
+alignment = 0
 
 [connection signal="pressed" from="VBoxContainer/option_button" to="VBoxContainer" method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit_button" to="VBoxContainer" method="_on_exit_button_pressed"]
