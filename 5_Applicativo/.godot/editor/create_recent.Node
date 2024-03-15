@@ -1,8 +1,8 @@
+MeshInstance3D
+Node
 SpotLight3D
 CollisionShape3D
 Area3D
-MeshInstance3D
-Node
 StaticBody3D
 AudioStreamPlayer
 Button

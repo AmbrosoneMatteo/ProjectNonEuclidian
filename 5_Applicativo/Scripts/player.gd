@@ -100,7 +100,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	twist_pivot.rotate_y(twist_input*g)
-	pitch_pivot.rotate_x(pitch_input*g)
+	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	twist_input = 0.0
 	pitch_input = 0.0

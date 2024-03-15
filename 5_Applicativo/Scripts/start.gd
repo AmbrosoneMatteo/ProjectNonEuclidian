@@ -86,7 +86,7 @@ func _process(delta):
 		camera.global_rotation.x = portal.global_rotation.x
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
-		print(camera.global_rotation.y," portal -> ",i)
+		#print(camera.global_rotation.y," portal -> ",i)
 #	portals[0].print_collsions(0)
 #	portals[1].print_collsions(1)
 #	portals[2].print_collsions(2)
@@ -184,11 +184,16 @@ func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
 
 
-func on_teleport_player_entered(body,id: int):
-	var string = "teleport-%s"
+func on_teleport_player_entered(body,id: int, transform: int,position: bool):
 	if len(teleports)>id and teleports[id-1].enabled:
-		player.position = teleports[id].position
+		if position:
+			player.position = teleports[id].position+(teleports[id-1].position-player.position)
+		else:
+			player.position = teleports[id].position
 		player.gravity*=-1
-		player.g=-1
-		player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.z -=deg_to_rad(180)
+		player.g=-1*transform
+		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
+		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(180*transform)
 		teleports[id].enabled = false
+
+
