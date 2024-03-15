@@ -17,7 +17,8 @@ res://Models/Player.tscn
 res://Scenes/Assets/GameMenu.tscn
 res://Scenes/start.tscn
 res://Scenes/fountain.tscn
-res://Scripts/loadGames.gd
-res://Scripts/start.gd
 res://Global.gd
 res://Scripts/player.gd
+res://Scripts/LabelSassi.gd
+res://Scripts/loadGames.gd
+res://Scripts/start.gd

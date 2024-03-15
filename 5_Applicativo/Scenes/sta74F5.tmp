@@ -519,25 +519,23 @@ grow_vertical = 0
 [node name="Panel" type="Panel" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control"]
 layout_direction = 3
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -58.0
 offset_right = 200.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Label" type="Label" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control/Panel"]
-layout_direction = 2
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -58.0
-offset_right = 173.0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 73.0
+offset_right = 200.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 40
-text = "Sassi: 22"
+text = "Sassi:"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("12_upnd1")
@@ -1065,7 +1063,6 @@ environment = ExtResource("11_bkfvh")
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/exit_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_exit_button_pressed" flags=18]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control/to_menu_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-1" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer" method="reload"]
-[connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-2" to="Player" method="_on_slot_button_pressed" binds= [2]]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/to_menu_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
 [connection signal="body_entered" from="portals/portal-1/Area3D" to="portals/portal-1/Area3D" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="portals/portal-1/Area3D" to="portals/portal-1/Area3D" method="_on_body_exited" flags=18]

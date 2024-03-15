@@ -41,8 +41,12 @@ func _ready():
 	pickup_sound.stream = pickup_stream
 	tutorial_voice.stream = tutorial_stream
 	#tutorial_voice.play()
+	
 
 func _process(_delta):
+	if Input.is_action_just_pressed("drop"):
+		posiziona_sasso()
+		
 	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -123,7 +127,11 @@ func _on_area_3d_area_entered(area):
 		position = desination_position
 		
 
-
+func posiziona_sasso():
+	if(Global.numero_sassi>0):
+		Global.numero_sassi = Global.numero_sassi - 1
+		Global.sassi_posionati.append(position)
+		Global.create_stone(position)
 
 
 func _on_slot_button_pressed(slot):
@@ -132,7 +140,9 @@ func _on_slot_button_pressed(slot):
 	"graviy_direction": "upwards",
 	 "saved_date": Time.get_date_dict_from_system(),
 	 "statues_captured": {},
-	 "rock_picked": {} }
+	 "rock_picked": {} ,
+	 "numero_sassi": Global.numero_sassi,
+	 "sassi": Global.sassi_posionati}
 	var json_string := JSON.stringify(data_to_save)
 	var save_path := "user://player_data-%s.json"
 	var file_access	:= FileAccess.open(save_path % slot as String , FileAccess.WRITE)

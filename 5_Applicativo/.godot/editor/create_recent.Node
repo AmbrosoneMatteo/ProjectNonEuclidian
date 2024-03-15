@@ -1,3 +1,7 @@
+Panel
+Label
+Control
+RichTextLabel
 MeshInstance3D
 AudioStreamPlayer
 Button
@@ -14,8 +18,5 @@ SubViewport
 Sprite3D
 Tree
 DirectionalLight3D
-RichTextLabel
-Panel
-Control
 VehicleWheel3D
 Area3D

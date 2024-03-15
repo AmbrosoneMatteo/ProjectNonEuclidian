@@ -22,6 +22,8 @@ var portals := [] # Lista dei portali presenti in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for stone in Global.sassi_posionati:
+		create_stone(stone)
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
@@ -52,6 +54,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
 	audiostreamer.volume_db=Global.music_volume
 	for i in range(len(portals)):
 		var portal = portals[i]  
@@ -143,7 +147,15 @@ func is_near(pos,max_distance):
 
 
 
-
+func create_stone(position):
+	var new_material = StandardMaterial3D.new()
+	new_material.albedo_color = Color(1, 0, 0)  # Rosso
+	
+	var mesh = MeshInstance3D.new()
+	mesh.material_override = new_material
+	mesh.position = Vector3(position)
+	mesh.mesh = BoxMesh.new()
+	add_child(mesh)
 	
 	
 #
