@@ -1,3 +1,4 @@
+RigidBody3D
 Control
 Button
 VBoxContainer
@@ -10,7 +11,6 @@ CollisionShape3D
 Area3D
 StaticBody3D
 AudioStreamPlayer
-RigidBody3D
 Camera3D
 CollisionPolygon3D
 CanvasLayer

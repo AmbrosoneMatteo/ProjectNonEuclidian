@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbtruugcclr8p"]
 
 [ext_resource type="Script" path="res://Scripts/fountain.gd" id="1_0y8by"]
-[ext_resource type="Script" path="res://Scripts/particle.gd" id="2_nfxvu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vx3u7"]
-albedo_color = Color(1, 0.356863, 0.34902, 1)
+[ext_resource type="Material" uid="uid://r68lq1ry6rim" path="res://Assets/Materials/emission.tres" id="1_p70f0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jvdcv"]
-material = SubResource("StandardMaterial3D_vx3u7")
+material = ExtResource("1_p70f0")
 size = Vector3(10, 0.1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xxap"]
 size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yeoe2"]
+material = ExtResource("1_p70f0")
 
 [node name="Fountain" type="Node3D"]
 
@@ -24,7 +24,7 @@ mesh = SubResource("BoxMesh_jvdcv")
 shape = SubResource("BoxShape3D_7xxap")
 
 [node name="ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.92175, 0)
 script = ExtResource("1_0y8by")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ceiling"]
@@ -34,4 +34,6 @@ mesh = SubResource("BoxMesh_jvdcv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35428, 11.308)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-script = ExtResource("2_nfxvu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_yeoe2")
