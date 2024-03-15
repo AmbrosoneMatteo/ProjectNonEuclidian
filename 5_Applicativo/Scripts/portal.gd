@@ -4,7 +4,6 @@ extends Node3D
 
 
 @onready var a := $"Area3D"
-
 @export var area = false
 @export var viewport = false
 @export var enabled = true

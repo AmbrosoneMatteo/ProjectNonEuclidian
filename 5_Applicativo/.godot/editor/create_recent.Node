@@ -1,12 +1,14 @@
+SpotLight3D
+CollisionShape3D
+Area3D
 MeshInstance3D
+Node
+StaticBody3D
 AudioStreamPlayer
 Button
-Node
 RigidBody3D
 Camera3D
-CollisionShape3D
 CollisionPolygon3D
-StaticBody3D
 CanvasLayer
 AnimationPlayer
 ColorRect
@@ -18,4 +20,3 @@ RichTextLabel
 Panel
 Control
 VehicleWheel3D
-Area3D

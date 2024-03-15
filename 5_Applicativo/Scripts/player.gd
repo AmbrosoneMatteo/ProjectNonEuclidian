@@ -2,12 +2,13 @@ extends CharacterBody3D
 
 
 
-var SPEED = 8.0
-const JUMP_VELOCITY = 5.5
+var SPEED = 10.0
+const JUMP_VELOCITY = 7
 
 @export var portal = 0
 @export var sensivity = 0.01
 @export var desination_position = Vector3(0,0,0)
+@export var g = 1
 
 var sound_player = AudioStreamPlayer.new()
 var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
@@ -78,9 +79,10 @@ func _physics_process(delta):
 		fall_counter+=delta
 
 
+
 	# Handle Jump.
-	if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
-		velocity.y = JUMP_VELOCITY*gravitation
+	if Input.is_physical_key_pressed(KEY_SPACE) and (is_on_floor() or is_on_ceiling()):
+		velocity.y = JUMP_VELOCITY*gravitation*g
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -97,8 +99,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input)
-	pitch_pivot.rotate_x(pitch_input)
+	twist_pivot.rotate_y(twist_input*g)
+	pitch_pivot.rotate_x(pitch_input*g)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	twist_input = 0.0
 	pitch_input = 0.0

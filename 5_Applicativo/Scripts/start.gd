@@ -15,8 +15,9 @@ extends Node3D
 @onready var wall_4 := $"structure/wall-4/MeshInstance3D"
 
 @onready var Portals = $portals
+@onready var Teleports = $"teleports"
 
-
+var teleports = []
 var portals := [] # Lista dei portali presenti in game
 
 
@@ -160,22 +161,16 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	while len(taken_portals)!=len(portals):
-		var i = randi()%len(portals)-1
-		while i in taken_portals:
-			i = randi()%len(portals)-1			
-		portals[i].enabled = true
-		var x = randi()%len(portals)-1		
-		while x == i or x in taken_portals: 
-			x = randi()%len(portals)
+	for i in Teleports.get_children():
+		teleports.append(i)
+	for i in range(len(portals)):
+		var x = randi()%len(portals)-1
+#		while x == i or x in taken_portals: 
+#			x = randi()%len(portals)
 		#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
 		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
 		portals[i].destination_portal = portals[x]
 		portals[i].connection = x
-		portals[x].get_node("Sprite3D").set_texture(portals[i].get_node("Control/SubViewport").get_texture())			
-		portals[x].destination_portal = portals[i]
-		portals[x].connection = i
-		taken_portals.append(x)
 		taken_portals.append(i)
 		print(taken_portals)
 
@@ -187,3 +182,13 @@ func get_delta_x(pos = portals[1].position):
 
 func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
+
+
+func on_teleport_player_entered(body,id: int):
+	var string = "teleport-%s"
+	if len(teleports)>id and teleports[id-1].enabled:
+		player.position = teleports[id].position
+		player.gravity*=-1
+		player.g=-1
+		player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.z -=deg_to_rad(180)
+		teleports[id].enabled = false
