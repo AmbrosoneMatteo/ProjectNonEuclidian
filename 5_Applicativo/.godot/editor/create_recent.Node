@@ -1,3 +1,8 @@
+Control
+Button
+VBoxContainer
+TextEdit
+GridContainer
 MeshInstance3D
 Node
 SpotLight3D
@@ -5,7 +10,6 @@ CollisionShape3D
 Area3D
 StaticBody3D
 AudioStreamPlayer
-Button
 RigidBody3D
 Camera3D
 CollisionPolygon3D
@@ -18,5 +22,4 @@ Tree
 DirectionalLight3D
 RichTextLabel
 Panel
-Control
 VehicleWheel3D

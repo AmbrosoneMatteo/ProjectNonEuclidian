@@ -184,10 +184,10 @@ func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
 
 
-func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: float):
+func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
 	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
 	print(typeof(player_roation))
-	if len(teleports)>id and (player_roation<=range and player_roation>=-range):
+	if len(teleports)>id:
 		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
 			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
 			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):

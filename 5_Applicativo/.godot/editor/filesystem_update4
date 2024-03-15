@@ -21,3 +21,5 @@ res://Scripts/start.gd
 res://Scripts/player.gd
 res://Scripts/teleport.gd
 res://Scripts/portal.gd
+res://Scenes/Assets/key_map.tscn
+res://Scripts/Keys.gd

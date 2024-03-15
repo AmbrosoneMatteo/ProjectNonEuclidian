@@ -44,7 +44,7 @@ func _ready():
 	#tutorial_voice.play()
 
 func _process(_delta):
-	print(get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y)
+	print(get_node("TwistPivot/PitchPivot/Camera3D").global_rotation_degrees.y)
 	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
