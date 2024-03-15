@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://tgw113otr4yr"]
+
+[ext_resource type="Script" path="res://Scripts/Keys.gd" id="1_e8ccj"]
+
+[node name="KeyMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e8ccj")
+
+[node name="Texts" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Forwards_text" type="TextEdit" parent="Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 200.0
+offset_right = 210.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Forward"
+editable = false
+
+[node name="Backwards_text" type="TextEdit" parent="Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 280.0
+offset_right = 210.0
+offset_bottom = 355.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Backward"
+editable = false
+
+[node name="Right_text" type="TextEdit" parent="Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 360.0
+offset_right = 210.0
+offset_bottom = 435.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Right"
+editable = false
+
+[node name="Left_text" type="TextEdit" parent="Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 440.0
+offset_right = 210.0
+offset_bottom = 515.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Left"
+editable = false
+
+[node name="Keys" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Forward_button" type="Button" parent="Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 200.0
+offset_right = 295.0
+offset_bottom = 275.0
+
+[node name="Backward_button" type="Button" parent="Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 280.0
+offset_right = 295.0
+offset_bottom = 355.0
+
+[node name="Right_button" type="Button" parent="Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 360.0
+offset_right = 295.0
+offset_bottom = 435.0
+
+[node name="Left_button" type="Button" parent="Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 440.0
+offset_right = 295.0
+offset_bottom = 515.0
+
+[connection signal="pressed" from="Keys/Forward_button" to="." method="_on_key_pressed" binds= ["forward"]]

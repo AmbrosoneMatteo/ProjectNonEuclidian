@@ -15,8 +15,9 @@ extends Node3D
 @onready var wall_4 := $"structure/wall-4/MeshInstance3D"
 
 @onready var Portals = $portals
+@onready var Teleports = $"teleports"
 
-
+var teleports = []
 var portals := [] # Lista dei portali presenti in game
 
 
@@ -89,7 +90,7 @@ func _process(delta):
 		camera.global_rotation.x = portal.global_rotation.x
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
-		print(camera.global_rotation.y," portal -> ",i)
+		#print(camera.global_rotation.y," portal -> ",i)
 #	portals[0].print_collsions(0)
 #	portals[1].print_collsions(1)
 #	portals[2].print_collsions(2)
@@ -172,22 +173,16 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	while len(taken_portals)!=len(portals):
-		var i = randi()%len(portals)-1
-		while i in taken_portals:
-			i = randi()%len(portals)-1			
-		portals[i].enabled = true
-		var x = randi()%len(portals)-1		
-		while x == i or x in taken_portals: 
-			x = randi()%len(portals)
+	for i in Teleports.get_children():
+		teleports.append(i)
+	for i in range(len(portals)):
+		var x = randi()%len(portals)-1
+#		while x == i or x in taken_portals: 
+#			x = randi()%len(portals)
 		#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
 		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
 		portals[i].destination_portal = portals[x]
 		portals[i].connection = x
-		portals[x].get_node("Sprite3D").set_texture(portals[i].get_node("Control/SubViewport").get_texture())			
-		portals[x].destination_portal = portals[i]
-		portals[x].connection = i
-		taken_portals.append(x)
 		taken_portals.append(i)
 		print(taken_portals)
 
@@ -199,3 +194,28 @@ func get_delta_x(pos = portals[1].position):
 
 func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
+
+
+func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
+	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
+	print(typeof(player_roation))
+	if len(teleports)>id:
+		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
+			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
+			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):
+				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
+				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
+			else:
+				player.position.z = teleports[id].position.z-(teleports[id-1].position.z-player.position.z)*transform
+				player.position.x = teleports[id].position.x-(teleports[id-1].position.x-player.position.x)*transform
+		else:
+			player.position = teleports[id].position
+		
+		player.gravity*=-1
+		player.g=-1*transform
+		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
+		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
+		teleports[id].enabled = false
+		print("player entered in a portal")
+
+
