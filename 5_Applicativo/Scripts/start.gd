@@ -184,16 +184,26 @@ func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
 
 
-func on_teleport_player_entered(body,id: int, transform: int,position: bool):
-	if len(teleports)>id and teleports[id-1].enabled:
-		if position:
-			player.position = teleports[id].position+(teleports[id-1].position-player.position)
+func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: float):
+	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
+	print(typeof(player_roation))
+	if len(teleports)>id and (player_roation<=range and player_roation>=-range):
+		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
+			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
+			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):
+				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
+				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
+			else:
+				player.position.z = teleports[id].position.z-(teleports[id-1].position.z-player.position.z)*transform
+				player.position.x = teleports[id].position.x-(teleports[id-1].position.x-player.position.x)*transform
 		else:
 			player.position = teleports[id].position
+		
 		player.gravity*=-1
 		player.g=-1*transform
 		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
-		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(180*transform)
+		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
 		teleports[id].enabled = false
+		print("player entered in a portal")
 
 
