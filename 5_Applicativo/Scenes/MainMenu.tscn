@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://g4ew366vbe0b"]
+[gd_scene load_steps=8 format=3 uid="uid://g4ew366vbe0b"]
 
 [ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_rv3oa"]
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="2_54dg7"]
-[ext_resource type="PackedScene" uid="uid://h1q4dpjdg4kh" path="res://Scenes/Assets/OptionsMenu.tscn" id="3_ev4sv"]
+[ext_resource type="Script" path="res://Scripts/OptionsManager.gd" id="3_fx5l3"]
+[ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="3_r61rq"]
 [ext_resource type="Script" path="res://Scripts/loadGames.gd" id="4_bdsua"]
-[ext_resource type="PackedScene" uid="uid://tgw113otr4yr" path="res://Scenes/Assets/key_map.tscn" id="4_ydgup"]
+[ext_resource type="Script" path="res://Scripts/Keys.gd" id="5_qlco7"]
 
 [sub_resource type="Theme" id="Theme_5i5fi"]
 
@@ -47,7 +48,6 @@ grow_vertical = 2
 script = ExtResource("2_54dg7")
 
 [node name="MainMenuOptions" type="Control" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 0
 metadata/_edit_use_anchors_ = true
@@ -112,6 +112,7 @@ offset_bottom = -254.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -126,41 +127,248 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5i5fi")
 theme_override_constants/separation = 20
+script = ExtResource("3_fx5l3")
 
-[node name="volume_button" type="Button" parent="Control/OptionsMenu/VBoxContainer"]
+[node name="Control" type="Control" parent="Control/OptionsMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="Volume" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/Volume"]
+layout_mode = 1
+offset_top = -92.0
+offset_right = 824.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 50
+text = "OPZIONI"
+editable = false
+
+[node name="Control" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/Volume"]
+layout_mode = 1
+anchors_preset = 0
+script = ExtResource("3_r61rq")
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio" type="HScrollBar" parent="Control/OptionsMenu/VBoxContainer/Control/Volume/Control"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 800.0
+offset_bottom = 70.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music" type="HScrollBar" parent="Control/OptionsMenu/VBoxContainer/Control/Volume/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_left = 300.0
+offset_top = 80.0
+offset_right = 800.0
+offset_bottom = 150.0
+step = 1.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/Volume/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.55
+anchor_right = 4.0
+anchor_bottom = 0.55
+offset_top = 160.0
+offset_right = 432.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/Volume"]
+layout_mode = 1
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio_txt" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/Volume/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 5.0
+anchor_right = 0.125
+anchor_bottom = 5.0
+offset_right = 280.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME AUDIO:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music_txt" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/Volume/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME MUSICA:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="KeyMap" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -521.0
+offset_bottom = -521.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_qlco7")
+
+[node name="Texts" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Forwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 200.0
+offset_right = 210.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Forward"
+editable = false
+
+[node name="Backwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 280.0
+offset_right = 210.0
+offset_bottom = 355.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Backward"
+editable = false
+
+[node name="Right_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 360.0
+offset_right = 210.0
+offset_bottom = 435.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Right"
+editable = false
+
+[node name="Left_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+layout_direction = 2
+layout_mode = 2
+offset_top = 440.0
+offset_right = 210.0
+offset_bottom = 515.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Left"
+editable = false
+
+[node name="Keys" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Forward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 200.0
+offset_right = 295.0
+offset_bottom = 275.0
+
+[node name="Backward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 280.0
+offset_right = 295.0
+offset_bottom = 355.0
+
+[node name="Right_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 360.0
+offset_right = 295.0
+offset_bottom = 435.0
+
+[node name="Left_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 440.0
+offset_right = 295.0
+offset_bottom = 515.0
+
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
+layout_mode = 1
+offset_right = 432.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="Control" parent="Control/OptionsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="volume_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+layout_mode = 2
+offset_right = 364.0
+offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "VOLUME"
 alignment = 0
 
-[node name="keymap_button" type="Button" parent="Control/OptionsMenu/VBoxContainer"]
+[node name="keymap_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
 layout_mode = 2
+offset_top = 83.0
+offset_right = 364.0
+offset_bottom = 146.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "TASTIERA"
 alignment = 0
 
-[node name="resolution_button" type="Button" parent="Control/OptionsMenu/VBoxContainer"]
+[node name="resolution_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
 layout_mode = 2
+offset_top = 166.0
+offset_right = 364.0
+offset_bottom = 229.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "RISOLUZIONE"
 alignment = 0
 
-[node name="Control" type="Control" parent="Control/OptionsMenu/VBoxContainer"]
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
 layout_mode = 2
-
-[node name="Volume" parent="Control/OptionsMenu/VBoxContainer/Control" instance=ExtResource("3_ev4sv")]
-visible = false
-layout_mode = 1
-
-[node name="KeyMap" parent="Control/OptionsMenu/VBoxContainer/Control" instance=ExtResource("4_ydgup")]
-visible = false
-layout_mode = 1
+offset_top = 249.0
+offset_right = 364.0
+offset_bottom = 312.0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "MENU PRINCIPALE"
+alignment = 0
 
 [node name="LoadGame" type="Control" parent="Control"]
 visible = false
@@ -218,9 +426,16 @@ toggle_mode = true
 text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/Volume/Control/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/Forward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" flags=18 binds= ["forward"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/volume_button" to="Control/OptionsMenu/VBoxContainer" method="_on_volume_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/keymap_button" to="Control/OptionsMenu/VBoxContainer" method="_on_keymap_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/to_menu_button" to="Control" method="go_to_menu"]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-2" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [2]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-3" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [3]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-4" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [4]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-5" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [5]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-6" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [6]]
+[connection signal="pressed" from="Control/LoadGame/VBoxContainer/to_menu_button" to="Control" method="go_to_menu"]

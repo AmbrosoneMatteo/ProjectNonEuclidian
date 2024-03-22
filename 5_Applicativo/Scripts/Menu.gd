@@ -4,15 +4,11 @@ extends Node
 @onready var load_button = $MainMenuOptions/VBoxContainer/load_button
 @onready var option_button = $MainMenuOptions/VBoxContainer/option_button
 @onready var exit_button = $MainMenuOptions/VBoxContainer/exit_button
-@onready var to_menu_button = $OptionsMenu/Control/to_menu_button
-@onready var to_main_button = $LoadGame/VBoxContainer/to_menu_button
 
 func _ready():
 	start_button.connect("pressed", Callable(self, "lets_play"))
 	exit_button.connect("pressed", Callable(self, "exit"))
 	option_button.connect("pressed", Callable(self, "go_to_option"))
-	to_menu_button.connect("pressed", Callable(self, "go_to_menu"))
-	to_main_button.connect("pressed", Callable(self, "go_to_menu"))
 	load_button.connect("pressed", Callable(self, "go_to_loadgame"))
 
 
@@ -21,12 +17,12 @@ func exit():
 
 func go_to_option():
 	$MainMenuOptions.visible = false
-	$OptionsMenu.visible = true
+	$OptionsMenu/VBoxContainer.visible = true
 	$LoadGame.visible = false
 	
 func go_to_menu():
 	$MainMenuOptions.visible = true
-	$OptionsMenu.visible = false
+	$OptionsMenu/VBoxContainer.visible = false
 	$LoadGame.visible = false
 	
 func go_to_loadgame():
