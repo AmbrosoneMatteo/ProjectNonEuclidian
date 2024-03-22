@@ -185,21 +185,23 @@ func get_delta_z(pos = portals[1].position):
 
 
 func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
-	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
+	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y #gets the player rotation
 	print(typeof(player_roation))
-	if len(teleports)>id:
+	if len(teleports)>id: #if there is a portal available
 		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
 			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
-			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):
+			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation): #if the player rotation differs from the destination teleport
+				#the y axis ha already been configured now it changes the x and z axis based on the teleport rotation
 				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
 				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
 			else:
 				player.position.z = teleports[id].position.z-(teleports[id-1].position.z-player.position.z)*transform
 				player.position.x = teleports[id].position.x-(teleports[id-1].position.x-player.position.x)*transform
 		else:
+			#if it is not necessary to change the player position it just move it
 			player.position = teleports[id].position
 		
-		player.gravity*=-1
+		player.gravity*=-1 #it changes gravity
 		player.g=-1*transform
 		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
 		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
