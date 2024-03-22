@@ -184,26 +184,44 @@ func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
 
 
-func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
-	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
-	print(typeof(player_roation))
-	if len(teleports)>id:
-		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
-			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
-			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):
-				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
-				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
+# Definizione della funzione on_teleport_player_entered con i parametri body, id, transform, rotation, position e range
+func on_teleport_player_entered(body, id: int, transform: int, rotation: int, position: bool, range: String):
+	# Ottenimento della rotazione globale del giocatore lungo l'asse y
+	var player_rotation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
+	# Stampa del tipo della variabile player_rotation
+	print(typeof(player_rotation))
+	
+	# Controlla se l'ID del teleport è valido
+	if len(teleports) > id:
+		# Controlla se è necessario aggiustare la posizione del giocatore dopo il teletrasporto
+		if position:
+			# Calcola la nuova posizione del giocatore tenendo conto della differenza tra le posizioni dei teletrasporti
+			player.position.y = teleports[id].position.y - (teleports[id-1].position.y - player.position.y) * transform
+			
+			# Controlla se la rotazione globale dei due teletrasporti è diversa
+			if teleports[id-1].global_rotation != teleports[id-1].global_rotation:
+				player.position.z = teleports[id].position.z + (teleports[id-1].position.x - player.position.x) * transform
+				player.position.x = teleports[id].position.x + (teleports[id-1].position.z - player.position.z) * transform
 			else:
-				player.position.z = teleports[id].position.z-(teleports[id-1].position.z-player.position.z)*transform
-				player.position.x = teleports[id].position.x-(teleports[id-1].position.x-player.position.x)*transform
+				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z) * transform
+				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) * transform
 		else:
+			# Imposta la posizione del giocatore alla posizione del teletrasporto
 			player.position = teleports[id].position
 		
-		player.gravity*=-1
-		player.g=-1*transform
-		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
-		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
+		# Inverti la gravità del giocatore
+		player.gravity *= -1
+		# Imposta l'accelerazione gravitazionale del giocatore
+		player.g = -1 * transform
+		# Ruota il giocatore di 180 gradi attorno all'asse Z e di rotation gradi attorno all'asse Y
+		player.get_node("TwistPivot/").global_rotation.z -= deg_to_rad(180 * transform)
+		player.get_node("TwistPivot/").global_rotation.y -= deg_to_rad(rotation * transform)
+		
+		# Disabilita il teletrasporto appena utilizzato
 		teleports[id].enabled = false
+		
+		# Stampa un messaggio di conferma del teletrasporto del giocatore
 		print("player entered in a portal")
+
 
 

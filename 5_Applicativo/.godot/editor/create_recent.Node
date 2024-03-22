@@ -1,13 +1,13 @@
+MeshInstance3D
+CollisionShape3D
 RigidBody3D
 Control
 Button
 VBoxContainer
 TextEdit
 GridContainer
-MeshInstance3D
 Node
 SpotLight3D
-CollisionShape3D
 Area3D
 StaticBody3D
 AudioStreamPlayer
