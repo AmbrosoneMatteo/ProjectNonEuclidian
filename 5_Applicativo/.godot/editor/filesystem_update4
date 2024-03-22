@@ -1,6 +1,8 @@
 res://default_bus_layout.tres
 res://Scenes/room_001.tscn
 res://Scripts/CanvasLayer.gd
+res://Scripts/fountain.gd
+res://Assets/Materials/emission.tres
 res://Scripts/GameMenu.gd
 res://Scripts/Menu.gd
 res://Scripts/Soundtrack.gd
@@ -17,8 +19,8 @@ res://Models/Player.tscn
 res://Scenes/Assets/GameMenu.tscn
 res://Scenes/start.tscn
 res://Scenes/fountain.tscn
-res://Global.gd
-res://Scripts/player.gd
-res://Scripts/LabelSassi.gd
-res://Scripts/loadGames.gd
 res://Scripts/start.gd
+res://Scripts/player.gd
+res://Scenes/Assets/key_map.tscn
+res://Global.gd
+res://Scripts/AudioControl.gd

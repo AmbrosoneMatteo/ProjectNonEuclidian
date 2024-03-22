@@ -173,8 +173,8 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	for i in Teleports.get_children():
-		teleports.append(i)
+#	for i in Teleports.get_children():
+#		teleports.append(i)
 	for i in range(len(portals)):
 		var x = randi()%len(portals)-1
 #		while x == i or x in taken_portals: 
