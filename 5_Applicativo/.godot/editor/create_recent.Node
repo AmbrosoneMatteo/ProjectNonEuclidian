@@ -1,4 +1,19 @@
+<<<<<<< Updated upstream
 MeshInstance3D
+=======
+CollisionShape3D
+MeshInstance3D
+RigidBody3D
+Control
+Button
+VBoxContainer
+TextEdit
+GridContainer
+Node
+SpotLight3D
+Area3D
+StaticBody3D
+>>>>>>> Stashed changes
 AudioStreamPlayer
 Button
 Node

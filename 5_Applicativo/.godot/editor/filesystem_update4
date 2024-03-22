@@ -1,7 +1,13 @@
+<<<<<<< Updated upstream
 res://Scenes/room_001.tscn
+=======
+res://default_bus_layout.tres
+res://Scenes/start.tscn
+>>>>>>> Stashed changes
 res://Scripts/CanvasLayer.gd
 res://Scripts/GameMenu.gd
 res://Scripts/Menu.gd
+<<<<<<< Updated upstream
 res://Assets/Shaders/sky.gdshader
 res://Scenes/portal.tscn
 res://Scenes/Assets/LoadGame.tscn
@@ -21,4 +27,9 @@ res://Assets/Shaders/skybox.tres
 res://Scripts/AudioControl.gd
 res://Scripts/Soundtrack.gd
 res://default_bus_layout.tres
+=======
+res://Scripts/Soundtrack.gd
+res://Assets/Shaders/sky.gdshader
+res://Assets/Shaders/skybox.tres
+>>>>>>> Stashed changes
 res://Assets/Shaders/portal.gdshader
