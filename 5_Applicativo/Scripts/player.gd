@@ -131,7 +131,7 @@ func posiziona_sasso():
 	if(Global.numero_sassi>0):
 		Global.numero_sassi = Global.numero_sassi - 1
 		Global.sassi_posionati.append(position)
-#		Global.create_stone(position)
+		Global.create_stone(position)
 
 
 func _on_slot_button_pressed(slot):
