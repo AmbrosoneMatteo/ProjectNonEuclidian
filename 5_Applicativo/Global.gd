@@ -34,3 +34,6 @@ func create_stone(position):
 	body.add_child(collision)
 	body.position=position
 	start.add_child(body)
+
+
+
