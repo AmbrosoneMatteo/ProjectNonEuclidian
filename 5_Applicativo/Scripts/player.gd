@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var statue_nodes = []
+var statue_control = null
 
 
 var SPEED = 8.0
@@ -31,6 +33,7 @@ var tutorial_finished: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravitation = 1.0
 func _ready():
+	
 	sound_player.volume_db = -40.0 + Global.sound_volume/2
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
 	add_child(sound_player)
@@ -41,7 +44,7 @@ func _ready():
 	pickup_sound.stream = pickup_stream
 	tutorial_voice.stream = tutorial_stream
 	#tutorial_voice.play()
-	
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("drop"):
@@ -114,8 +117,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			pitch_input = - event.relative.y * sensivity * gravitation
 			
 
-
-
 func _on_visibility_changed():
 	pass # Replace with function body.
 
@@ -131,7 +132,11 @@ func posiziona_sasso():
 	if(Global.numero_sassi>0):
 		Global.numero_sassi = Global.numero_sassi - 1
 		Global.sassi_posionati.append(position)
-		Global.create_stone(position)
+		var x = position.x - sin(twist_pivot.rotation.y)
+		var y = position.y + 0.7 + sin(pitch_pivot.rotation.x) * 1.5
+		var z = position.z - cos(twist_pivot.rotation.y)
+		var pos = Vector3(x,y,z)
+		Global.create_stone(pos)
 
 
 func _on_slot_button_pressed(slot):
@@ -153,7 +158,22 @@ func _on_slot_button_pressed(slot):
 	file_access.close()
 	print("game has been saved")
 
+func collect_object(area):
+	area.queue_free()
+	#update dello score
 
+func on_area_3d_area_entered(area):
+	if area.is_in_group("Statua"):
+		area.queue_free()
 
 func reload():
 	pass # Replace with function body.
+
+
+
+func _on_statue_touched(body, id:int):
+	if body.name=="Player":
+		print("statue" + " id " + (str)(id) + " " + "removed")
+		Global.statue_posizionate.append(id)
+		var statua = $"../Statua".get_child(id)
+		$"../Statua".remove_child(statua)

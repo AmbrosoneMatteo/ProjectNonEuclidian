@@ -23,8 +23,9 @@ var portals := [] # Lista dei portali presenti in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.start = self
 	for stone in Global.sassi_posionati:
-		create_stone(stone)
+		Global.create_stone(stone)
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
@@ -69,7 +70,7 @@ func _process(delta):
 				portal.enabled=false
 				portals[portal.connection].enabled=false
 				player.position = portal.destination_portal.position-Vector3(0,1,0)
-				player.global_rotation.y = portal.destination_portal.global_rotation.y
+#				player.global_rotation.y = portal.destination_portal.global_rotation.y
 				portal = portals[i]
 				portal.checkpoint_enabled = true
 		else:

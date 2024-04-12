@@ -31,6 +31,7 @@ func go_to_loadgame():
 	$LoadGame.visible = true
 
 func lets_play():
+	Global.reset()
 	get_tree().change_scene_to_file("res://Scenes/start.tscn")
 	
 
