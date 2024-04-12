@@ -8,6 +8,8 @@ res://Scripts/Menu.gd
 res://Scripts/Soundtrack.gd
 res://Assets/Shaders/sky.gdshader
 res://Assets/Shaders/portal.gdshader
-res://Scripts/player.gd
-res://Scripts/start.gd
+res://Scenes/start.tscn
+res://Assets/Shaders/skybox.tres
 res://Global.gd
+res://Scripts/start.gd
+res://Scripts/Area3DPortal.gd

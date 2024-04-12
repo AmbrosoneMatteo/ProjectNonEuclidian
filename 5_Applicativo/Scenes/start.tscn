@@ -166,19 +166,19 @@ data = PackedVector3Array(3.2, 15.1, 1.5, 3.2, 13.1, 1.5, 3.2, 13.1, -1.55, 3.2,
 size = Vector3(2.76956, 0.642517, 2.77135)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8jenj"]
-viewport_path = NodePath("portals/portal-1/Control/SubViewport")
+viewport_path = NodePath("Portals/portal-1/Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_afy25"]
-viewport_path = NodePath("portals/portal-2/Control/SubViewport")
+viewport_path = NodePath("Portals/portal-2/Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_261od"]
-viewport_path = NodePath("portals/portal-3/Control/SubViewport")
+viewport_path = NodePath("Portals/portal-3/Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fbqa7"]
-viewport_path = NodePath("portals/portal-4/Control/SubViewport")
+viewport_path = NodePath("Portals/portal-4/Control/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wg7kx"]
-viewport_path = NodePath("portals/portal-5/Control/SubViewport")
+viewport_path = NodePath("Portals/portal-5/Control/SubViewport")
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
@@ -636,423 +636,427 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="angle/Cube_001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_nmnvk")
 
-[node name="portals" type="Node" parent="."]
+[node name="Portals" type="Node" parent="."]
 
-[node name="portal-1" type="Node3D" parent="portals"]
+[node name="portal-1" type="Node3D" parent="Portals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4365, 21.7497, -0.0172048)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-1"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-1/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-1/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-1/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-1/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-1"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-1/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-1/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-1/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-1/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-1"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-1"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-1/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-1/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-1/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-1/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-1"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-1"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-1/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-1/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-1/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-1/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-1" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-1" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-1/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-1/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-1"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-1"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_8jenj")
 
-[node name="Control" type="Control" parent="portals/portal-1"]
+[node name="Control" type="Control" parent="Portals/portal-1"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-1/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-1/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-1/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-1/Control/SubViewport"]
 cull_mask = 1048063
 environment = ExtResource("11_bkfvh")
 
-[node name="portal-2" type="Node3D" parent="portals"]
+[node name="portal-2" type="Node3D" parent="Portals"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.0208, 21.7515, -0.0480652)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-2"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-2/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-2/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-2/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-2/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-2"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-2/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-2/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-2/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-2/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-2"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-2"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-2/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-2/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-2/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-2/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-2"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-2"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-2/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-2/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-2/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-2/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-2" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-2" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-2/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-2"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-2"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_afy25")
 
-[node name="Control" type="Control" parent="portals/portal-2"]
+[node name="Control" type="Control" parent="Portals/portal-2"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-2/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-2/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-2/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-2/Control/SubViewport"]
 cull_mask = 1048063
 environment = ExtResource("11_bkfvh")
 
-[node name="portal-3" type="Node3D" parent="portals"]
+[node name="portal-3" type="Node3D" parent="Portals"]
 transform = Transform3D(-0.0125312, 0, -0.999922, 0, 1, 0, 0.999922, 0, -0.0125312, -5.11911, 21.7515, 6.57402)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-3"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-3/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-3/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-3/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-3/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-3"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-3/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-3/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-3/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-3/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-3"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-3"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-3/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-3/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-3/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-3/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-3"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-3"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-3/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-3/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-3/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-3/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-3" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-3" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-3/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-3/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-3"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-3"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_261od")
 
-[node name="Control" type="Control" parent="portals/portal-3"]
+[node name="Control" type="Control" parent="Portals/portal-3"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-3/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-3/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-3/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-3/Control/SubViewport"]
 cull_mask = 1048063
 environment = ExtResource("11_bkfvh")
 
-[node name="portal-4" type="Node3D" parent="portals"]
+[node name="portal-4" type="Node3D" parent="Portals"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 10.6384, 34.6706, -5.05959)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-4"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-4/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-4/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-4/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-4/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-4"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-4/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-4/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-4/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-4/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-4"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-4"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-4/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-4/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-4/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-4/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-4"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-4"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-4/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-4/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-4/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-4/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-4" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-4" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-4/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-4/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-4"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-4"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_fbqa7")
 
-[node name="Control" type="Control" parent="portals/portal-4"]
+[node name="Control" type="Control" parent="Portals/portal-4"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-4/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-4/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-4/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-4/Control/SubViewport"]
 cull_mask = 1048063
 environment = ExtResource("11_bkfvh")
 
-[node name="portal-5" type="Node3D" parent="portals"]
+[node name="portal-5" type="Node3D" parent="Portals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 1.83143, -0.0480652)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-5"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-5/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-5/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-5/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-5/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-5"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-5/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-5/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-5/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-5/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-5"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-5"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-5/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-5/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-5/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-5/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-5"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-5"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-5/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-5/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-5/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-5/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-5" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-5" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-5/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-5/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-5"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-5"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_wg7kx")
 
-[node name="Control" type="Control" parent="portals/portal-5"]
+[node name="Control" type="Control" parent="Portals/portal-5"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-5/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-5/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-5/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-5/Control/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9716, 0)
 cull_mask = 1048062
 environment = ExtResource("11_bkfvh")
 
-[node name="portal-6" type="Node3D" parent="portals"]
+[node name="portal-6" type="Node3D" parent="Portals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, -36.3038, -36.1094)
 script = ExtResource("10_qm4wm")
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-6"]
+[node name="part-1" type="StaticBody3D" parent="Portals/portal-6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-6/part-1"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-6/part-1"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-6"]
+[node name="part-2" type="StaticBody3D" parent="Portals/portal-6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-6/part-2"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-6/part-2"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-6"]
+[node name="part-3" type="StaticBody3D" parent="Portals/portal-6"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-6/part-3"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-6/part-3"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-6"]
+[node name="part-4" type="StaticBody3D" parent="Portals/portal-6"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Portals/portal-6/part-4"]
 transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_xq43t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-6/part-4"]
 shape = SubResource("BoxShape3D_hiygh")
 
-[node name="Area3D" type="Area3D" parent="portals/portal-6" groups=["Portal"]]
+[node name="Area3D" type="Area3D" parent="Portals/portal-6" groups=["Portal"]]
 transform = Transform3D(2, -0.000737735, -0.002545, -0.00254495, 0.000129219, -2, 0.000737901, 2, 0.000128264, 0.00214171, 0.0226569, -0.00885105)
 script = ExtResource("11_1yshf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/portal-6/Area3D"]
 transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
 shape = SubResource("BoxShape3D_3cbms")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-6"]
+[node name="Sprite3D" type="Sprite3D" parent="Portals/portal-6"]
 transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
 texture = SubResource("ViewportTexture_wg7kx")
 
-[node name="Control" type="Control" parent="portals/portal-6"]
+[node name="Control" type="Control" parent="Portals/portal-6"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="portals/portal-6/Control"]
+[node name="SubViewport" type="SubViewport" parent="Portals/portal-6/Control"]
 size = Vector2i(2048, 2048)
 
-[node name="Camera3D" type="Camera3D" parent="portals/portal-6/Control/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Portals/portal-6/Control/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9716, 0)
 cull_mask = 1048063
 environment = ExtResource("11_bkfvh")
+
+[node name="Statues" type="Node" parent="."]
+
+[node name="Teleports" type="Node" parent="."]
 
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/option_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_option_button_pressed" flags=18]
@@ -1066,15 +1070,27 @@ environment = ExtResource("11_bkfvh")
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-5" to="Player" method="_on_slot_button_pressed" binds= [5]]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-6" to="Player" method="_on_slot_button_pressed" binds= [6]]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/to_menu_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
-[connection signal="body_entered" from="portals/portal-1/Area3D" to="portals/portal-1/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-1/Area3D" to="portals/portal-1/Area3D" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="portals/portal-2/Area3D" to="portals/portal-2/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-2/Area3D" to="portals/portal-2/Area3D" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="portals/portal-3/Area3D" to="portals/portal-3/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-3/Area3D" to="portals/portal-3/Area3D" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="portals/portal-4/Area3D" to="portals/portal-4/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-4/Area3D" to="portals/portal-4/Area3D" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="portals/portal-5/Area3D" to="portals/portal-5/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-5/Area3D" to="portals/portal-5/Area3D" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="portals/portal-6/Area3D" to="portals/portal-6/Area3D" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="portals/portal-6/Area3D" to="portals/portal-6/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="Portals/portal-1/Area3D" to="Portals/portal-1/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-1/Area3D" to="." method="_on_portal_body_entered" binds= [0]]
+[connection signal="body_exited" from="Portals/portal-1/Area3D" to="Portals/portal-1/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-1/Area3D" to="." method="_on_player_exited" binds= [0]]
+[connection signal="body_entered" from="Portals/portal-2/Area3D" to="Portals/portal-2/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-2/Area3D" to="." method="_on_portal_body_entered" binds= [1]]
+[connection signal="body_exited" from="Portals/portal-2/Area3D" to="Portals/portal-2/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-2/Area3D" to="." method="_on_player_exited" binds= [1]]
+[connection signal="body_entered" from="Portals/portal-3/Area3D" to="Portals/portal-3/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-3/Area3D" to="." method="_on_portal_body_entered" binds= [2]]
+[connection signal="body_exited" from="Portals/portal-3/Area3D" to="Portals/portal-3/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-3/Area3D" to="." method="_on_player_exited" binds= [2]]
+[connection signal="body_entered" from="Portals/portal-4/Area3D" to="Portals/portal-4/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-4/Area3D" to="." method="_on_portal_body_entered" binds= [3]]
+[connection signal="body_exited" from="Portals/portal-4/Area3D" to="Portals/portal-4/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-4/Area3D" to="." method="_on_player_exited" binds= [3]]
+[connection signal="body_entered" from="Portals/portal-5/Area3D" to="Portals/portal-5/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-5/Area3D" to="." method="_on_portal_body_entered" binds= [4]]
+[connection signal="body_exited" from="Portals/portal-5/Area3D" to="Portals/portal-5/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-5/Area3D" to="." method="_on_player_exited" binds= [4]]
+[connection signal="body_entered" from="Portals/portal-6/Area3D" to="Portals/portal-6/Area3D" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="Portals/portal-6/Area3D" to="." method="_on_portal_body_entered" binds= [5]]
+[connection signal="body_exited" from="Portals/portal-6/Area3D" to="Portals/portal-6/Area3D" method="_on_body_exited" flags=18]
+[connection signal="body_exited" from="Portals/portal-6/Area3D" to="." method="_on_player_exited" binds= [5]]

@@ -14,7 +14,7 @@ extends Node3D
 @onready var wall_3 := $"structure/wall-3/MeshInstance3D"
 @onready var wall_4 := $"structure/wall-4/MeshInstance3D"
 
-@onready var Portals = $portals
+@onready var Portals = $Portals
 @onready var Teleports = $"teleports"
 
 var teleports = []
@@ -60,23 +60,23 @@ func _process(delta):
 	audiostreamer.volume_db=Global.music_volume
 	for i in range(len(portals)):
 		var portal = portals[i]  
-		if is_near(portals[i].position,2):
-			if not portal.enabled:
-				pass
-				#print("yep  ",portal.destination_portal.position)
-			else:
-				#print("nop  ",portal.destination_portal.position)
-				portal.enabled=false
-				portals[portal.connection].enabled=false
-				player.position = portal.destination_portal.position-Vector3(0,1,0)
-				player.global_rotation.y = portal.destination_portal.global_rotation.y
-				portal = portals[i]
-				portal.checkpoint_enabled = true
-		else:
-			portal.enabled= true
-#				portal.destination_portal.set_exit_position(player.position.z)
-				
-#				player.desination_position = portal.destination_portal.exit_position
+#		if is_near(portals[i].position,2):
+#			if not portal.enabled:
+#				pass
+#				#print("yep  ",portal.destination_portal.position)
+#			else:
+#				#print("nop  ",portal.destination_portal.position)
+#				portal.enabled=false
+#				portals[portal.connection].enabled=false
+#				player.position = portal.destination_portal.position-Vector3(0,1,0)
+#				player.global_rotation.y = portal.destination_portal.global_rotation.y
+#				portal = portals[i]
+#				portal.checkpoint_enabled = true
+#		else:
+#			portal.enabled= true
+##				portal.destination_portal.set_exit_position(player.position.z)
+#
+##				player.desination_position = portal.destination_portal.exit_position
 		var camera_node_path = "Control/SubViewport/Camera3D"
 		var camera = portal.get_node(camera_node_path)
 	
@@ -237,3 +237,15 @@ func on_teleport_player_entered(body, id: int, transform: int, rotation: int, po
 
 
 
+
+
+func _on_portal_body_entered(body, portal_calling: int):
+	var portal = portals[portal_calling]
+	if(portal.enabled):
+		portals[portal.connection].enabled = false	
+		portal.enabled = false
+		player.position = portals[portal.connection].position
+
+
+func _on_player_exited(body, portal_calling: int):
+	portals[portal_calling].enabled=true
