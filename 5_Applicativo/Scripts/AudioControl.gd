@@ -12,5 +12,9 @@ var count_delta=0.0
 func _process(delta):
 	Global.music_volume=$volume_music.value
 	Global.sound_volume=$volume_audio.value
+<<<<<<< Updated upstream
 
+=======
+#	print("music: ",Global.music_volume)
+>>>>>>> Stashed changes
 

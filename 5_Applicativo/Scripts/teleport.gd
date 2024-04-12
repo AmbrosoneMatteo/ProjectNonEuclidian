@@ -12,3 +12,7 @@ func _ready():
 func _process(delta):
 	pass
 
+func on_player_exited():
+	enabled=true
+
+

@@ -1,4 +1,11 @@
+<<<<<<< Updated upstream
 CollisionShape3D
+=======
+AudioStreamPlayer
+AudioStreamPlayer3D
+CollisionShape3D
+Area3D
+>>>>>>> Stashed changes
 Node
 Area3D
 RayCast3D
@@ -8,7 +15,11 @@ Panel
 Label
 Control
 RichTextLabel
+<<<<<<< Updated upstream
 AudioStreamPlayer
+=======
+MeshInstance3D
+>>>>>>> Stashed changes
 Button
 RigidBody3D
 Camera3D

@@ -10,7 +10,6 @@ const JUMP_VELOCITY = 5.5
 @export var portal = 0
 @export var sensivity = 0.01
 @export var desination_position = Vector3(0,0,0)
-
 var sound_player = AudioStreamPlayer.new()
 var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
 
@@ -81,21 +80,24 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		sound_player.stop()
-		velocity.y -= gravity * delta 
+		velocity.y -= gravity * delta * gravitation
 		fall_counter+=delta
 
 
 	# Handle Jump.
-	if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
+	if Input.is_key_pressed(KEY_SPACE) and ((is_on_floor() and gravitation==1) or (is_on_ceiling() and gravitation==-1)):
 		velocity.y = JUMP_VELOCITY*gravitation
+		print("is on floor and jumps")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
-	var direction = (twist_pivot.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	#the variable gravitation changes the way the player moves horizontally when he's upsidedown
+	var direction = (twist_pivot.basis * transform.basis * Vector3(input_dir.x*gravitation, 0, input_dir.y)).normalized()
+
 	if direction:
 		velocity.x = direction.x * SPEED 
-		velocity.z = direction.z * SPEED
+		velocity.z = direction.z * SPEED  
 	else:
 		if is_on_floor():
 			sound_player.play()

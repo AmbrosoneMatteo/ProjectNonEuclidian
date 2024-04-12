@@ -7,7 +7,9 @@ res://Scripts/GameMenu.gd
 res://Scripts/Menu.gd
 res://Scripts/Soundtrack.gd
 res://Assets/Shaders/sky.gdshader
+res://Assets/Shaders/skybox.tres
 res://Assets/Shaders/portal.gdshader
+<<<<<<< Updated upstream
 res://Assets/Shaders/skybox.tres
 res://Scenes/MainMenu.tscn
 res://Scenes/portal.tscn
@@ -17,3 +19,12 @@ res://Global.gd
 res://Scripts/player.gd
 res://Scripts/AudioControl.gd
 res://Scripts/start.gd
+=======
+res://Scenes/start.tscn
+res://Scripts/start.gd
+res://Scripts/portal.gd
+res://Scripts/teleport.gd
+res://Scripts/player.gd
+res://Scripts/AudioControl.gd
+res://Scenes/Assets/GameMenu.tscn
+>>>>>>> Stashed changes
