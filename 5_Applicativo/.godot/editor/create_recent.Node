@@ -1,15 +1,17 @@
+CollisionShape3D
 Node
+Area3D
+RayCast3D
+MeshInstance3D
 HSlider
 Panel
 Label
 Control
 RichTextLabel
-MeshInstance3D
 AudioStreamPlayer
 Button
 RigidBody3D
 Camera3D
-CollisionShape3D
 CollisionPolygon3D
 StaticBody3D
 CanvasLayer
@@ -20,4 +22,3 @@ Sprite3D
 Tree
 DirectionalLight3D
 VehicleWheel3D
-Area3D
