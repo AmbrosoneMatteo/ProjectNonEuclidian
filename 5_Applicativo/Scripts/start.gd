@@ -212,7 +212,7 @@ func on_teleport_player_entered(body, id: int, transform: bool):
 		var player_rotation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation
 		# Stampa del tipo della variabile player_rotation
 		print(teleports[id].global_rotation_degrees.x,teleports[destination].global_rotation_degrees.x )
-		if(abs(teleports[id].global_rotation_degrees.x-teleports[destination].global_rotation_degrees.x)==180):
+		if(abs(teleports[id].global_rotation_degrees.x-teleports[destination].global_rotation_degrees.x)!=0):
 			player.gravitation *= -1
 			print("player changed gravity")
 			#player.get_node("TwistPivot/").global_rotation_degrees.y += 180
@@ -222,10 +222,10 @@ func on_teleport_player_entered(body, id: int, transform: bool):
 			else:
 				player.get_node("TwistPivot/PitchPivot").global_rotation_degrees.z = 0
 		else:
-			player.get_node("TwistPivot/").global_rotation.y = deg_to_rad(0)
-			player.get_node("TwistPivot/PitchPivot").global_rotation.z = deg_to_rad(0)
+			player.get_node("TwistPivot/").global_rotation_degrees.y = 0
+			player.get_node("TwistPivot/PitchPivot").global_rotation_degrees.z = 0
 		if(transform):
-			player.position = teleports[destination].position +(teleports[id].position-player.position)
+			player.position = teleports[destination].position -(teleports[id].position-player.position)
 		else:
 			player.position = teleports[destination].position
 		print(player.get_node("TwistPivot").global_rotation_degrees.y)

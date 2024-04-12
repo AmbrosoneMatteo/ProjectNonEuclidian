@@ -6,11 +6,7 @@ var music_volume=50.0
 var sound_volume=50.0
 
 var game_status: Node3D
-<<<<<<< Updated upstream
-var player_position := Vector3(-9,20,-7)
-=======
-var player_position := Vector3(0, 0, 0)
->>>>>>> Stashed changes
+var player_position := Vector3(0,0,0)
 var tutoria_watched := false
 
 func reset():
