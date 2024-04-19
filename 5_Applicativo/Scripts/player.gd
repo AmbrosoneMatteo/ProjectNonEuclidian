@@ -54,7 +54,7 @@ func _process(_delta):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
-	if(Input.is_action_just_pressed("pickup_object")):
+	if(Input.is_action_just_pressed("pickup")):
 		pickup_sound.play()
 	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		tutorial.visible = false
@@ -157,23 +157,14 @@ func _on_slot_button_pressed(slot):
 	file_access.store_line(json_string)
 	file_access.close()
 	print("game has been saved")
-
-func collect_object(area):
-	area.queue_free()
-	#update dello score
-
-func on_area_3d_area_entered(area):
-	if area.is_in_group("Statua"):
-		area.queue_free()
-
+	
 func reload():
 	pass # Replace with function body.
 
-
-
 func _on_statue_touched(body, id:int):
 	if body.name=="Player":
-		print("statue" + " id " + (str)(id) + " " + "removed")
-		Global.statue_posizionate.append(id)
-		var statua = $"../Statua".get_child(id)
-		$"../Statua".remove_child(statua)
+		if Input.is_action_just_pressed("pickup_object"):
+			print("statue" + " id " + (str)(id) + " " + "removed")
+			Global.statue_posizionate.append(id)
+			var statua = $"../Statua".get_child(id)
+			$"../Statua".remove_child(statua)

@@ -237,4 +237,27 @@ func on_teleport_player_entered(body, id: int, transform: int, rotation: int, po
 		print("player entered in a portal")
 
 
+func _input(ev):
+	if not ev is InputEventMouse:
+		for j in InputMap.action_get_events("pickup"):
+			print(j,"####",ev)
+			if ev.keycode == j.keycode:
+				print("raccogli")
+				var statue = $Statua
+				for i in statue.get_children():
+					if i.player_entered:
+						i.queue_free()
+						Global.statue_posizionate.append(i.name)
+		
 
+
+func _on_statue_touched(body, id:int):
+	var path = "Statua/statua-"+str(id) 
+	var statua = get_node(path)
+	statua.player_entered = true
+
+
+func _on_statue_not_touched(body, id:int):
+	var path = "Statua/statua-"+str(id) 
+	var statua = get_node(path)
+	statua.player_entered = false
