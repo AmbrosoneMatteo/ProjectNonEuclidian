@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://g4ew366vbe0b"]
 
-[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="1_rv3oa"]
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="2_54dg7"]
 [ext_resource type="Script" path="res://Scripts/OptionsManager.gd" id="3_fx5l3"]
 [ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="3_r61rq"]
 [ext_resource type="Script" path="res://Scripts/loadGames.gd" id="4_bdsua"]
 [ext_resource type="Script" path="res://Scripts/Keys.gd" id="5_qlco7"]
+[ext_resource type="Script" path="res://Scripts/OptionButton.gd" id="6_axuef"]
 
 [sub_resource type="Theme" id="Theme_5i5fi"]
 
@@ -31,11 +31,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 90
 text = "PROJECT NON-EUCLIDIAN"
 editable = false
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(1635, 373)
-scale = Vector2(0.5645, 0.4635)
-texture = ExtResource("1_rv3oa")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -229,92 +224,123 @@ grow_vertical = 2
 script = ExtResource("5_qlco7")
 
 [node name="Texts" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
+layout_mode = 2
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="Forwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 500.0
+theme_override_constants/separation = 4
+
+[node name="Forwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_direction = 2
 layout_mode = 2
-offset_top = 200.0
-offset_right = 210.0
-offset_bottom = 275.0
-grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Forward"
 editable = false
 
-[node name="Backwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+[node name="Backwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_direction = 2
 layout_mode = 2
-offset_top = 280.0
-offset_right = 210.0
-offset_bottom = 355.0
-grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Backward"
 editable = false
 
-[node name="Right_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+[node name="Right_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_direction = 2
 layout_mode = 2
-offset_top = 360.0
-offset_right = 210.0
-offset_bottom = 435.0
-grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Right"
 editable = false
 
-[node name="Left_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
+[node name="Left_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_direction = 2
 layout_mode = 2
-offset_top = 440.0
-offset_right = 210.0
-offset_bottom = 515.0
-grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Left"
 editable = false
 
+[node name="Left_text2" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_direction = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Pick Up"
+editable = false
+
 [node name="Keys" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
+layout_mode = 2
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="Forward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 220.0
-offset_top = 200.0
-offset_right = 295.0
-offset_bottom = 275.0
+offset_left = 410.0
+offset_top = 100.0
+offset_right = 510.0
+offset_bottom = 500.0
 
-[node name="Backward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 280.0
-offset_right = 295.0
-offset_bottom = 355.0
+[node name="Forward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
 
-[node name="Right_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 360.0
-offset_right = 295.0
-offset_bottom = 435.0
+[node name="Backward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
 
-[node name="Left_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 440.0
-offset_right = 295.0
-offset_bottom = 515.0
+[node name="Right_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Left_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Pickup_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
 
 [node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
 layout_mode = 1
 offset_top = 700.0
 offset_right = 364.0
 offset_bottom = 763.0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionMenu" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="OptionButton" type="OptionButton" parent="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu"]
+layout_mode = 1
+offset_top = 70.0
+offset_right = 700.0
+offset_bottom = 130.0
+script = ExtResource("6_axuef")
+
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -31.5
+offset_right = 364.0
+offset_bottom = 31.5
+grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "MENU PRINCIPALE"
@@ -423,10 +449,17 @@ text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/Volume/Control/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/Forward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" flags=18 binds= ["forward"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Forward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" flags=18 binds= ["forward"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Backward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["backward"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Right_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["right"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Left_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["left"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Pickup_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
+[connection signal="item_selected" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" to="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" method="_on_item_selected"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/volume_button" to="Control/OptionsMenu/VBoxContainer" method="_on_volume_button_pressed"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/keymap_button" to="Control/OptionsMenu/VBoxContainer" method="_on_keymap_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/resolution_button" to="Control/OptionsMenu/VBoxContainer" method="_on_resolution_button_pressed"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/to_menu_button" to="Control" method="go_to_menu"]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-2" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [2]]

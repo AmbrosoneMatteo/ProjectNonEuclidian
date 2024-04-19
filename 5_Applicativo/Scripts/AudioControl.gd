@@ -13,4 +13,3 @@ func _process(delta):
 	Global.music_volume=$volume_music.value
 	Global.sound_volume=$volume_audio.value
 
-

@@ -6,7 +6,7 @@ var music_volume=50.0
 var sound_volume=50.0
 
 var game_status: Node3D
-var player_position := Vector3(-9,20,-7)
+var player_position := Vector3(0,0,0)
 var tutoria_watched := false
 
 func reset():
@@ -34,3 +34,6 @@ func create_stone(position):
 	body.add_child(collision)
 	body.position=position
 	start.add_child(body)
+
+
+
