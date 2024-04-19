@@ -10,10 +10,7 @@ func _ready():
 	exit_button.connect("pressed", Callable(self, "exit"))
 	option_button.connect("pressed", Callable(self, "go_to_option"))
 	load_button.connect("pressed", Callable(self, "go_to_loadgame"))
-	var viewport = get_viewport()
-	var window = get_window()
-	viewport.size.x=window.size.x
-	viewport.size.y=window.size.y
+
 
 func exit():
 	get_tree().quit()

@@ -14,8 +14,8 @@ extends Node3D
 @onready var wall_3 := $"structure/wall-3/MeshInstance3D"
 @onready var wall_4 := $"structure/wall-4/MeshInstance3D"
 
-@onready var Portals = $Portals
-@onready var Teleports = $"Teleports"
+@onready var Portals = $portals
+@onready var Teleports = $"teleports"
 
 var teleports = []
 var portals := [] # Lista dei portali presenti in game
@@ -56,25 +56,28 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
+	audiostreamer.volume_db=Global.music_volume
 	for i in range(len(portals)):
 		var portal = portals[i]  
-#		if is_near(portals[i].position,2):
-#			if not portal.enabled:
-#				pass
-#				#print("yep  ",portal.destination_portal.position)
-#			else:
-#				#print("nop  ",portal.destination_portal.position)
-#				portal.enabled=false
-#				portals[portal.connection].enabled=false
-#				player.position = portal.destination_portal.position-Vector3(0,1,0)
+		if is_near(portals[i].position,2):
+			if not portal.enabled:
+				pass
+				#print("yep  ",portal.destination_portal.position)
+			else:
+				#print("nop  ",portal.destination_portal.position)
+				portal.enabled=false
+				portals[portal.connection].enabled=false
+				player.position = portal.destination_portal.position-Vector3(0,1,0)
 #				player.global_rotation.y = portal.destination_portal.global_rotation.y
-#				portal = portals[i]
-#				portal.checkpoint_enabled = true
-#		else:
-#			portal.enabled= true
-##				portal.destination_portal.set_exit_position(player.position.z)
-#
-##				player.desination_position = portal.destination_portal.exit_position
+				portal = portals[i]
+				portal.checkpoint_enabled = true
+		else:
+			portal.enabled= true
+#				portal.destination_portal.set_exit_position(player.position.z)
+				
+#				player.desination_position = portal.destination_portal.exit_position
 		var camera_node_path = "Control/SubViewport/Camera3D"
 		var camera = portal.get_node(camera_node_path)
 	
@@ -171,8 +174,8 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	for i in Teleports.get_children():
-		teleports.append(i)
+#	for i in Teleports.get_children():
+#		teleports.append(i)
 	for i in range(len(portals)):
 		var x = randi()%len(portals)-1
 #		while x == i or x in taken_portals: 
@@ -195,73 +198,43 @@ func get_delta_z(pos = portals[1].position):
 
 
 # Definizione della funzione on_teleport_player_entered con i parametri body, id, transform, rotation, position e range
-func on_teleport_player_entered(body, id: int, transform: bool):
-	#the transform variables tells the function if the player must be moved calculating the distance between him and the current portal
-	#or if it must be moved just using the destination teleport position
+func on_teleport_player_entered(body, id: int, transform: int, rotation: int, position: bool, range: String):
 	# Ottenimento della rotazione globale del giocatore lungo l'asse y
-	if teleports[id].enabled and body.name == "Player":
-		print(player.get_node("TwistPivot").global_rotation_degrees.y)
-		print("player can teleport")
-		teleports[id].enabled = false
-		var destination: int = 0
-		if(id%2==0):
-			destination = id+1
-		else:
-			destination = id-1
-		teleports[destination].enabled = false
-		var player_rotation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation
-		# Stampa del tipo della variabile player_rotation
-		print(teleports[id].global_rotation_degrees.x,teleports[destination].global_rotation_degrees.x )
-		if(abs(teleports[id].global_rotation_degrees.x-teleports[destination].global_rotation_degrees.x)!=0):
-			player.gravitation *= -1
-			print("player changed gravity")
-			#player.get_node("TwistPivot/").global_rotation_degrees.y += 180
-			player.get_node("TwistPivot/").global_rotation_degrees.y *= -1			
-			if(player.gravitation==-1):
-				player.get_node("TwistPivot/PitchPivot").global_rotation_degrees.z = 180
-			else:
-				player.get_node("TwistPivot/PitchPivot").global_rotation_degrees.z = 0
-		else:
-			player.get_node("TwistPivot/").global_rotation_degrees.y = 0
-			player.get_node("TwistPivot/PitchPivot").global_rotation_degrees.z = 0
-		if(transform):
-			player.position = teleports[destination].position -(teleports[id].position-player.position)
-		else:
-			player.position = teleports[destination].position
-		print(player.get_node("TwistPivot").global_rotation_degrees.y)
-	print("player entered in a portal")
-
-	###testing
+	var player_rotation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
+	# Stampa del tipo della variabile player_rotation
+	print(typeof(player_rotation))
+	
 	# Controlla se l'ID del teleport è valido
-#	if len(teleports) > id:
-#		# Controlla se è necessario aggiustare la posizione del giocatore dopo il teletrasporto
-#		if position:
-#			# Calcola la nuova posizione del giocatore tenendo conto della differenza tra le posizioni dei teletrasporti
-#			player.position.y = teleports[id].position.y - (teleports[id-1].position.y - player.position.y) * transform
-#
-#			# Controlla se la rotazione globale dei due teletrasporti è diversa
-#			if teleports[id-1].global_rotation != teleports[id-1].global_rotation:
-#				player.position.z = teleports[id].position.z + (teleports[id-1].position.x - player.position.x) * transform
-#				player.position.x = teleports[id].position.x + (teleports[id-1].position.z - player.position.z) * transform
-#			else:
-#				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z) * transform
-#				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) * transform
-#		else:
-#			# Imposta la posizione del giocatore alla posizione del teletrasporto
-#			player.position = teleports[id].position
-#
-#		# Inverti la gravità del giocatore
-#		player.gravity *= -1
-#		# Imposta l'accelerazione gravitazionale del giocatore
-#		player.g = -1 * transform
-#		# Ruota il giocatore di 180 gradi attorno all'asse Z e di rotation gradi attorno all'asse Y
-#		player.get_node("TwistPivot/").global_rotation.z -= deg_to_rad(180 * transform)
-#		player.get_node("TwistPivot/").global_rotation.y -= deg_to_rad(rotation * transform)
-#
-#		# Disabilita il teletrasporto appena utilizzato
-#		teleports[id].enabled = false
-#
-#		# Stampa un messaggio di conferma del teletrasporto del giocatore
+	if len(teleports) > id:
+		# Controlla se è necessario aggiustare la posizione del giocatore dopo il teletrasporto
+		if position:
+			# Calcola la nuova posizione del giocatore tenendo conto della differenza tra le posizioni dei teletrasporti
+			player.position.y = teleports[id].position.y - (teleports[id-1].position.y - player.position.y) * transform
+			
+			# Controlla se la rotazione globale dei due teletrasporti è diversa
+			if teleports[id-1].global_rotation != teleports[id-1].global_rotation:
+				player.position.z = teleports[id].position.z + (teleports[id-1].position.x - player.position.x) * transform
+				player.position.x = teleports[id].position.x + (teleports[id-1].position.z - player.position.z) * transform
+			else:
+				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z) * transform
+				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) * transform
+		else:
+			# Imposta la posizione del giocatore alla posizione del teletrasporto
+			player.position = teleports[id].position
+		
+		# Inverti la gravità del giocatore
+		player.gravity *= -1
+		# Imposta l'accelerazione gravitazionale del giocatore
+		player.g = -1 * transform
+		# Ruota il giocatore di 180 gradi attorno all'asse Z e di rotation gradi attorno all'asse Y
+		player.get_node("TwistPivot/").global_rotation.z -= deg_to_rad(180 * transform)
+		player.get_node("TwistPivot/").global_rotation.y -= deg_to_rad(rotation * transform)
+		
+		# Disabilita il teletrasporto appena utilizzato
+		teleports[id].enabled = false
+		
+		# Stampa un messaggio di conferma del teletrasporto del giocatore
+		print("player entered in a portal")
 
 
 func _input(ev):
@@ -288,11 +261,3 @@ func _on_statue_not_touched(body, id:int):
 	var path = "Statua/statua-"+str(id) 
 	var statua = get_node(path)
 	statua.player_entered = false
-	
-func _on_portal_body_entered(body, portal_calling: int):
-	var portal = portals[portal_calling]
-	if(portal.enabled):
-		portals[portal.connection].enabled = false
-		portal.enabled = false
-		player.position = portals[portal.connection].position
-
