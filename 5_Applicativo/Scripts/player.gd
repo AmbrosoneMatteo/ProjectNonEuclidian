@@ -53,7 +53,7 @@ func _process(_delta):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
-	if(Input.is_action_just_pressed("pickup_object")):
+	if(Input.is_action_just_pressed("pickup")):
 		pickup_sound.play()
 	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		tutorial.visible = false
@@ -91,7 +91,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "forward", "back")
+	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	#the variable gravitation changes the way the player moves horizontally when he's upsidedown
 	var direction = (twist_pivot.basis * transform.basis * Vector3(input_dir.x*gravitation, 0, input_dir.y)).normalized()
 
