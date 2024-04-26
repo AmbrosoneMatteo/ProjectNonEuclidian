@@ -27,15 +27,6 @@ func _ready():
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
-#	viewport_camera.set_cull_mask(2)
-	c.set_layer_mask_value(2,2)
-	a.set_layer_mask_value(2,2)
-	b.set_layer_mask_value(2,2)
-	d.set_layer_mask_value(2,2)
-	wall_1.set_layer_mask_value(2,2)
-	wall_2.set_layer_mask_value(2,2)
-	wall_3.set_layer_mask_value(2,2)
-	wall_4.set_layer_mask_value(2,2)
 	set_portals()
 	
 #	viewport_camera.position.y = player.position.y + 1
@@ -61,10 +52,6 @@ func _process(delta):
 	
 		var pitch_pivot_path = "Control/SubViewport/PitchPivot"
 		var pitch_pivot = i.get_node(twist_pivot_path)
-		
-#		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
-		var vectors = [Vector2(player.position.x, player.position.z), Vector2(i.position.x,i.position.z)]
-		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
 		
 		twist_pivot.position = portals[i.connection].position+(player.position-i.position)
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y

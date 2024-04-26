@@ -1,21 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://cknjhojmvdgjt"]
+[gd_scene load_steps=14 format=3 uid="uid://cknjhojmvdgjt"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_xi7pf"]
 [ext_resource type="Shader" path="res://Assets/Shaders/sky.gdshader" id="2_n22o7"]
+[ext_resource type="Script" path="res://Scripts/CanvasLayer.gd" id="3_lflhq"]
+[ext_resource type="Texture2D" uid="uid://cmsckiiwxaqi3" path="res://Assets/MainMenu/icon.png" id="4_rmka4"]
+[ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="5_wshn4"]
+[ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="6_m2gvj"]
+[ext_resource type="Script" path="res://Scripts/loadGames.gd" id="7_4hyvb"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ce12s"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ce5k3"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xp2n"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1kqe"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywxjj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02cig"]
 shader = ExtResource("2_n22o7")
 
 [sub_resource type="Sky" id="Sky_6mili"]
 resource_local_to_scene = true
-sky_material = SubResource("ShaderMaterial_ywxjj")
+sky_material = SubResource("ShaderMaterial_02cig")
 process_mode = 1
 
-[sub_resource type="Environment" id="Environment_ld0q1"]
+[sub_resource type="Environment" id="Environment_mlhce"]
 background_mode = 2
 background_energy_multiplier = 2.2
 sky = SubResource("Sky_6mili")
@@ -26,24 +31,293 @@ reflected_light_source = 2
 tonemap_exposure = 1.45
 fog_enabled = true
 
+[sub_resource type="Theme" id="Theme_ba084"]
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xi7pf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291429, 0)
-mesh = SubResource("CapsuleMesh_ce12s")
+layers = 512
+mesh = SubResource("CapsuleMesh_ce5k3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
-shape = SubResource("CapsuleShape3D_4xp2n")
+shape = SubResource("CapsuleShape3D_d1kqe")
 
 [node name="RigidBody3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
 [node name="TwistPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787984, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299999, 0)
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
-environment = SubResource("Environment_ld0q1")
+keep_aspect = 0
+environment = SubResource("Environment_mlhce")
+h_offset = 0.35
+current = true
+size = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TwistPivot/PitchPivot/Camera3D"]
+process_mode = 3
+script = ExtResource("3_lflhq")
+
+[node name="Tutorial" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" type="Panel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="RichTextLabel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial/DialogBox"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 4.0
+offset_right = 1152.0
+offset_bottom = 300.0
+theme_override_font_sizes/normal_font_size = 35
+text = "Hey!, Welcome to our test facility where we experiment with reality, you'll see things that are out of the ordinary so don't panic. To start go on the other platform (press <ENTER> to continue)"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial/DialogBox"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 136.0
+offset_bottom = 52.0
+text = "Operator:
+"
+
+[node name="GameMenu" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "PROJECT NON-EUCLIDIAN"
+editable = false
+
+[node name="Icon" type="Sprite2D" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+position = Vector2(1635, 373)
+scale = Vector2(0.5645, 0.4635)
+texture = ExtResource("4_rmka4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -156.0
+offset_right = 322.0
+offset_bottom = 156.0
+grow_vertical = 2
+theme = SubResource("Theme_ba084")
+theme_override_constants/separation = 20
+script = ExtResource("5_wshn4")
+
+[node name="continue_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTINUA"
+alignment = 0
+
+[node name="option_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "OPZIONI"
+alignment = 0
+
+[node name="save_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SALVA"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+action_mode = 0
+text = "ESCI"
+alignment = 0
+
+[node name="Control" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+offset_top = -92.0
+offset_right = 824.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 50
+text = "OPZIONI"
+editable = false
+
+[node name="Control" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 0
+script = ExtResource("6_m2gvj")
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio" type="HScrollBar" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 800.0
+offset_bottom = 70.0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music" type="HScrollBar" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_left = 300.0
+offset_top = 80.0
+offset_right = 800.0
+offset_bottom = 150.0
+step = 1.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="to_menu_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.55
+anchor_right = 4.0
+anchor_bottom = 0.55
+offset_top = 160.0
+offset_right = 432.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU DI GIOCO"
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_audio_txt" type="TextEdit" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 5.0
+anchor_right = 0.125
+anchor_bottom = 5.0
+offset_right = 280.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME AUDIO:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="volume_music_txt" type="TextEdit" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.175
+anchor_bottom = 0.175
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "VOLUME MUSICA:"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveGame" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -260.0
+offset_right = 500.0
+offset_bottom = 260.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+script = ExtResource("7_4hyvb")
+
+[node name="Slot-1" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-1"
+
+[node name="Slot-2" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-2"
+
+[node name="Slot-3" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-3"
+
+[node name="Slot-4" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-4"
+
+[node name="Slot-5" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-5"
+
+[node name="Slot-6" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SLOT-6"
+
+[node name="to_menu_button" type="Button" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "TORNA AL MENU PRINCIPALE"
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOver" type="TextEdit" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu"]
+visible = false
+layout_mode = 0
+offset_left = 424.0
+offset_top = 242.0
+offset_right = 913.0
+offset_bottom = 369.0
+theme_override_colors/font_readonly_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+editable = false
+
+[connection signal="visibility_changed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="on_visibility_changed"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/option_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_option_button_pressed" flags=18]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/save_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_save_button_pressed"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/exit_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_exit_button_pressed" flags=18]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control/to_menu_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-1" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer" method="reload"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/to_menu_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
