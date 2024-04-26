@@ -22,6 +22,12 @@ func _physics_process(delta):
 	
 	if is_colliding():
 		
+#		if get_collider().name.contains("tatua"):
+		print(get_collider().name,": ",get_collision_point())
+			
+#			blue_material.albedo_color = Color(0, 0, 1)  # Blu
+#			get_collider().get_child(0).mesh.material = blue_material
+		
 		if get_collider().name.contains("sasso"):
 			print(get_collider().name,": ",get_collision_point())
 			

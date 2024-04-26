@@ -19,8 +19,8 @@ point_icon.png::CompressedTexture2D::6036147630492681709::1713534148::1714131728
 ::res://Assets/Materials/::1714127505
 emission.tres::StandardMaterial3D::1259230238060880504::1714129492::0::1::::<><>::
 ::res://Assets/Shaders/::1714127505
-portal.gdshader::Shader::-1::1714131326::0::1::::<><>::
-sky.gdshader::Shader::-1::1714131326::0::1::::<><>::
+portal.gdshader::Shader::-1::1714131920::0::1::::<><>::
+sky.gdshader::Shader::-1::1714131920::0::1::::<><>::
 sky.tres::Sky::8316987610378319662::1714127506::0::1::::<><>::
 skybox.tres::Environment::964517944396782727::1714130412::0::1::::<><>::
 ::res://Models/::1714127505
@@ -54,11 +54,11 @@ statua-4.dae::PackedScene::8054991845764531593::1714127508::1714127508::1::::<><
 ::res://Scenes/::1714127506
 CollisionShape3D.gd::GDScript::-1::1714127508::0::1::::<>CollisionShape3D<>::
 fountain.tscn::PackedScene::2496901669243223021::1714127512::0::1::::<><>::res://Scripts/fountain.gd<>res://Scripts/particle.gd
-MainMenu.tscn::PackedScene::481283692112248283::1714131294::0::1::::<><>::uid://cmsckiiwxaqi3::::res://Assets/MainMenu/icon.png<>res://Scripts/Menu.gd<>res://Scripts/OptionsManager.gd<>res://Scripts/AudioControl.gd<>res://Scripts/loadGames.gd<>res://Scripts/Keys.gd
-portal.tscn::PackedScene::9194292679902266492::1714131294::0::1::::<><>::res://Scripts/portal.gd<>res://Scripts/Area3DPortal.gd<>res://Assets/Shaders/portal.gdshader
-room_001.tscn::PackedScene::4936568747758804994::1714131294::0::1::::<><>::
-start.tscn::PackedScene::1681117668330733236::1714131326::0::1::::<><>::res://Scripts/start.gd<>res://Scripts/player.gd<>res://Scripts/Soundtrack.gd<>res://Assets/Shaders/sky.gdshader<>uid://cmsckiiwxaqi3::::res://Assets/MainMenu/icon.png<>res://Scripts/CanvasLayer.gd<>res://Scripts/GameMenu.gd<>res://Scripts/AudioControl.gd<>res://Scripts/loadGames.gd<>uid://da7d47j0n81n3::::res://Scenes/Sounds/Music/soundtrack.mp3<>res://Scripts/portal.gd<>res://Scripts/Area3DPortal.gd<>uid://n0hp75gvxkl8::::res://Assets/Shaders/skybox.tres<>res://Scripts/LabelSassi.gd<>res://Scripts/playerRayCast3D.gd<>res://Scripts/Statue.gd
-TutorialDialog.tscn::PackedScene::3019341962149682503::1714131296::0::1::::<><>::
+MainMenu.tscn::PackedScene::481283692112248283::1714131898::0::1::::<><>::uid://cmsckiiwxaqi3::::res://Assets/MainMenu/icon.png<>res://Scripts/Menu.gd<>res://Scripts/OptionsManager.gd<>res://Scripts/AudioControl.gd<>res://Scripts/loadGames.gd<>res://Scripts/Keys.gd
+portal.tscn::PackedScene::9194292679902266492::1714131898::0::1::::<><>::res://Scripts/portal.gd<>res://Scripts/Area3DPortal.gd<>res://Assets/Shaders/portal.gdshader
+room_001.tscn::PackedScene::4936568747758804994::1714131898::0::1::::<><>::
+start.tscn::PackedScene::1681117668330733236::1714131898::0::1::::<><>::res://Scripts/start.gd<>res://Scripts/player.gd<>res://Scripts/Soundtrack.gd<>res://Assets/Shaders/sky.gdshader<>uid://cmsckiiwxaqi3::::res://Assets/MainMenu/icon.png<>res://Scripts/CanvasLayer.gd<>res://Scripts/GameMenu.gd<>res://Scripts/AudioControl.gd<>res://Scripts/loadGames.gd<>uid://da7d47j0n81n3::::res://Scenes/Sounds/Music/soundtrack.mp3<>res://Scripts/portal.gd<>res://Scripts/Area3DPortal.gd<>uid://n0hp75gvxkl8::::res://Assets/Shaders/skybox.tres<>res://Scripts/LabelSassi.gd<>uid://cr87p73plw23j::::res://Assets/MainMenu/point_icon.png<>res://Scripts/playerRayCast3D.gd<>res://Scripts/Statue.gd
+TutorialDialog.tscn::PackedScene::3019341962149682503::1714131898::0::1::::<><>::
 ::res://Scenes/Assets/::1714127506
 GameMenu.tscn::PackedScene::3475610869139514742::1714127508::0::1::::<><>::uid://cmsckiiwxaqi3
 key_map.tscn::PackedScene::1347357909653179693::1714127508::0::1::::<><>::res://Scripts/Keys.gd
@@ -89,8 +89,8 @@ OptionButton.gd::GDScript::-1::1714127512::0::1::::<>OptionButton<>::
 OptionsManager.gd::GDScript::-1::1714127512::0::1::::<>VBoxContainer<>::
 particle.gd::GDScript::-1::1714127512::0::1::::<>RigidBody3D<>::
 player.gd::GDScript::-1::1714130952::0::1::::<>CharacterBody3D<>::
-portal.gd::GDScript::-1::1714131206::0::1::::<>Node3D<>::
 playerRayCast3D.gd::GDScript::-1::1714130906::0::1::::<>RayCast3D<>::
+portal.gd::GDScript::-1::1714131206::0::1::::<>Node3D<>::
 Soundtrack.gd::GDScript::-1::1714129492::0::1::::<>AudioStreamPlayer<>::
 start.gd::GDScript::-1::1714131326::0::1::::<>Node3D<>::
 Statue.gd::GDScript::-1::1714127512::0::1::::<>Node3D<>::
