@@ -8,7 +8,6 @@ const JUMP_VELOCITY = 7
 @export var portal = 0
 @export var sensivity = 0.01
 @export var desination_position = Vector3(0,0,0)
-@export var g = 1
 
 var pickup_sound = AudioStreamPlayer.new()
 var pickup_stream = load("res://Scenes/Sounds/SoundEffects/pickup.mp3")
@@ -41,7 +40,6 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("drop"):
 		posiziona_sasso()
-	print(get_node("TwistPivot/PitchPivot/Camera3D").global_rotation_degrees.y)
 	if Input.is_action_just_pressed("Accept") or Global.tutorial_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -70,30 +68,41 @@ func _physics_process(delta):
 			tutorial_finished =true
 		
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() or not is_on_ceiling():
 		velocity.y -= gravity * delta 
 		fall_counter+=delta
+		print("fall counter ->", fall_counter)		
+		if fall_counter > 5:
+			Global.gameover=true
+			get_tree().paused=true
+			tutorial.visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			tutorial_voice.stop()
+			$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
+	if is_on_floor():
+		fall_counter=0
 
 
 
 	# Handle Jump.
-	if Input.is_physical_key_pressed(KEY_SPACE) and (is_on_floor() or is_on_ceiling()):
-		velocity.y = JUMP_VELOCITY*gravitation*g
+	if Input.is_action_just_pressed("jump") and ((is_on_floor() and gravitation==1) or (is_on_ceiling() and gravitation==-1)) and not tutorial.visible:
+		velocity.y = JUMP_VELOCITY*gravitation
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "forward", "back")
-	var direction = (twist_pivot.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED 
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if not tutorial.visible:
+		var input_dir = Input.get_vector("left", "right", "forward", "back")
+		var direction = (twist_pivot.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED 
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input*g)
+	twist_pivot.rotate_y(twist_input*gravitation)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	twist_input = 0.0
@@ -141,6 +150,7 @@ func _on_slot_button_pressed(slot):
 
 
 func posiziona_sasso():
+	print(Global.numero_sassi)
 	if(Global.numero_sassi>0):
 		Global.numero_sassi = Global.numero_sassi - 1
 		Global.sassi_posionati.append(position)

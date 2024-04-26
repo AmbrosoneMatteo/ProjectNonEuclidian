@@ -29,3 +29,14 @@ func _on_continue_button_pressed():
 	get_tree().paused=false
 
 
+
+
+func on_visibility_changed():
+	if Global.gameover:
+		$GameMenu/GameOver.visible=true
+		$GameMenu/VBoxContainer/continue_button.disabled=true
+		$GameMenu/VBoxContainer/save_button.disabled = true
+	else:
+		$GameMenu/GameOver.visible=false
+		$GameMenu/VBoxContainer/continue_button.disabled=false
+		$GameMenu/VBoxContainer/save_button.disabled = false

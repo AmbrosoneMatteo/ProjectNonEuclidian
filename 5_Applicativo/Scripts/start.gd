@@ -22,6 +22,7 @@ var portals := [] # Lista dei portali presenti in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.numero_sassi = Global.sassi_disponibili
 	Global.start = self
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
@@ -53,34 +54,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for i in range(len(portals)):
-		var portal = portals[i]  
-		if is_near(portals[i].position,2):
-			if not portal.enabled:
-				pass
-			else:
-				portal.enabled=false
-				portals[portal.connection].enabled=false
-				player.position = portal.destination_portal.position-Vector3(0,1,0)
-				player.global_rotation.y = portal.destination_portal.global_rotation.y
-				portal = portals[i]
-				portal.checkpoint_enabled = true
-		else:
-			portal.enabled= true
-#				portal.destination_portal.set_exit_position(player.position.z)
-				
-#				player.desination_position = portal.destination_portal.exit_position
+	for i in portals:
+		
 		var twist_pivot_path = "Control/SubViewport/TwistPivot"
-		var twist_pivot = portal.get_node(twist_pivot_path)
+		var twist_pivot = i.get_node(twist_pivot_path)
 	
 		var pitch_pivot_path = "Control/SubViewport/PitchPivot"
-		var pitch_pivot = portal.get_node(twist_pivot_path)
+		var pitch_pivot = i.get_node(twist_pivot_path)
 		
 #		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
-		var vectors = [Vector2(player.position.x, player.position.z), Vector2(portal.position.x,portal.position.z)]
+		var vectors = [Vector2(player.position.x, player.position.z), Vector2(i.position.x,i.position.z)]
 		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
 		
-		twist_pivot.position = portals[portal.connection].position+(player.position-portal.position)
+		twist_pivot.position = portals[i.connection].position+(player.position-i.position)
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
 #
@@ -161,14 +147,15 @@ func set_portals():
 	for i in Teleports.get_children():
 		teleports.append(i)
 	for i in range(len(portals)):
-		var x = randi()%len(portals)-1
-#		while x == i or x in taken_portals: 
+		if portals[i].connection == -1:
+			var x = randi()%len(portals)-1
+#			while x == i or x in taken_portals : 
 #			x = randi()%len(portals)
-		#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
-		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
-		portals[i].destination_portal = portals[x]
-		portals[i].connection = x
-		taken_portals.append(i)
+			#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
+			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
+			portals[i].destination_portal = portals[x]
+			portals[i].connection = x
+			taken_portals.append(i)
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
@@ -195,7 +182,7 @@ func on_teleport_player_entered(body,id: int, transform: int, rotation: int,posi
 			player.position = teleports[id].position
 		
 		player.gravity*=-1
-		player.g=-1*transform
+		player.gravitation=-1*transform
 		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
 		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
 		teleports[id].enabled = false
@@ -231,3 +218,6 @@ func _on_portal_body_entered(body, portal_calling: int):
 		portals[portal.connection].enabled = false
 		portal.enabled = false
 		player.position = portals[portal.connection].position
+
+func _on_portal_body_exited(body, id:int):
+	portals[id].enabled = true

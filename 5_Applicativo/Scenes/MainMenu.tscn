@@ -10,6 +10,7 @@
 [sub_resource type="Theme" id="Theme_5i5fi"]
 
 [node name="Control" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -453,7 +454,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Backward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["backward"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Right_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["right"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Left_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["left"]]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Pickup_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Pickup_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["pickup"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
 [connection signal="item_selected" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" to="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]

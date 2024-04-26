@@ -3,14 +3,14 @@ extends Node3D
 # PORTAL
 
 
-@onready var a := $"Area3D"
+@onready var a := $Area3D
 @export var area = false
 @export var viewport = false
 @export var enabled = true
 @export var exit_position = false
 @export var destination_portal = false
 @export var checkpoint_enabled = false
-@export var connection: int = 0
+@export var connection: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,5 +43,4 @@ func crossed():
 #		exit_position = position + Vector3(0,-1,0)
 #	else:
 #		exit_position = position - Vector3(0,1,0)
-
 

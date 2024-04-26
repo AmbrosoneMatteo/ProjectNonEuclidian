@@ -8,12 +8,14 @@ var sound_volume=100.0
 var game_status: Node3D
 var player_position := Vector3(0,0,0)
 var tutorial_watched := false
+const sassi_disponibili = 20
 var numero_sassi := 20
 var sassi_posionati := []
 var statue_posizionate
+var gameover: bool = false
 
 func create_stone(position):
-	print("Sasso ->",position)
+	print("Sasso ->",position, "n sassi -> ", numero_sassi)
 	var body = RigidBody3D.new()
 	var mesh = BoxMesh.new()
 	var particle = MeshInstance3D.new()
