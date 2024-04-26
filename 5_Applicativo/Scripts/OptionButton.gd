@@ -28,9 +28,11 @@ func _on_pressed():
 
 func _on_item_selected(index):
 	var viewport = get_viewport()	
+	var window = get_window()
 	var x = get_item_text(index)
 	x = x.substr(0,x.find("x"))
 	var y = get_item_text(index)
 	y = y.substr(y.find("x")+1, len(y))
-	viewport.size.x=int(x)
-	viewport.size.y=int(y)
+	print(x,y)
+	window.size.x=int(x)
+	window.size.y=int(y)

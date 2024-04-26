@@ -1,13 +1,18 @@
 extends CharacterBody3D
 
+var statue_nodes = []
+var statue_control = null
 
 
-var SPEED = 10.0
-const JUMP_VELOCITY = 7
+var SPEED = 8.0
+const JUMP_VELOCITY = 5.5
 
 @export var portal = 0
 @export var sensivity = 0.01
 @export var desination_position = Vector3(0,0,0)
+
+var sound_player = AudioStreamPlayer.new()
+var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
 
 var pickup_sound = AudioStreamPlayer.new()
 var pickup_stream = load("res://Scenes/Sounds/SoundEffects/pickup.mp3")
@@ -21,6 +26,7 @@ var pitch_input := 0.0
 var tutorial_finished: bool = false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
+@onready var raycast := $TwistPivot/PitchPivot/RayCast3D
 @onready var Variables = get_node("/root/Global")
 @onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial
 @onready var camera = $TwistPivot/PitchPivot/Camera3D
@@ -28,6 +34,8 @@ var tutorial_finished: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravitation = 1.0
 func _ready():
+	
+	sound_player.volume_db = -40.0 + Global.sound_volume/2
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
 	tutorial_voice.volume_db = -40.0 + Global.sound_volume/2
 	add_child(pickup_sound)
@@ -37,9 +45,11 @@ func _ready():
 	tutorial_voice.stream = tutorial_stream
 	#tutorial_voice.play()
 
+
 func _process(_delta):
 	if Input.is_action_just_pressed("drop"):
-		posiziona_sasso()
+		place_stone()
+		
 	if Input.is_action_just_pressed("Accept") or Global.tutorial_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -83,7 +93,6 @@ func _physics_process(delta):
 		fall_counter=0
 
 
-
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and ((is_on_floor() and gravitation==1) or (is_on_ceiling() and gravitation==-1)) and not tutorial.visible:
 		velocity.y = JUMP_VELOCITY*gravitation
@@ -105,7 +114,7 @@ func _physics_process(delta):
 	twist_pivot.rotate_y(twist_input*gravitation)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
-	twist_input = 0.0
+	twist_input = 0.0 #it stops the camera from slipping
 	pitch_input = 0.0
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -114,8 +123,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			twist_input = - event.relative.x * sensivity * gravitation
 			pitch_input = - event.relative.y * sensivity * gravitation
 			
-
-
 
 func _on_visibility_changed():
 	pass # Replace with function body.
@@ -126,9 +133,23 @@ func _on_area_3d_area_entered(area):
 		print("going from: ",position," -> ", desination_position)
 		portal = (portal+1)%2
 		position = desination_position
-		
 
+# Ritorna true se la distanza tra i 2 vettori è minore di max_distance 
+func is_near(pos,max_distance):
+	var distance = calculate_distance(pos,position) # Viene calcolata la distranza tra i vettori
+	if distance < max_distance:
+		return true
+	return false
 
+func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
+	return vector1.distance_to(vector2)
+
+func place_stone():
+	if(Global.stones_number>0):
+		var pos = raycast.get_collision_point()
+		if is_near(pos,4):
+			Global.stones_number = Global.stones_number - 1
+			Global.create_stone(pos)
 
 
 func _on_slot_button_pressed(slot):
@@ -137,7 +158,9 @@ func _on_slot_button_pressed(slot):
 	"graviy_direction": "upwards",
 	 "saved_date": Time.get_date_dict_from_system(),
 	 "statues_captured": {},
-	 "rock_picked": {} }
+	 "rock_picked": {} ,
+	 "stones_number": Global.stones_number,
+	 "sassi": Global.sassi_posionati}
 	var json_string := JSON.stringify(data_to_save)
 	var save_path := "user://player_data-%s.json"
 	var file_access	:= FileAccess.open(save_path % slot as String , FileAccess.WRITE)
@@ -147,19 +170,7 @@ func _on_slot_button_pressed(slot):
 	file_access.store_line(json_string)
 	file_access.close()
 	print("game has been saved")
-
-
-func posiziona_sasso():
-	print(Global.numero_sassi)
-	if(Global.numero_sassi>0):
-		Global.numero_sassi = Global.numero_sassi - 1
-		Global.sassi_posionati.append(position)
-		var x = position.x - sin(twist_pivot.rotation.y)
-		var y = position.y + 0.7 + sin(pitch_pivot.rotation.x) * 1.5
-		var z = position.z - cos(twist_pivot.rotation.y)
-		var pos = Vector3(x,y,z)
-		Global.create_stone(pos)
-
+	
 func reload():
 	pass # Replace with function body.
 

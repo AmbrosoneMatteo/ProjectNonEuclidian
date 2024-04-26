@@ -24,6 +24,8 @@ var portals := [] # Lista dei portali presenti in game
 func _ready():
 	Global.numero_sassi = Global.sassi_disponibili
 	Global.start = self
+	for stone in Global.sassi_posionati:
+		Global.create_stone(stone)
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
@@ -103,7 +105,6 @@ func is_near(pos,max_distance):
 		return true
 	return false
 
-
 func create_stone(position):
 	var new_material = StandardMaterial3D.new()
 	new_material.albedo_color = Color(1, 0, 0)  # Rosso
@@ -113,10 +114,7 @@ func create_stone(position):
 	mesh.position = Vector3(position)
 	mesh.mesh = BoxMesh.new()
 	add_child(mesh)
-	
 
-	
-	
 #
 #func get_delta(axis = "x"):
 #	match axis:
@@ -131,14 +129,11 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-	for i in Teleports.get_children():
-		teleports.append(i)
+#	for i in Teleports.get_children():
+#		teleports.append(i)
 	for i in range(len(portals)):
 		if portals[i].connection == -1:
 			var x = randi()%len(portals)-1
-#			while x == i or x in taken_portals : 
-#			x = randi()%len(portals)
-			#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
 			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
 			portals[i].destination_portal = portals[x]
 			portals[i].connection = x
@@ -163,9 +158,10 @@ func on_teleport_player_entered(body,id: int, transform: int, rotation: int,posi
 				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
 				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
 			else:
-				player.position.z = teleports[id].position.z-(teleports[id-1].position.z-player.position.z)*transform
-				player.position.x = teleports[id].position.x-(teleports[id-1].position.x-player.position.x)*transform
+				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z) * transform
+				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) * transform
 		else:
+			# Imposta la posizione del giocatore alla posizione del teletrasporto
 			player.position = teleports[id].position
 		
 		player.gravity*=-1
@@ -173,6 +169,8 @@ func on_teleport_player_entered(body,id: int, transform: int, rotation: int,posi
 		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
 		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
 		teleports[id].enabled = false
+		
+		# Stampa un messaggio di conferma del teletrasporto del giocatore
 		print("player entered in a portal")
 
 

@@ -1,12 +1,11 @@
 extends Node
 
-var start 
+var start
 
-var music_volume=100.0
-var sound_volume=100.0
+var music_volume=50.0
+var sound_volume=50.0
 
 var game_status: Node3D
-var player_position := Vector3(0,0,0)
 var tutorial_watched := false
 const sassi_disponibili = 20
 var numero_sassi := 20
@@ -14,8 +13,17 @@ var sassi_posionati := []
 var statue_posizionate
 var gameover: bool = false
 
+var player_position := Vector3(-9,20,-7)
+
+#Modifica
+func reset():
+	stones_number = 20
+	sassi_posionati = []
+
+# Player scores
+var stones_number := 20
+
 func create_stone(position):
-	print("Sasso ->",position, "n sassi -> ", numero_sassi)
 	var body = RigidBody3D.new()
 	var mesh = BoxMesh.new()
 	var particle = MeshInstance3D.new()
@@ -30,4 +38,6 @@ func create_stone(position):
 	body.add_child(particle)
 	body.add_child(collision)
 	body.position=position
+	body.name = "sasso"+str(len(sassi_posionati))
+	sassi_posionati.append(position)
 	start.add_child(body)
