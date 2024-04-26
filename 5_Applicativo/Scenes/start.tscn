@@ -1,10 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://x7l06kx506fg"]
+[gd_scene load_steps=39 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="Script" path="res://Scripts/Soundtrack.gd" id="3_uy0eu"]
 [ext_resource type="PackedScene" uid="uid://tpjlelrl67qj" path="res://Scenes/show_room.tscn" id="7_pxnud"]
-[ext_resource type="PackedScene" uid="uid://5sdta6clk7eq" path="res://Models/castle.dae" id="8_08330"]
 [ext_resource type="AudioStream" uid="uid://da7d47j0n81n3" path="res://Scenes/Sounds/Music/soundtrack.mp3" id="9_6hu53"]
+[ext_resource type="PackedScene" uid="uid://dyep5o4smkd62" path="res://Scenes/castle.tscn" id="9_pi6m8"]
 [ext_resource type="PackedScene" uid="uid://xcxl21fnpwxx" path="res://Scenes/angle.tscn" id="9_yh4qp"]
 [ext_resource type="PackedScene" uid="uid://holpo67j46oy" path="res://Scenes/structure.tscn" id="10_kwwff"]
 [ext_resource type="Script" path="res://Scripts/portal.gd" id="10_qm4wm"]
@@ -77,6 +77,10 @@ size = Vector3(50, 50, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jgtt"]
 size = Vector3(7, 7, 0.1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6mhkb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uda1x"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
@@ -503,11 +507,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480
 [node name="ShowRoom" parent="structures" instance=ExtResource("7_pxnud")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -52.8275, -229.095)
 
-[node name="Node3D" parent="structures" instance=ExtResource("8_08330")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.6535, 0, -108.042)
-
 [node name="Angle" parent="structures" instance=ExtResource("9_yh4qp")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 90, 0, 0)
+
+[node name="Castle" parent="structures" instance=ExtResource("9_pi6m8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3743, 0, -108.053)
 
 [node name="teleports" type="Node" parent="."]
 
@@ -521,6 +525,7 @@ shape = SubResource("BoxShape3D_sqbs6")
 [node name="teleport-2" type="Area3D" parent="teleports"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207, -20, -107)
 script = ExtResource("14_g6fwb")
+enabled = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="teleports/teleport-2"]
 shape = SubResource("BoxShape3D_sqbs6")
@@ -575,7 +580,19 @@ transform = Transform3D(1, 0, 0, 0, 0.777289, 0.629144, 0, -0.629144, 0.777289, 
 transform = Transform3D(1, 0, 0, 0, 0.777146, -0.62932, 0, 0.62932, 0.777146, 0, 76.1397, 0)
 
 [node name="Player" parent="." instance=ExtResource("14_ckswi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8006, 20.6261, -4.90823)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -181.613, 56.0832, -145.405)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291429, 0)
+layers = 512
+mesh = SubResource("CapsuleMesh_6mhkb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
+shape = SubResource("CapsuleShape3D_uda1x")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
 [node name="bridges2" type="Node" parent="."]
 
@@ -590,5 +607,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8006, 20.6261, -4.90823)
 [connection signal="body_entered" from="portals/portal-5/Area3D" to="." method="_on_portal_body_entered" binds= [4]]
 [connection signal="body_exited" from="portals/portal-5/Area3D" to="." method="_on_portal_body_exited" binds= [4]]
 [connection signal="body_entered" from="teleports/teleport-1" to="." method="on_teleport_player_entered" binds= [1, 1, 0, false, "back"]]
+[connection signal="body_shape_entered" from="teleports/teleport-1" to="." method="on_teleport_player_entered"]
 [connection signal="body_entered" from="teleports/teleport-3" to="." method="on_teleport_player_entered" binds= [3, -1, 180, false, "string"]]
 [connection signal="body_entered" from="teleports/teleport-5" to="." method="on_teleport_player_entered" binds= [5, 1, 90, true, "front"]]

@@ -4,8 +4,8 @@ var statue_nodes = []
 var statue_control = null
 
 
-var SPEED = 8.0
-const JUMP_VELOCITY = 5.5
+var SPEED = 14.0
+const JUMP_VELOCITY = 10
 
 @export var portal = 0
 @export var sensivity = 0.01
@@ -65,10 +65,6 @@ func _physics_process(delta):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		tutorial_voice.stop()
 		$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
-	if Input.is_key_pressed(KEY_SHIFT):
-		SPEED=14.0
-	else:
-		SPEED=5.0
 	if not tutorial_finished:
 		if tutorial_voice.playing:
 			Global.music_volume = 30
@@ -81,7 +77,6 @@ func _physics_process(delta):
 	if not is_on_floor() or not is_on_ceiling():
 		velocity.y -= gravity * delta 
 		fall_counter+=delta
-		print("fall counter ->", fall_counter)		
 		if fall_counter > 5:
 			Global.gameover=true
 			get_tree().paused=true

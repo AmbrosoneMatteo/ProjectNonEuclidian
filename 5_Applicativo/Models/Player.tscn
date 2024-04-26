@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cknjhojmvdgjt"]
+[gd_scene load_steps=14 format=3 uid="uid://cknjhojmvdgjt"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_xi7pf"]
 [ext_resource type="Shader" path="res://Assets/Shaders/sky.gdshader" id="2_n22o7"]
@@ -9,10 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/loadGames.gd" id="7_4hyvb"]
 [ext_resource type="Script" path="res://Scripts/playerRayCast3D.gd" id="8_7502w"]
 [ext_resource type="Texture2D" uid="uid://cr87p73plw23j" path="res://Assets/MainMenu/point_icon.png" id="8_wmvu6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ce5k3"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1kqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_02cig"]
 shader = ExtResource("2_n22o7")
@@ -37,18 +33,6 @@ fog_enabled = true
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xi7pf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291429, 0)
-layers = 512
-mesh = SubResource("CapsuleMesh_ce5k3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290261, 0)
-shape = SubResource("CapsuleShape3D_d1kqe")
-
-[node name="RigidBody3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 
 [node name="TwistPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299999, 0)

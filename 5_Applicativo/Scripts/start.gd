@@ -4,15 +4,6 @@ extends Node3D
 @onready var player_twist := $Player/TwistPivot
 @onready var player_pitch := $Player/TwistPivot/PitchPivot
 
-@onready var a := $structure/MeshInstance3D2
-@onready var b := $structure/MeshInstance3D
-@onready var c := $"structure/platform-1/MeshInstance3D"
-@onready var d := $"structure/platform-2/MeshInstance3D"
-@onready var wall_1 := $"structure/wall-1/MeshInstance3D"
-@onready var wall_2 := $"structure/wall-2/MeshInstance3D"
-@onready var wall_3 := $"structure/wall-3/MeshInstance3D"
-@onready var wall_4 := $"structure/wall-4/MeshInstance3D"
-
 @onready var Portals = $portals
 @onready var Teleports = $"teleports"
 
@@ -26,8 +17,8 @@ func _ready():
 	Global.start = self
 	for stone in Global.sassi_posionati:
 		Global.create_stone(stone)
-	if Global.player_position!=Vector3(0,0,0):
-		player.position=Global.player_position
+#	if Global.player_position!=Vector3(0,0,0):
+#		player.position=Global.player_position
 	get_tree().paused=false
 	set_portals()
 	
@@ -206,3 +197,4 @@ func _on_portal_body_entered(body, portal_calling: int):
 
 func _on_portal_body_exited(body, id:int):
 	portals[id].enabled = true
+
