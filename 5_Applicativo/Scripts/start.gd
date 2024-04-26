@@ -178,7 +178,7 @@ func _input(ev):
 	if not ev is InputEventMouse:
 		for j in InputMap.action_get_events("pickup"):
 			if ev.keycode == j.keycode:
-				var statue = $Statua
+				var statue = $statues
 				for i in statue.get_children():
 					if i.player_entered:
 						i.queue_free()

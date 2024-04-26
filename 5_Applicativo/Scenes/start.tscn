@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://x7l06kx506fg"]
+[gd_scene load_steps=37 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="Script" path="res://Scripts/Soundtrack.gd" id="3_uy0eu"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://holpo67j46oy" path="res://Scenes/structure.tscn" id="10_kwwff"]
 [ext_resource type="Script" path="res://Scripts/portal.gd" id="10_qm4wm"]
 [ext_resource type="Environment" uid="uid://n0hp75gvxkl8" path="res://Assets/Shaders/skybox.tres" id="11_bkfvh"]
+[ext_resource type="Script" path="res://Scripts/Statue.gd" id="12_gij3v"]
 [ext_resource type="PackedScene" uid="uid://cknjhojmvdgjt" path="res://Models/Player.tscn" id="14_ckswi"]
 [ext_resource type="Script" path="res://Scripts/teleport.gd" id="14_g6fwb"]
 [ext_resource type="PackedScene" uid="uid://gaa2gqwmmqi" path="res://Models/Statues/statua-1.dae" id="15_p5jdh"]
@@ -38,12 +39,34 @@ viewport_path = NodePath("portals/portal-4/Control/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_wg7kx"]
 viewport_path = NodePath("portals/portal-5/Control/SubViewport")
 
-[sub_resource type="BoxMesh" id="BoxMesh_dunfl"]
+[sub_resource type="BoxMesh" id="BoxMesh_eewpt"]
 size = Vector3(5, 1, 46)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_07p0c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2gwve"]
+size = Vector3(5, 1, 46)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xl7ug"]
+[sub_resource type="BoxMesh" id="BoxMesh_3gxfu"]
+size = Vector3(5, 1, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crdoq"]
+size = Vector3(5, 1, 46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ncl5s"]
+size = Vector3(5, 1, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fjgk"]
+size = Vector3(5, 1, 46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h6j6f"]
+size = Vector3(5, 0.5, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsgne"]
+size = Vector3(5, 0.5, 46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oqghk"]
+size = Vector3(5, 1, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nabwc"]
 size = Vector3(5, 1, 46)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sqbs6"]
@@ -425,62 +448,54 @@ shape = SubResource("BoxShape3D_3cbms")
 
 [node name="bridges" type="Node" parent="."]
 
-[node name="part-1" type="StaticBody3D" parent="portals/portal-6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
+[node name="bridge_1" type="StaticBody3D" parent="bridges"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 80, -38.953, 66)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-1"]
-transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_xq43t")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bridges/bridge_1"]
+mesh = SubResource("BoxMesh_eewpt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-1"]
-shape = SubResource("BoxShape3D_hiygh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridges/bridge_1"]
+shape = SubResource("BoxShape3D_2gwve")
 
-[node name="part-2" type="StaticBody3D" parent="portals/portal-6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.1, 0)
+[node name="bridge_2" type="StaticBody3D" parent="bridges"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 5, 80, 39.0469, -135)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-2"]
-transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_xq43t")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bridges/bridge_2"]
+mesh = SubResource("BoxMesh_3gxfu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-2"]
-shape = SubResource("BoxShape3D_hiygh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridges/bridge_2"]
+shape = SubResource("BoxShape3D_crdoq")
 
-[node name="part-3" type="StaticBody3D" parent="portals/portal-6"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+[node name="bridge_3" type="StaticBody3D" parent="bridges"]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 122, -0.952999, -108)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-3"]
-transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_xq43t")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bridges/bridge_3"]
+mesh = SubResource("BoxMesh_ncl5s")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-3"]
-shape = SubResource("BoxShape3D_hiygh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridges/bridge_3"]
+shape = SubResource("BoxShape3D_8fjgk")
 
-[node name="part-4" type="StaticBody3D" parent="portals/portal-6"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -1.8, 0)
+[node name="bridge_4" type="StaticBody3D" parent="bridges"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -30, -53, -315)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="portals/portal-6/part-4"]
-transform = Transform3D(0.2, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_xq43t")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bridges/bridge_4"]
+mesh = SubResource("BoxMesh_h6j6f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/part-4"]
-shape = SubResource("BoxShape3D_hiygh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridges/bridge_4"]
+shape = SubResource("BoxShape3D_xsgne")
 
 [node name="bridge_5" type="StaticBody3D" parent="bridges"]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 155.87, 39.047, 4)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="portals/portal-6/Area3D"]
-transform = Transform3D(0.599999, 1.16415e-09, -3.16702e-08, -3.09956e-09, 0.226951, 9.34961e-10, 3.13115e-08, -3.13776e-10, 0.600009, -0.00970956, -0.00830735, -0.0789772)
-shape = SubResource("BoxShape3D_3cbms")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bridges/bridge_5"]
+mesh = SubResource("BoxMesh_oqghk")
 
-[node name="Sprite3D" type="Sprite3D" parent="portals/portal-6"]
-transform = Transform3D(0.190037, 0, 0, 0, 0.182431, 0, 0, 0, 1, 0, 0.0439595, 0)
-texture = SubResource("ViewportTexture_wg7kx")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridges/bridge_5"]
+shape = SubResource("BoxShape3D_nabwc")
 
-[node name="Control" type="Control" parent="portals/portal-6"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="portals2" type="Node" parent="."]
+
+[node name="structures" type="Node" parent="."]
 
 [node name="structure" parent="structures" instance=ExtResource("10_kwwff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
@@ -543,12 +558,15 @@ shape = SubResource("BoxShape3D_sqbs6")
 
 [node name="statua-1" parent="statues" instance=ExtResource("15_p5jdh")]
 transform = Transform3D(-1, -8.9407e-08, 0, 8.9407e-08, -1, 0, 0, 0, 1, -137.518, -39.1064, -115)
+script = ExtResource("12_gij3v")
 
 [node name="statua-2" parent="statues" instance=ExtResource("16_15aw6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -52, -343)
+script = ExtResource("12_gij3v")
 
 [node name="statua-3" parent="statues" instance=ExtResource("17_i4pin")]
 transform = Transform3D(-1, -8.9407e-08, 0, 8.9407e-08, -1, 0, 0, 0, 1, 82, 37, -14)
+script = ExtResource("12_gij3v")
 
 [node name="Sun-1" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.777289, 0.629144, 0, -0.629144, 0.777289, 0, 76.1397, 0)
@@ -557,6 +575,9 @@ transform = Transform3D(1, 0, 0, 0, 0.777289, 0.629144, 0, -0.629144, 0.777289, 
 transform = Transform3D(1, 0, 0, 0, 0.777146, -0.62932, 0, 0.62932, 0.777146, 0, 76.1397, 0)
 
 [node name="Player" parent="." instance=ExtResource("14_ckswi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8006, 20.6261, -4.90823)
+
+[node name="bridges2" type="Node" parent="."]
 
 [connection signal="body_entered" from="portals/portal-1/Area3D" to="." method="_on_portal_body_entered" binds= [0]]
 [connection signal="body_exited" from="portals/portal-1/Area3D" to="." method="_on_portal_body_exited" binds= [0]]
