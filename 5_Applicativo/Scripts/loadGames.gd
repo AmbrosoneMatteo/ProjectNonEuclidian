@@ -28,7 +28,7 @@ func loadGame(slot):
 		var json_as_dict = JSON.parse_string(json_as_text)
 		if json_as_dict:
 			Global.player_position=stringToVector(json_as_dict.player_position)
-			Global.numero_sassi = int(json_as_dict.numero_sassi)
+			Global.stones_number = int(json_as_dict.stones_number)
 			for stone_position_string in json_as_dict.sassi:
 				Global.sassi_posionati.append(stringToVector(stone_position_string))
 			Global.tutoria_watched = true

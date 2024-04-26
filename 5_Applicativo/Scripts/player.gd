@@ -26,6 +26,7 @@ var pitch_input := 0.0
 var tutorial_finished: bool = false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
+@onready var raycast := $TwistPivot/PitchPivot/RayCast3D
 @onready var Variables = get_node("/root/Global")
 @onready var tutorial = $TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial
 @onready var camera = $TwistPivot/PitchPivot/Camera3D
@@ -48,7 +49,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("drop"):
-		posiziona_sasso()
+		place_stone()
 		
 	if Input.is_action_just_pressed("Accept") or Global.tutoria_watched:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -126,17 +127,23 @@ func _on_area_3d_area_entered(area):
 		print("going from: ",position," -> ", desination_position)
 		portal = (portal+1)%2
 		position = desination_position
-		
 
-func posiziona_sasso():
-	if(Global.numero_sassi>0):
-		Global.numero_sassi = Global.numero_sassi - 1
-		Global.sassi_posionati.append(position)
-		var x = position.x - sin(twist_pivot.rotation.y)
-		var y = position.y + 0.7 + sin(pitch_pivot.rotation.x) * 1.5
-		var z = position.z - cos(twist_pivot.rotation.y)
-		var pos = Vector3(x,y,z)
-		Global.create_stone(pos)
+# Ritorna true se la distanza tra i 2 vettori è minore di max_distance 
+func is_near(pos,max_distance):
+	var distance = calculate_distance(pos,position) # Viene calcolata la distranza tra i vettori
+	if distance < max_distance:
+		return true
+	return false
+
+func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
+	return vector1.distance_to(vector2)
+
+func place_stone():
+	if(Global.stones_number>0):
+		var pos = raycast.get_collision_point()
+		if is_near(pos,4):
+			Global.stones_number = Global.stones_number - 1
+			Global.create_stone(pos)
 
 
 func _on_slot_button_pressed(slot):
@@ -146,7 +153,7 @@ func _on_slot_button_pressed(slot):
 	 "saved_date": Time.get_date_dict_from_system(),
 	 "statues_captured": {},
 	 "rock_picked": {} ,
-	 "numero_sassi": Global.numero_sassi,
+	 "stones_number": Global.stones_number,
 	 "sassi": Global.sassi_posionati}
 	var json_string := JSON.stringify(data_to_save)
 	var save_path := "user://player_data-%s.json"

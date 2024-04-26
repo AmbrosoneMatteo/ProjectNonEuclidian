@@ -27,10 +27,11 @@ func go_to_menu():
 	
 func go_to_loadgame():
 	$MainMenuOptions.visible = false
-	$OptionsMenu.visible = false
+	$OptionsMenu/VBoxContainer.visible = false
 	$LoadGame.visible = true
 
 func lets_play():
+	print("Menu.gd: lets_play")
 	Global.reset()
 	get_tree().change_scene_to_file("res://Scenes/start.tscn")
 	

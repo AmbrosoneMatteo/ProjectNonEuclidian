@@ -10,11 +10,11 @@ var player_position := Vector3(-9,20,-7)
 var tutoria_watched := false
 
 func reset():
-	numero_sassi = 20
+	stones_number = 20
 	sassi_posionati = []
 
 # Player scores
-var numero_sassi := 20
+var stones_number := 20
 var sassi_posionati := []
 var statue_posizionate := []
 
@@ -33,4 +33,6 @@ func create_stone(position):
 	body.add_child(particle)
 	body.add_child(collision)
 	body.position=position
+	body.name = "sasso"+str(len(sassi_posionati))
+	sassi_posionati.append(position)
 	start.add_child(body)

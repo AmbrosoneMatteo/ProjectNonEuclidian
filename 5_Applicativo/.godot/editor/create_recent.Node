@@ -1,12 +1,13 @@
+Sprite2D
+Control
+RayCast3D
 CollisionShape3D
 Node
 Area3D
-RayCast3D
 MeshInstance3D
 HSlider
 Panel
 Label
-Control
 RichTextLabel
 AudioStreamPlayer
 Button

@@ -10,7 +10,7 @@ extends Node3D
 @export var exit_position = false
 @export var destination_portal = false
 @export var checkpoint_enabled = false
-@export var connection = 0
+@export var connection = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

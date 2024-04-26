@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://x7l06kx506fg"]
+[gd_scene load_steps=52 format=3 uid="uid://x7l06kx506fg"]
 
 [ext_resource type="Script" path="res://Scripts/start.gd" id="1_5eacx"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_5o44o"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Scripts/Area3DPortal.gd" id="11_1yshf"]
 [ext_resource type="Environment" uid="uid://n0hp75gvxkl8" path="res://Assets/Shaders/skybox.tres" id="11_bkfvh"]
 [ext_resource type="Script" path="res://Scripts/LabelSassi.gd" id="12_upnd1"]
+[ext_resource type="Texture2D" uid="uid://cr87p73plw23j" path="res://Assets/MainMenu/point_icon.png" id="13_02qgy"]
+[ext_resource type="Script" path="res://Scripts/playerRayCast3D.gd" id="13_whrp4"]
 [ext_resource type="Script" path="res://Scripts/Statue.gd" id="15_nr8vn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xq43t"]
@@ -334,7 +336,7 @@ offset_top = 4.0
 offset_right = 1152.0
 offset_bottom = 300.0
 theme_override_font_sizes/normal_font_size = 35
-text = "Hey!, Welcome to our test facility where we experiment with reality, you'll see things that are out of the ordinary so don't panic. To start go on the other platform. (press <ENTER> to hide)"
+text = "Hey!, Welcome to our test facility where we experiment with reality, you'll see things that are out of the ordinary so don't panic. To start go on the other platform"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Tutorial/DialogBox"]
 layout_mode = 0
@@ -581,6 +583,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("12_upnd1")
 
+[node name="Control2" type="Control" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("13_02qgy")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/TwistPivot/PitchPivot"]
+target_position = Vector3(0, 0, -4)
+script = ExtResource("13_whrp4")
+
 [node name="structure" type="Node3D" parent="."]
 
 [node name="floor" type="StaticBody3D" parent="structure"]
@@ -754,6 +779,7 @@ environment = ExtResource("11_bkfvh")
 [node name="portal-2" type="Node3D" parent="portals"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.0208, 21.7515, -0.0480652)
 script = ExtResource("10_qm4wm")
+connection = 3
 
 [node name="part-1" type="StaticBody3D" parent="portals/portal-2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.1, 0)
@@ -1121,68 +1147,6 @@ transform = Transform3D(5.005, 0, 0, 0, 4, 0, 0, 0, 5.005, -1.99449, 1.59215, -1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Statua/statua-1/Area3D"]
 transform = Transform3D(0.81, 0, 0, 0, 0.81, 0, 0, 0, 0.81, 0, 0, 0)
 shape = SubResource("BoxShape3D_rqhgw")
-
-[node name="Structures" type="Node" parent="."]
-
-[node name="Castle" type="Node3D" parent="Structures"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -67.1344, 0.048584, -0.0480652)
-
-[node name="Cube_007" type="MeshInstance3D" parent="Structures/Castle"]
-transform = Transform3D(30, 0, 0, 0, 40, 0, 0, 0, 30, 0, 0, 0)
-mesh = SubResource("ArrayMesh_slqeg")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Structures/Castle/Cube_007"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Castle/Cube_007/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_y6jn7")
-
-[node name="angle" type="Node3D" parent="Structures"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0207977, 0.048584, -47.5387)
-
-[node name="Cube_001" type="MeshInstance3D" parent="Structures/angle"]
-transform = Transform3D(3.77489e-07, 1.19249e-08, 20, 5, -9.00303e-16, -1.50996e-06, 0, 1, -2.38498e-07, 0, 0, 0)
-mesh = SubResource("ArrayMesh_5sx54")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Structures/angle/Cube_001"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/angle/Cube_001/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_nmnvk")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("9_6hu53")
-volume_db = 6.033
-autoplay = true
-script = ExtResource("3_uy0eu")
-
-[node name="Teleports" type="Node" parent="."]
-
-[node name="teleport-1" type="Area3D" parent="Teleports"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6671, -10.1723, -91.0093)
-script = ExtResource("15_a6xx2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Teleports/teleport-1"]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0)
-shape = SubResource("BoxShape3D_hdblu")
-
-[node name="teleport-2" type="Area3D" parent="Teleports"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.2985, 29.9993, -91.0672)
-script = ExtResource("15_a6xx2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Teleports/teleport-2"]
-shape = SubResource("BoxShape3D_hdblu")
-
-[node name="teleport-3" type="Area3D" parent="Teleports"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.1249, 56.3371, -73.4788)
-script = ExtResource("15_a6xx2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Teleports/teleport-3"]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0)
-shape = SubResource("BoxShape3D_thauo")
-
-[node name="Sassi" type="Node" parent="."]
 
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/continue_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/option_button" to="Player/TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_option_button_pressed" flags=18]

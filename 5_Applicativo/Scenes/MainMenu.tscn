@@ -422,6 +422,7 @@ toggle_mode = true
 text = "TORNA AL MENU PRINCIPALE"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="pressed" from="Control/MainMenuOptions/VBoxContainer/start_button" to="Control" method="lets_play"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/Volume/Control/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/Forward_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" flags=18 binds= ["forward"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]

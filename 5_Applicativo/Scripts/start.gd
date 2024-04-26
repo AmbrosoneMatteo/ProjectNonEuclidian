@@ -69,7 +69,7 @@ func _process(delta):
 				#print("nop  ",portal.destination_portal.position)
 				portal.enabled=false
 				portals[portal.connection].enabled=false
-				player.position = portal.destination_portal.position-Vector3(0,1,0)
+				player.position = portals[portal.connection].position-Vector3(0,1,0)
 #				player.global_rotation.y = portal.destination_portal.global_rotation.y
 				portal = portals[i]
 				portal.checkpoint_enabled = true
@@ -177,15 +177,15 @@ func set_portals():
 #	for i in Teleports.get_children():
 #		teleports.append(i)
 	for i in range(len(portals)):
-		var x = randi()%len(portals)-1
+		if portals[i].connection == -1:
+			var x = randi()%len(portals)-1
 #		while x == i or x in taken_portals: 
 #			x = randi()%len(portals)
 		#portals[i].viewport = portals[i].get_node("Control/SubViewport/Camera3D")
-		portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
-		portals[i].destination_portal = portals[x]
-		portals[i].connection = x
-		taken_portals.append(i)
-		print(taken_portals)
+			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
+			portals[i].destination_portal = portals[x]
+			portals[i].connection = x
+			taken_portals.append(i)
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
