@@ -7,7 +7,7 @@
 
 [sub_resource type="Theme" id="Theme_6stwp"]
 
-[node name="Control" type="Control"]
+[node name="Control3" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +128,7 @@ anchor_bottom = 5.0
 offset_right = 280.0
 offset_bottom = 70.0
 theme_override_font_sizes/font_size = 30
-text = "VOLUME AUDIO:"
+text = "VOLUME AUDIO"
 editable = false
 metadata/_edit_use_anchors_ = true
 
@@ -141,7 +141,7 @@ offset_top = 80.0
 offset_right = 280.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 30
-text = "VOLUME MUSICA:"
+text = "VOLUME MUSICA"
 editable = false
 metadata/_edit_use_anchors_ = true
 

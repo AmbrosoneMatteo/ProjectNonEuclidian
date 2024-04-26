@@ -1,10 +1,12 @@
+MeshInstance3D
+Node3D
+DirectionalLight3D
 RigidBody3D
 Control
 Button
 VBoxContainer
 TextEdit
 GridContainer
-MeshInstance3D
 Node
 SpotLight3D
 CollisionShape3D
@@ -19,7 +21,6 @@ ColorRect
 SubViewport
 Sprite3D
 Tree
-DirectionalLight3D
 RichTextLabel
 Panel
 VehicleWheel3D

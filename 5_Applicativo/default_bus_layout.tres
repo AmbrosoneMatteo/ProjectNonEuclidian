@@ -2,8 +2,12 @@
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_012dk"]
 resource_name = "Phaser"
+range_min_hz = 716.364
+range_max_hz = 6090.45
+rate_hz = 0.01
+feedback = 0.4
 
 [resource]
-bus/0/volume_db = 0.0694828
+bus/0/volume_db = -0.130497
 bus/0/effect/0/effect = SubResource("AudioEffectPhaser_012dk")
 bus/0/effect/0/enabled = true

@@ -20,7 +20,6 @@ func _process(delta):
 #	if not animatiom_player.is_active():
 #		# Rimuovi il CanvasLayer una volta che la dissolvenza è terminata
 #		queue_free()
-#		print("removing children")
 
 
 

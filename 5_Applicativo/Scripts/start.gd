@@ -3,7 +3,6 @@ extends Node3D
 @onready var player := $Player
 @onready var player_twist := $Player/TwistPivot
 @onready var player_pitch := $Player/TwistPivot/PitchPivot
-@onready var audiostreamer = $AudioStreamPlayer
 
 @onready var a := $structure/MeshInstance3D2
 @onready var b := $structure/MeshInstance3D
@@ -23,6 +22,7 @@ var portals := [] # Lista dei portali presenti in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.start = self
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
@@ -53,15 +53,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	audiostreamer.volume_db=Global.music_volume
 	for i in range(len(portals)):
 		var portal = portals[i]  
 		if is_near(portals[i].position,2):
 			if not portal.enabled:
 				pass
-				#print("yep  ",portal.destination_portal.position)
 			else:
-				#print("nop  ",portal.destination_portal.position)
 				portal.enabled=false
 				portals[portal.connection].enabled=false
 				player.position = portal.destination_portal.position-Vector3(0,1,0)
@@ -73,24 +70,19 @@ func _process(delta):
 #				portal.destination_portal.set_exit_position(player.position.z)
 				
 #				player.desination_position = portal.destination_portal.exit_position
-		var camera_node_path = "Control/SubViewport/Camera3D"
-		var camera = portal.get_node(camera_node_path)
+		var twist_pivot_path = "Control/SubViewport/TwistPivot"
+		var twist_pivot = portal.get_node(twist_pivot_path)
 	
-		camera.global_position = portal.position;
+		var pitch_pivot_path = "Control/SubViewport/PitchPivot"
+		var pitch_pivot = portal.get_node(twist_pivot_path)
+		
 #		camera.global_rotation = $Player/TwistPivot/PitchPivot/Camera3D.global_rotation;
 		var vectors = [Vector2(player.position.x, player.position.z), Vector2(portal.position.x,portal.position.z)]
 		#var vectors_x = [Vector3(portal.position.x,player.position.y,player.position.z),Vector3(player.position.x,player.position.y,portal.position.z),portal.position]
 		
-		camera.global_rotation.y = (vectors[0].direction_to(vectors[1])).dot(Vector2(0,1).rotated(player.rotation.y))
-		camera.global_rotation.z = portal.global_rotation.z
-		camera.global_rotation.x = portal.global_rotation.x
+		twist_pivot.position = portals[portal.connection].position+(player.position-portal.position)
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
-		#print(camera.global_rotation.y," portal -> ",i)
-#	portals[0].print_collsions(0)
-#	portals[1].print_collsions(1)
-#	portals[2].print_collsions(2)
-#	portals[3].print_collsions(3)
 #
 #	if abs(get_delta("x"))<2:
 #		#viewport_camera.position.x = portals[0].position.x - get_delta("x")
@@ -105,13 +97,9 @@ func _process(delta):
 #	if len(portal.destination_portal.area.get_overlapping_bodies()) > 0:
 #		portal.cross()
 #		portal.enabled = false
-#		print(portal.enabled)
 #
 #	if not portal.enabled and len(portal.destination_portal.area.get_overlapping_bodies()) == 0:
 #		portal.crossed()
-#		print("crossed")
-#		print("Portal 1 ",portal.is_enabled)
-#		print("Portal 2 ",portal.destination_portal.is_enabled)
 	
 	
 	
@@ -143,7 +131,16 @@ func is_near(pos,max_distance):
 	return false
 
 
-
+func create_stone(position):
+	var new_material = StandardMaterial3D.new()
+	new_material.albedo_color = Color(1, 0, 0)  # Rosso
+	
+	var mesh = MeshInstance3D.new()
+	mesh.material_override = new_material
+	mesh.position = Vector3(position)
+	mesh.mesh = BoxMesh.new()
+	add_child(mesh)
+	
 
 	
 	
@@ -172,7 +169,6 @@ func set_portals():
 		portals[i].destination_portal = portals[x]
 		portals[i].connection = x
 		taken_portals.append(i)
-		print(taken_portals)
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
@@ -186,7 +182,6 @@ func get_delta_z(pos = portals[1].position):
 
 func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
 	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
-	print(typeof(player_roation))
 	if len(teleports)>id:
 		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
 			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
@@ -207,3 +202,32 @@ func on_teleport_player_entered(body,id: int, transform: int, rotation: int,posi
 		print("player entered in a portal")
 
 
+func _input(ev):
+	if not ev is InputEventMouse:
+		for j in InputMap.action_get_events("pickup"):
+			if ev.keycode == j.keycode:
+				var statue = $Statua
+				for i in statue.get_children():
+					if i.player_entered:
+						i.queue_free()
+						Global.statue_posizionate.append(i.name)
+		
+
+
+func _on_statue_touched(body, id:int):
+	var path = "Statua/statua-"+str(id) 
+	var statua = get_node(path)
+	statua.player_entered = true
+
+
+func _on_statue_not_touched(body, id:int):
+	var path = "Statua/statua-"+str(id) 
+	var statua = get_node(path)
+	statua.player_entered = false
+	
+func _on_portal_body_entered(body, portal_calling: int):
+	var portal = portals[portal_calling]
+	if(portal.enabled):
+		portals[portal.connection].enabled = false
+		portal.enabled = false
+		player.position = portals[portal.connection].position
