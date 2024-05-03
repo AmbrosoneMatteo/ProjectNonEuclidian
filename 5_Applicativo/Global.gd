@@ -13,7 +13,7 @@ var sassi_posionati := []
 var statue_posizionate
 var collected_statues := []
 var gameover: bool = false
-
+var gravitation = 1
 var player_position := Vector3(-9,20,-7)
 
 #Modifica
@@ -21,13 +21,13 @@ func reset():
 	stones_number = 20
 	sassi_posionati = []
 	collected_statues = []
+	player_position = Vector3(0,0,0)
+	gravitation = 1
 
 # Player scores
 
 var stones_number := 20
 var stones_placed := []
-var collected_statues := []
-var statue_posizionate := []
 
 func create_stone(position):
 	var body = RigidBody3D.new()
@@ -44,10 +44,7 @@ func create_stone(position):
 	body.add_child(particle)
 	body.add_child(collision)
 	body.position=position
-	body.name = "sasso"+str(len(stones_placed))
-	stones_placed.append(position)
-	
-	
+	body.name = "sasso"+str(len(stones_placed))	
 #	body.add_child(area)
 #	area.connect("body_entered", body, 0)
 	

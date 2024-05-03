@@ -135,6 +135,7 @@ size = Vector3(5, 1, 5)
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(7.5, 0, 0, 0, 0.05, 0, 0, 0, 2.5, 0, 0, 25)
+layers = 2
 mesh = SubResource("ArrayMesh_vr6pf")
 skeleton = NodePath("")
 
@@ -145,6 +146,7 @@ shape = SubResource("ConcavePolygonShape3D_5cr1l")
 
 [node name="bridge" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4109, 4.98857, -7.5)
+layers = 2
 mesh = SubResource("BoxMesh_aoqhk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="bridge"]
@@ -154,6 +156,7 @@ shape = SubResource("ConcavePolygonShape3D_bwrtr")
 
 [node name="bridge2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5, -69.709)
+layers = 2
 mesh = SubResource("BoxMesh_aoqhk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="bridge2"]
@@ -165,25 +168,31 @@ shape = SubResource("ConcavePolygonShape3D_ax2e0")
 
 [node name="Emission-1" type="MeshInstance3D" parent="BlueEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.4508, -18.845)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BlueEmission/Emission-1"]
+layers = 2
 light_color = Color(0, 1, 1, 1)
 omni_range = 76.0
 
 [node name="Emission-2" type="MeshInstance3D" parent="BlueEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.4508, -37.0674)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BlueEmission/Emission-2"]
+layers = 2
 light_color = Color(0, 1, 1, 1)
 omni_range = 76.0
 
 [node name="Emission-3" type="MeshInstance3D" parent="BlueEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.4508, -27.6512)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="BlueEmission/Emission-3"]
+layers = 2
 light_color = Color(0, 1, 1, 1)
 omni_range = 76.0
 
@@ -191,25 +200,31 @@ omni_range = 76.0
 
 [node name="Emission-1" type="MeshInstance3D" parent="RedEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.0554, 18.7485)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="RedEmission/Emission-1"]
+layers = 2
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-2" type="MeshInstance3D" parent="RedEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.0554, 42.3804)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="RedEmission/Emission-2"]
+layers = 2
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-3" type="MeshInstance3D" parent="RedEmission"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.0554, 31.1665)
+layers = 2
 mesh = SubResource("BoxMesh_7ipt3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="RedEmission/Emission-3"]
+layers = 2
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
@@ -245,34 +260,58 @@ text = "BUT NOT YOUR OBJECTIVE"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.921, -3.138, -45.979)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-1"]
+layers = 2
 mesh = SubResource("BoxMesh_gj7bm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-1"]
 shape = SubResource("BoxShape3D_5m4m2")
 
 [node name="Helper-2" type="StaticBody3D" parent="Helpers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.82095, 2.28986, -45.979)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47079, 2.69919, -45.979)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-2"]
+layers = 2
 mesh = SubResource("BoxMesh_gj7bm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-2"]
 shape = SubResource("BoxShape3D_5m4m2")
 
 [node name="Helper-3" type="StaticBody3D" parent="Helpers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7557, -0.547, -45.979)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.04387, 0.34291, -45.979)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-3"]
+layers = 2
 mesh = SubResource("BoxMesh_gj7bm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-3"]
 shape = SubResource("BoxShape3D_5m4m2")
 
+[node name="Helper-6" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7557, -1.80662, -45.979)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-6"]
+layers = 2
+mesh = SubResource("BoxMesh_gj7bm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-6"]
+shape = SubResource("BoxShape3D_5m4m2")
+
 [node name="Helper-4" type="StaticBody3D" parent="Helpers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31985, -2.68104, 33.2758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31985, -2.06964, 33.2758)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-4"]
+layers = 2
 mesh = SubResource("BoxMesh_oon3g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-4"]
+shape = SubResource("BoxShape3D_5m4m2")
+
+[node name="Helper-5" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2872, -3.90258, 33.2758)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-5"]
+layers = 2
+mesh = SubResource("BoxMesh_oon3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-5"]
 shape = SubResource("BoxShape3D_5m4m2")

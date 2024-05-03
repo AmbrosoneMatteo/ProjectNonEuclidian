@@ -21,9 +21,11 @@ func _ready():
 #	if Global.player_position!=Vector3(0,0,0):
 #		player.position=Global.player_position
 	for stone in Global.stones_placed:
+		print(Global.stones_placed)
 		Global.create_stone(stone)
 	for statue in Global.collected_statues:
-		remove_child(get_node("Statua/statua-"+statue).get_parent())
+		var statua = statue
+		get_node("statues/"+str(statua)).queue_free()
 	if Global.player_position!=Vector3(0,0,0):
 		player.position=Global.player_position
 	get_tree().paused=false
@@ -46,10 +48,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for i in portals:
+		#var viewport = portals[i.connection].get_node("Control/SubViewport")
 		var twist_pivot = i.get_node("Control/SubViewport/TwistPivot")
 		var pitch_pivot = twist_pivot.get_node("PitchPivot")
 		twist_pivot.global_position = portals[i.connection].global_position+(player.global_position-i.global_position)
-		twist_pivot.look_at(i.global_position)
 		twist_pivot.global_rotation = player.get_node("TwistPivot").global_rotation
 		pitch_pivot.global_rotation = player.get_node("TwistPivot/PitchPivot").global_rotation
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
@@ -168,7 +170,6 @@ func on_teleport_player_entered(body,id: int, rotation: int,position: bool, rota
 			player.position = teleports[id].position
 			print("nevermind")
 		print("player entered")
-		player.gravity*=-1
 		player.gravitation*=-1
 		if rotate_back:
 			player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180)
@@ -178,15 +179,15 @@ func on_teleport_player_entered(body,id: int, rotation: int,position: bool, rota
 		# Stampa un messaggio di conferma del teletrasporto del giocatore
 
 
-func _input(ev):
-	if not ev is InputEventMouse:
-		for j in InputMap.action_get_events("pickup"):
-			if ev.keycode == j.keycode:
-				var statue = $statues
-				for i in statue.get_children():
-					if i.player_entered:
-						i.queue_free()
-						Global.statue_posizionate.append(i.name)
+#func _input(ev):
+#	if not ev is InputEventMouse:
+#		for j in InputMap.action_get_events("pickup"):
+#			if ev.keycode == j.keycode:
+#				var statue = $statues
+#				for i in statue.get_children():
+#					if i.player_entered:
+#						i.queue_free()
+#						Global.statue_posizionate.append(i.name)
 		
 
 
@@ -206,7 +207,6 @@ func _on_portal_body_entered(body, portal_calling: int):
 	if(portal.enabled):
 		portals[portal.connection].enabled = false
 		if portals[portal.connection].global_rotation.z != portal.global_rotation.z:
-			player.gravity*=-1
 			player.gravitation*=-1
 			player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180)
 			player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(180)

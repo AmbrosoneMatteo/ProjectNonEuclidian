@@ -313,6 +313,40 @@ grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_wmvu6")
 
+[node name="Control2" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
+
+[node name="PickupMessagePanel" type="Panel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
+visible = false
+layout_mode = 0
+offset_left = -130.0
+offset_top = 40.0
+offset_right = 165.0
+offset_bottom = 80.0
+
+[node name="PickupMessageLabel" type="Label" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2/PickupMessagePanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -5.0
+offset_right = 281.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 30
+text = "Press \"F\" to pickup"
+
 [node name="RayCast3D" type="RayCast3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.355, 0, 0)
 exclude_parent = false

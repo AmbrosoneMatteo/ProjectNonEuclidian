@@ -34,7 +34,9 @@ var tutorial_finished: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravitation = 1.0
 func _ready():
-	
+	gravitation = Global.gravitation
+	if gravitation == -1:
+		twist_pivot.global_rotation.z += deg_to_rad(180)
 	sound_player.volume_db = -40.0 + Global.sound_volume/2
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
 	tutorial_voice.volume_db = -40.0 + Global.sound_volume/2
@@ -74,7 +76,7 @@ func _physics_process(delta):
 		
 	# Add the gravity.
 	if (not is_on_floor() and gravitation == 1) or (not is_on_ceiling() and gravitation == -1):
-		velocity.y -= gravity * delta 
+		velocity.y -= gravity * delta *gravitation
 		fall_counter+=delta
 		if fall_counter > 15+bonus:
 			Global.gameover=true
@@ -86,7 +88,7 @@ func _physics_process(delta):
 	if is_on_floor() or is_on_ceiling():
 		fall_counter=0
 		bonus=0
-	print(gravity," - ",gravitation)
+		
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and ((is_on_floor() and gravitation==1) or (is_on_ceiling() and gravitation==-1)) and not tutorial.visible:
@@ -145,15 +147,17 @@ func place_stone():
 		if is_near(pos,4):
 			Global.stones_number = Global.stones_number - 1
 			Global.create_stone(pos)
+			Global.stones_placed.append(pos)
 
 
 func _on_slot_button_pressed(slot):
 	var data_to_save = {"player_position": self.global_transform.origin,
-	"twis_rotation": $TwistPivot.global_rotation,
+	"twist_rotation": $TwistPivot.global_rotation,
 	"pitch_rotation": $TwistPivot/PitchPivot.global_rotation,
 	"graviy_direction": "upwards",
 	"saved_date": Time.get_date_dict_from_system(),
 	"collected_statues": Global.collected_statues,
+	"gravitation": gravitation,
 	"statues_captured": {},
 	"rock_picked": {} ,
 	"stones_number": Global.stones_number,

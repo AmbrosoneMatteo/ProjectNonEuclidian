@@ -31,9 +31,10 @@ func loadGame(slot):
 			Global.collected_statues = json_as_dict.collected_statues
 			Global.player_position=stringToVector(json_as_dict.player_position)
 			Global.stones_number = int(json_as_dict.stones_number)
+			Global.gravitation = json_as_dict.gravitation
 			for stone_position_string in json_as_dict.stones_placed:
 				Global.stones_placed.append(stringToVector(stone_position_string))
-			Global.tutoria_watched = true
+			Global.tutorial_watched = true
 			loadScene()
 
 

@@ -113,7 +113,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-2" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8429, 29.4103, 18.7485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.508, 20.4508, 18.7485)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-2"]
@@ -121,7 +121,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-3" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7789, 29.4103, 18.7485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.508, 31.7099, 18.7485)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-3"]
@@ -129,7 +129,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-4" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98783, 29.4103, -2.07614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15815, 31.7099, 7.42165)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-4"]
@@ -137,7 +137,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-5" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98783, 45.7204, 16.2967)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9958, 15.8236, 25.4747)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-5"]
@@ -145,7 +145,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-6" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8934, 45.7204, 28.8171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61076, 23.4742, 12.9513)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-6"]
@@ -153,7 +153,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-7" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4029, 45.7204, 8.03611)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2087, 5.344, 0.841261)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-7"]
@@ -161,7 +161,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-8" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28988, 45.7204, 17.5528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9582, 5.344, 0.841261)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-8"]
@@ -169,7 +169,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-9" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28988, -10.2118, 15.9339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2594, 8.60077, 8.89479)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-9"]
@@ -177,7 +177,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-10" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28988, -10.2118, -6.52214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2594, 8.60077, 20.3533)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-10"]
@@ -185,7 +185,7 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-11" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.64, -10.2118, -6.52214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2594, 34.545, 20.3533)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-11"]
@@ -193,9 +193,33 @@ light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
 [node name="Emission-12" type="MeshInstance3D" parent="Emissions"]
-transform = Transform3D(1, 0, 0, 0, -0.516324, 0.856393, 0, -0.856393, -0.516324, 8.52094, -10.2118, -31.0616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98075, 34.545, 20.3533)
 mesh = SubResource("BoxMesh_lltat")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-12"]
+light_color = Color(1, 0, 0, 1)
+omni_range = 76.0
+
+[node name="Emission-13" type="MeshInstance3D" parent="Emissions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96293, 49.7158, 32.157)
+mesh = SubResource("BoxMesh_lltat")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-13"]
+light_color = Color(1, 0, 0, 1)
+omni_range = 76.0
+
+[node name="Emission-14" type="MeshInstance3D" parent="Emissions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96293, 49.7158, 18.8462)
+mesh = SubResource("BoxMesh_lltat")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-14"]
+light_color = Color(1, 0, 0, 1)
+omni_range = 76.0
+
+[node name="Emission-15" type="MeshInstance3D" parent="Emissions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62553, 59.1405, 31.1252)
+mesh = SubResource("BoxMesh_lltat")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Emissions/Emission-15"]
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0

@@ -25,7 +25,7 @@ func _input(ev):
 		if get_collider().name.contains("Body"):
 			if get_collider().get_parent().get_parent().name.contains("statua"):
 				set_message_visibility(true)
-				pickup_statua(get_collider().get_parent().get_parent().get_parent())
+				pickup_statua(get_collider().get_parent().get_parent())
 			else:
 				set_message_visibility(false)
 #
@@ -53,8 +53,7 @@ func pickup_stone(body):
 
 func pickup_statua(body):
 	if Input.is_action_just_pressed("pickup"):
-		Global.start.remove_child(body)
-		var statue = body.get_child(0).name.split("statua-")
-		for value in statue:
-			if len(value)>0:
-				Global.collected_statues.append(value)
+		var statue = body.name
+		Global.collected_statues.append(statue)
+		Global.start.get_node("statues/"+statue).queue_free()
+		print(statue)
