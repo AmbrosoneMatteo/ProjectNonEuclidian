@@ -152,12 +152,12 @@ func _on_slot_button_pressed(slot):
 	"twis_rotation": $TwistPivot.global_rotation,
 	"pitch_rotation": $TwistPivot/PitchPivot.global_rotation,
 	"graviy_direction": "upwards",
-	 "saved_date": Time.get_date_dict_from_system(),
+	"saved_date": Time.get_date_dict_from_system(),
 	"collected_statues": Global.collected_statues,
-	 "statues_captured": {},
-	 "rock_picked": {} ,
-	 "stones_number": Global.stones_number,
-	 "sassi": Global.sassi_posionati}
+	"statues_captured": {},
+	"rock_picked": {} ,
+	"stones_number": Global.stones_number,
+	"stones_placed": Global.stones_placed}
 	var json_string := JSON.stringify(data_to_save)
 	var save_path := "user://player_data-%s.json"
 	var file_access	:= FileAccess.open(save_path % slot as String , FileAccess.WRITE)

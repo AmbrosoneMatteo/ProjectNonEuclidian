@@ -23,7 +23,11 @@ func reset():
 	collected_statues = []
 
 # Player scores
+
 var stones_number := 20
+var stones_placed := []
+var collected_statues := []
+var statue_posizionate := []
 
 func create_stone(position):
 	var body = RigidBody3D.new()
@@ -40,6 +44,11 @@ func create_stone(position):
 	body.add_child(particle)
 	body.add_child(collision)
 	body.position=position
-	body.name = "sasso"+str(len(sassi_posionati))
-	sassi_posionati.append(position)
+	body.name = "sasso"+str(len(stones_placed))
+	stones_placed.append(position)
+	
+	
+#	body.add_child(area)
+#	area.connect("body_entered", body, 0)
+	
 	start.add_child(body)

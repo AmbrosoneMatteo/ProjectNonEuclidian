@@ -20,6 +20,12 @@ func _ready():
 		Global.create_stone(stone)
 #	if Global.player_position!=Vector3(0,0,0):
 #		player.position=Global.player_position
+	for stone in Global.stones_placed:
+		Global.create_stone(stone)
+	for statue in Global.collected_statues:
+		remove_child(get_node("Statua/statua-"+statue).get_parent())
+	if Global.player_position!=Vector3(0,0,0):
+		player.position=Global.player_position
 	get_tree().paused=false
 	set_portals()
 	
@@ -170,7 +176,6 @@ func on_teleport_player_entered(body,id: int, rotation: int,position: bool, rota
 		teleports[id].enabled = false
 		
 		# Stampa un messaggio di conferma del teletrasporto del giocatore
-		print("player entered in a portal")
 
 
 func _input(ev):
@@ -186,9 +191,9 @@ func _input(ev):
 
 
 func _on_statue_touched(body, id:int):
-	var path = "Statua/statua-"+str(id) 
-	var statua = get_node(path)
-	statua.player_entered = true
+		var path = "Statua/statua-"+str(id) 
+		var statua = get_node(path)
+		statua.player_entered = true
 
 
 func _on_statue_not_touched(body, id:int):

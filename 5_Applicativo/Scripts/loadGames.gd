@@ -28,12 +28,14 @@ func loadGame(slot):
 		var json_as_text = FileAccess.get_file_as_string(file % slot as String)
 		var json_as_dict = JSON.parse_string(json_as_text)
 		if json_as_dict:
+			Global.collected_statues = json_as_dict.collected_statues
 			Global.player_position=stringToVector(json_as_dict.player_position)
 			Global.stones_number = int(json_as_dict.stones_number)
-			for stone_position_string in json_as_dict.sassi:
-				Global.sassi_posionati.append(stringToVector(stone_position_string))
+			for stone_position_string in json_as_dict.stones_placed:
+				Global.stones_placed.append(stringToVector(stone_position_string))
 			Global.tutoria_watched = true
 			loadScene()
+
 
 func stringToVector(input_string: String) -> Vector3:
 	# Remove parentheses and split by commas
