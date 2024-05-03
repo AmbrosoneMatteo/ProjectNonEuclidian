@@ -73,7 +73,7 @@ func _physics_process(delta):
 			tutorial_finished =true
 		
 	# Add the gravity.
-	if not is_on_floor() and not is_on_ceiling():
+	if (not is_on_floor() and gravitation == 1) or (not is_on_ceiling() and gravitation == -1):
 		velocity.y -= gravity * delta 
 		fall_counter+=delta
 		if fall_counter > 15+bonus:
@@ -153,6 +153,7 @@ func _on_slot_button_pressed(slot):
 	"pitch_rotation": $TwistPivot/PitchPivot.global_rotation,
 	"graviy_direction": "upwards",
 	 "saved_date": Time.get_date_dict_from_system(),
+	"collected_statues": Global.collected_statues,
 	 "statues_captured": {},
 	 "rock_picked": {} ,
 	 "stones_number": Global.stones_number,

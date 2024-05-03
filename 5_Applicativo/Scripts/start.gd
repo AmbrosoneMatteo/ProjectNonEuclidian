@@ -122,14 +122,15 @@ func set_portals():
 	for i in Teleports.get_children():
 		teleports.append(i)
 	for i in range(len(portals)):
+		var portal = portals[i]
 		if portals[i].connection == -1:
 			var x = randi()%len(portals)-1
-			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())
+			while x==i:
+				x = randi()%len(portals)-1
+			portals[i].get_node("Sprite3D").set_texture(portal.get_node("Control/SubViewport").get_texture())
 			portals[i].connection = x
 			taken_portals.append(i)
-		else:
-			var portal = portals[i]
-			portal.get_node("Sprite3D").set_texture(portals[portal.connection].get_node("Control/SubViewport").get_texture())
+		portal.get_node("Sprite3D").set_texture(portal.get_node("Control/SubViewport").get_texture())
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
@@ -199,6 +200,12 @@ func _on_portal_body_entered(body, portal_calling: int):
 	var portal = portals[portal_calling]
 	if(portal.enabled):
 		portals[portal.connection].enabled = false
+		if portals[portal.connection].global_rotation.z != portal.global_rotation.z:
+			player.gravity*=-1
+			player.gravitation*=-1
+			player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180)
+			player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(180)
+		player.get_node("TwistPivot").global_rotation_degrees.y +=  deg_to_rad(abs(portal.global_rotation.y-portals[portal.connection].global_rotation.y))
 		portal.enabled = false
 		player.position = portals[portal.connection].position
 
@@ -208,4 +215,8 @@ func _on_portal_body_exited(body, id:int):
 
 
 func _on_limit_jump_sinal_body_entered(body):
-	player.JUMP_VELOCITY=8.0
+	player.JUMP_VELOCITY=6.0
+
+
+func _on_limit_jump_sinal_body_exited(body):
+	player.JUMP_VELOCITY=10.0

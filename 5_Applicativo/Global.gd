@@ -11,6 +11,7 @@ const sassi_disponibili = 20
 var numero_sassi := 20
 var sassi_posionati := []
 var statue_posizionate
+var collected_statues := []
 var gameover: bool = false
 
 var player_position := Vector3(-9,20,-7)
@@ -19,6 +20,7 @@ var player_position := Vector3(-9,20,-7)
 func reset():
 	stones_number = 20
 	sassi_posionati = []
+	collected_statues = []
 
 # Player scores
 var stones_number := 20

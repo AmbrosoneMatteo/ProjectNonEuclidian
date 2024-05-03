@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbc5r1axl672q"]
+[gd_scene load_steps=19 format=3 uid="uid://cbc5r1axl672q"]
 
 [ext_resource type="Material" uid="uid://dl0s8opikovw" path="res://Assets/Materials/blue.tres" id="1_5s1s2"]
 [ext_resource type="Material" uid="uid://dfx1x2sxmvuaa" path="res://Assets/Materials/red.tres" id="1_7ak4u"]
@@ -114,8 +114,11 @@ emission_energy_multiplier = 4.69
 [sub_resource type="BoxMesh" id="BoxMesh_7ipt3"]
 material = SubResource("StandardMaterial3D_f4k7c")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_00oc8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8hjsn"]
 viewport_path = NodePath("Endtext")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_00oc8"]
+viewport_path = NodePath("Poem")
 
 [sub_resource type="BoxMesh" id="BoxMesh_gj7bm"]
 material = ExtResource("1_5s1s2")
@@ -210,8 +213,12 @@ mesh = SubResource("BoxMesh_7ipt3")
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="End" type="Sprite3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.58322, 9.34145)
+texture = SubResource("ViewportTexture_8hjsn")
+
+[node name="Obj" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.20694, 9.34145)
 texture = SubResource("ViewportTexture_00oc8")
 
 [node name="Endtext" type="SubViewport" parent="."]
@@ -222,6 +229,15 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 160
 text = "THIS IS THE END"
+
+[node name="Poem" type="SubViewport" parent="."]
+size = Vector2i(1779, 202)
+
+[node name="Label" type="Label" parent="Poem"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 140
+text = "BUT NOT YOUR OBJECTIVE"
 
 [node name="Helpers" type="Node3D" parent="."]
 
