@@ -10,7 +10,7 @@ const JUMP_VELOCITY = 10
 @export var portal = 0
 @export var sensivity = 0.01
 @export var desination_position = Vector3(0,0,0)
-
+@export var bonus = 0.0
 var sound_player = AudioStreamPlayer.new()
 var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
 
@@ -40,7 +40,6 @@ func _ready():
 	tutorial_voice.volume_db = -40.0 + Global.sound_volume/2
 	add_child(pickup_sound)
 	add_child(tutorial_voice)
-	gravity = gravity * gravitation
 	pickup_sound.stream = pickup_stream
 	tutorial_voice.stream = tutorial_stream
 	#tutorial_voice.play()
@@ -74,19 +73,20 @@ func _physics_process(delta):
 			tutorial_finished =true
 		
 	# Add the gravity.
-	if not is_on_floor() or not is_on_ceiling():
+	if not is_on_floor() and not is_on_ceiling():
 		velocity.y -= gravity * delta 
 		fall_counter+=delta
-		if fall_counter > 5:
+		if fall_counter > 15+bonus:
 			Global.gameover=true
 			get_tree().paused=true
 			tutorial.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			tutorial_voice.stop()
 			$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
-	if is_on_floor():
+	if is_on_floor() or is_on_ceiling():
 		fall_counter=0
-
+		bonus=0
+	print(gravity," - ",gravitation)
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and ((is_on_floor() and gravitation==1) or (is_on_ceiling() and gravitation==-1)) and not tutorial.visible:
@@ -106,8 +106,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input*gravitation)
-	pitch_pivot.rotate_x(pitch_input)
+	twist_pivot.rotate_y(twist_input)
+	pitch_pivot.rotate_x(pitch_input*gravitation)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	twist_input = 0.0 #it stops the camera from slipping
 	pitch_input = 0.0

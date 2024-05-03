@@ -35,34 +35,38 @@ editable = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 200.0
-offset_right = 200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -44.0
+offset_bottom = -552.0
+grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_54dg7")
 
 [node name="MainMenuOptions" type="Control" parent="Control"]
+top_level = true
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMenuOptions"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -161.0
 offset_top = -156.0
-offset_right = 161.0
+offset_right = 322.0
 offset_bottom = 156.0
-grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5i5fi")
 theme_override_constants/separation = 20
+alignment = 2
 
 [node name="start_button" type="Button" parent="Control/MainMenuOptions/VBoxContainer"]
 layout_mode = 2
@@ -98,28 +102,20 @@ alignment = 0
 
 [node name="OptionsMenu" type="Control" parent="Control"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -159.0
-offset_top = -254.0
-offset_right = -159.0
-offset_bottom = -254.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu"]
-visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = 97.0
-offset_right = 321.0
-offset_bottom = 409.0
-grow_horizontal = 2
+offset_top = -323.5
+offset_right = 322.0
+offset_bottom = -11.5
 grow_vertical = 2
 theme = SubResource("Theme_5i5fi")
 theme_override_constants/separation = 20
@@ -127,6 +123,7 @@ script = ExtResource("3_fx5l3")
 
 [node name="Control" type="Control" parent="Control/OptionsMenu/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Volume" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control"]
 visible = false
@@ -134,6 +131,8 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_top = 144.0
+offset_bottom = 144.0
 grow_vertical = 2
 
 [node name="TextEdit" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/Volume"]
@@ -215,25 +214,28 @@ metadata/_edit_use_anchors_ = true
 [node name="KeyMap" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -521.0
-offset_bottom = -521.0
+anchor_right = 1.634
+anchor_bottom = 1.712
+offset_top = 157.0
+offset_right = -5.14801
+offset_bottom = 76.856
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_qlco7")
 
 [node name="Texts" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
-layout_mode = 2
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-offset_top = 100.0
 offset_right = 400.0
-offset_bottom = 500.0
+offset_bottom = 400.0
 theme_override_constants/separation = 4
 
 [node name="Forwards_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
@@ -277,16 +279,27 @@ text = "Pick Up"
 editable = false
 
 [node name="Keys" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
-layout_mode = 2
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys"]
 custom_minimum_size = Vector2(0, 70)
-layout_mode = 0
-offset_left = 410.0
-offset_top = 100.0
-offset_right = 510.0
-offset_bottom = 500.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -228.0
+offset_right = -21.0
+offset_bottom = 138.0
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="Forward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
@@ -310,9 +323,16 @@ layout_mode = 2
 
 [node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
 layout_mode = 1
-offset_top = 700.0
-offset_right = 364.0
-offset_bottom = 763.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = -63.0
+offset_right = 182.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "MENU PRINCIPALE"
@@ -324,6 +344,8 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_top = 44.0
+offset_bottom = 44.0
 grow_vertical = 2
 
 [node name="OptionButton" type="OptionButton" parent="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu"]
@@ -350,43 +372,42 @@ metadata/_edit_use_anchors_ = true
 [node name="Buttons" type="Control" parent="Control/OptionsMenu/VBoxContainer"]
 layout_mode = 2
 
-[node name="volume_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 432.0
+offset_bottom = 200.0
+grow_vertical = 2
+
+[node name="volume_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer"]
 layout_mode = 2
-offset_right = 364.0
-offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "VOLUME"
 alignment = 0
 
-[node name="keymap_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+[node name="keymap_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer"]
 layout_mode = 2
-offset_top = 83.0
-offset_right = 364.0
-offset_bottom = 146.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "TASTIERA"
 alignment = 0
 
-[node name="resolution_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+[node name="resolution_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer"]
 layout_mode = 2
-offset_top = 166.0
-offset_right = 364.0
-offset_bottom = 229.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
 text = "RISOLUZIONE"
 alignment = 0
 
-[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons"]
+[node name="to_menu_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer"]
 layout_mode = 2
-offset_top = 249.0
-offset_right = 364.0
-offset_bottom = 312.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 action_mode = 0
@@ -459,10 +480,10 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
 [connection signal="item_selected" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" to="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/volume_button" to="Control/OptionsMenu/VBoxContainer" method="_on_volume_button_pressed"]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/keymap_button" to="Control/OptionsMenu/VBoxContainer" method="_on_keymap_button_pressed"]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/resolution_button" to="Control/OptionsMenu/VBoxContainer" method="_on_resolution_button_pressed"]
-[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/to_menu_button" to="Control" method="go_to_menu"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/volume_button" to="Control/OptionsMenu/VBoxContainer" method="_on_volume_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/keymap_button" to="Control/OptionsMenu/VBoxContainer" method="_on_keymap_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/resolution_button" to="Control/OptionsMenu/VBoxContainer" method="_on_resolution_button_pressed"]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/to_menu_button" to="Control" method="go_to_menu"]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-2" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [2]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-3" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [3]]

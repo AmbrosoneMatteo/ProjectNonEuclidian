@@ -15,6 +15,7 @@ var portals := [] # Lista dei portali presenti in game
 func _ready():
 	Global.numero_sassi = Global.sassi_disponibili
 	Global.start = self
+	Global.gameover = false
 	for stone in Global.sassi_posionati:
 		Global.create_stone(stone)
 #	if Global.player_position!=Vector3(0,0,0):
@@ -39,14 +40,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for i in portals:
-		
-		var twist_pivot_path = "Control/SubViewport/TwistPivot"
-		var twist_pivot = i.get_node(twist_pivot_path)
-	
-		var pitch_pivot_path = "Control/SubViewport/PitchPivot"
-		var pitch_pivot = i.get_node(twist_pivot_path)
-		
-		twist_pivot.position = portals[i.connection].position+(player.position-i.position)
+		var twist_pivot = i.get_node("Control/SubViewport/TwistPivot")
+		var pitch_pivot = twist_pivot.get_node("PitchPivot")
+		twist_pivot.global_position = portals[i.connection].global_position+(player.global_position-i.global_position)
+		twist_pivot.look_at(i.global_position)
+		twist_pivot.global_rotation = player.get_node("TwistPivot").global_rotation
+		pitch_pivot.global_rotation = player.get_node("TwistPivot/PitchPivot").global_rotation
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
 #
@@ -120,15 +119,17 @@ func set_portals():
 	var taken_portals = []
 	for i in Portals.get_children():
 		portals.append(i)
-#	for i in Teleports.get_children():
-#		teleports.append(i)
+	for i in Teleports.get_children():
+		teleports.append(i)
 	for i in range(len(portals)):
 		if portals[i].connection == -1:
 			var x = randi()%len(portals)-1
-			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())			
-			portals[i].destination_portal = portals[x]
+			portals[i].get_node("Sprite3D").set_texture(portals[x].get_node("Control/SubViewport").get_texture())
 			portals[i].connection = x
 			taken_portals.append(i)
+		else:
+			var portal = portals[i]
+			portal.get_node("Sprite3D").set_texture(portals[portal.connection].get_node("Control/SubViewport").get_texture())
 
 func calculate_distance(vector1: Vector3, vector2: Vector3) -> float:
 	return vector1.distance_to(vector2)
@@ -140,25 +141,31 @@ func get_delta_z(pos = portals[1].position):
 	return pos.z - player.position.z
 
 
-func on_teleport_player_entered(body,id: int, transform: int, rotation: int,position: bool,range: String):
+func on_teleport_player_entered(body,id: int, rotation: int,position: bool, rotate_back: bool =false):
+	print("player entered ", len(teleports))
 	var player_roation = player.get_node("TwistPivot/PitchPivot/Camera3D").global_rotation.y
 	if len(teleports)>id:
+		if id == 3:
+			player.bonus=30
 		if position: #ask if the teleportation needs to subtract the difference between the player and the teleport vector
-			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)*transform
+			player.position.y = teleports[id].position.y-(teleports[id-1].position.y-player.position.y)
 			if(teleports[id-1].global_rotation != teleports[id-1].global_rotation):
-				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)*transform
-				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)*transform
+				player.position.z = teleports[id].position.z+(teleports[id-1].position.x-player.position.x)
+				player.position.x = teleports[id].position.x+(teleports[id-1].position.z-player.position.z)
 			else:
-				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z) * transform
-				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) * transform
+				player.position.z = teleports[id].position.z - (teleports[id-1].position.z - player.position.z)
+				player.position.x = teleports[id].position.x - (teleports[id-1].position.x - player.position.x) 
+			print("teleported")
 		else:
 			# Imposta la posizione del giocatore alla posizione del teletrasporto
 			player.position = teleports[id].position
-		
+			print("nevermind")
+		print("player entered")
 		player.gravity*=-1
-		player.gravitation=-1*transform
-		player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180*transform)
-		player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(rotation*transform)
+		player.gravitation*=-1
+		if rotate_back:
+			player.get_node("TwistPivot/").global_rotation.z -=deg_to_rad(180)
+			player.get_node("TwistPivot/").global_rotation.y -=deg_to_rad(180)
 		teleports[id].enabled = false
 		
 		# Stampa un messaggio di conferma del teletrasporto del giocatore
