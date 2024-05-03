@@ -13,15 +13,20 @@ func _on_reload_pressed():
 	reload()
 
 func reload():
-	for i in range(0,5):
+	for i in range(6):
 		var file = "user://player_data-%s.json"
-		if FileAccess.file_exists(file % (i+1) as String):
+		if FileAccess.file_exists(file % str(i+1)):
 			var json_as_text = FileAccess.get_file_as_string(file % (i+1) as String)
 			var json_as_dict = JSON.parse_string(json_as_text)
+			var node = "Slot-%s"			
 			if json_as_dict:
-				var node = "Slot-%s"
-				get_node(node % str(i+1)).text=str(file % (i+1))
-
+				var date = json_as_dict.saved_date
+				var time = json_as_dict.saved_time
+				var text = str(date["year"])+"/"+str(date["month"])+"/"+str(date["day"])+" - "+str(time["hour"])+":"+str(time["minute"])+":"+str(time["second"])
+				get_node(node % str(i+1)).text=str(text)
+			else:
+				get_node(node % str(i+1)).text="FREE SLOT"
+				
 func loadGame(slot):
 	var file = "user://player_data-%s.json"
 	if FileAccess.file_exists(file % slot as String):
@@ -36,6 +41,7 @@ func loadGame(slot):
 				Global.stones_placed.append(stringToVector(stone_position_string))
 			Global.tutorial_watched = true
 			loadScene()
+			
 
 
 func stringToVector(input_string: String) -> Vector3:

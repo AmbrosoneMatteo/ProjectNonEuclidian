@@ -48,12 +48,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for i in portals:
-		#var viewport = portals[i.connection].get_node("Control/SubViewport")
+		var viewport = i.get_node("Control/SubViewport").get_viewport()
+		var sprite = portals[i.connection].get_node("Sprite3D")
 		var twist_pivot = i.get_node("Control/SubViewport/TwistPivot")
 		var pitch_pivot = twist_pivot.get_node("PitchPivot")
+		var camera = pitch_pivot.get_node("Camera3D")
 		twist_pivot.global_position = portals[i.connection].global_position+(player.global_position-i.global_position)
 		twist_pivot.global_rotation = player.get_node("TwistPivot").global_rotation
 		pitch_pivot.global_rotation = player.get_node("TwistPivot/PitchPivot").global_rotation
+		var vertex = camera.unproject_position(sprite.global_transform.origin)
+		
+		
 #to delete later		camera.global_rotation.y = acos((PlayerToPortal).dot(PointToPortal)/(norm(PlayerToPortal)*norm(PointToPortal)))+portal.global_rotation.y
 		#camera.global_rotation_degrees.x = (vectors_x[1]-vectors_x[2]).dot(vectors_x[0]-vectors_x[2])
 #

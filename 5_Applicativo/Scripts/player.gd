@@ -17,8 +17,6 @@ var audio_stream = load("res://Scenes/Sounds/SoundEffects/footstep.mp3")
 var pickup_sound = AudioStreamPlayer.new()
 var pickup_stream = load("res://Scenes/Sounds/SoundEffects/pickup.mp3")
 
-var tutorial_voice = AudioStreamPlayer.new()
-var tutorial_stream = load("res://Scenes/Sounds/SoundEffects/tutorial_eng.mp3")
 var fall_counter:float = 0.0
 
 var twist_input := 0.0
@@ -39,11 +37,8 @@ func _ready():
 		twist_pivot.global_rotation.z += deg_to_rad(180)
 	sound_player.volume_db = -40.0 + Global.sound_volume/2
 	pickup_sound.volume_db = -40.0 + Global.sound_volume/2
-	tutorial_voice.volume_db = -40.0 + Global.sound_volume/2
 	add_child(pickup_sound)
-	add_child(tutorial_voice)
 	pickup_sound.stream = pickup_stream
-	tutorial_voice.stream = tutorial_stream
 	#tutorial_voice.play()
 
 
@@ -59,20 +54,12 @@ func _physics_process(delta):
 		pickup_sound.play()
 	if Input.is_action_just_pressed("Accept") or Global.tutorial_watched:
 		tutorial.visible = false
-		tutorial_voice.stop()
 	if(Input.is_action_just_pressed("esc")):
 		get_tree().paused=true
 		tutorial.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		tutorial_voice.stop()
 		$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
-	if not tutorial_finished:
-		if tutorial_voice.playing:
-			Global.music_volume = 30
-		else:
-			while(Global.music_volume<80):
-				Global.music_volume+=1
-			tutorial_finished =true
+
 		
 	# Add the gravity.
 	if (not is_on_floor() and gravitation == 1) or (not is_on_ceiling() and gravitation == -1):
@@ -83,7 +70,6 @@ func _physics_process(delta):
 			get_tree().paused=true
 			tutorial.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			tutorial_voice.stop()
 			$TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu.visible = true
 	if is_on_floor() or is_on_ceiling():
 		fall_counter=0
@@ -156,6 +142,7 @@ func _on_slot_button_pressed(slot):
 	"pitch_rotation": $TwistPivot/PitchPivot.global_rotation,
 	"graviy_direction": "upwards",
 	"saved_date": Time.get_date_dict_from_system(),
+	"saved_time": Time.get_time_dict_from_system(),
 	"collected_statues": Global.collected_statues,
 	"gravitation": gravitation,
 	"statues_captured": {},
@@ -164,7 +151,7 @@ func _on_slot_button_pressed(slot):
 	"stones_placed": Global.stones_placed}
 	var json_string := JSON.stringify(data_to_save)
 	var save_path := "user://player_data-%s.json"
-	var file_access	:= FileAccess.open(save_path % slot as String , FileAccess.WRITE)
+	var file_access	:= FileAccess.open(save_path % str(int(slot)+1)  , FileAccess.WRITE)
 	if not file_access:
 		print("An error happened while saving data: ", FileAccess.get_open_error())
 		return

@@ -317,3 +317,13 @@ mesh = SubResource("BoxMesh_oon3g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-5"]
 shape = SubResource("BoxShape3D_5m4m2")
+
+[node name="Helper-7" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07728, 3.04019, 13.401)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-7"]
+layers = 2
+mesh = SubResource("BoxMesh_oon3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-7"]
+shape = SubResource("BoxShape3D_5m4m2")

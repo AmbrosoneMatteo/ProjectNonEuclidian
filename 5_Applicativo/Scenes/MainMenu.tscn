@@ -218,8 +218,8 @@ layout_mode = 1
 anchor_right = 1.634
 anchor_bottom = 1.712
 offset_top = 157.0
-offset_right = -5.14801
-offset_bottom = 76.856
+offset_right = -1.14801
+offset_bottom = 150.856
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_qlco7")
@@ -271,12 +271,20 @@ theme_override_font_sizes/font_size = 40
 text = "Left"
 editable = false
 
-[node name="Left_text2" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+[node name="Pickup_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_direction = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Pick Up"
+editable = false
+
+[node name="Drop_text" type="TextEdit" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Texts/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_direction = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Drop"
 editable = false
 
 [node name="Keys" type="Control" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap"]
@@ -301,6 +309,7 @@ offset_right = -21.0
 offset_bottom = 138.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("5_qlco7")
 
 [node name="Forward_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
@@ -319,6 +328,10 @@ custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
 [node name="Pickup_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Drop_button" type="Button" parent="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
@@ -478,6 +491,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Right_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["right"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Left_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["left"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Pickup_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["pickup"]]
+[connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/Keys/VBoxContainer/Drop_button" to="Control/OptionsMenu/VBoxContainer/Control/KeyMap" method="_on_key_pressed" binds= ["drop"]]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/KeyMap/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
 [connection signal="item_selected" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" to="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Control/ResolutionMenu/to_menu_button" to="Control/OptionsMenu/VBoxContainer" method="_go_back"]
@@ -485,6 +499,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/keymap_button" to="Control/OptionsMenu/VBoxContainer" method="_on_keymap_button_pressed"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/resolution_button" to="Control/OptionsMenu/VBoxContainer" method="_on_resolution_button_pressed"]
 [connection signal="pressed" from="Control/OptionsMenu/VBoxContainer/Buttons/VBoxContainer/to_menu_button" to="Control" method="go_to_menu"]
+[connection signal="visibility_changed" from="Control/LoadGame/VBoxContainer" to="Control/LoadGame/VBoxContainer" method="reload"]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-1" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [1]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-2" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [2]]
 [connection signal="pressed" from="Control/LoadGame/VBoxContainer/Slot-3" to="Control/LoadGame/VBoxContainer" method="loadGame" binds= [3]]
