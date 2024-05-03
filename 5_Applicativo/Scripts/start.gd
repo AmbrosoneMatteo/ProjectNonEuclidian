@@ -205,3 +205,7 @@ func _on_portal_body_entered(body, portal_calling: int):
 func _on_portal_body_exited(body, id:int):
 	portals[id].enabled = true
 
+
+
+func _on_limit_jump_sinal_body_entered(body):
+	player.JUMP_VELOCITY=8.0

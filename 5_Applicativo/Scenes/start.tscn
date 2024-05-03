@@ -90,6 +90,7 @@ size = Vector3(7, 7, 0.1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uda1x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kln0n"]
+size = Vector3(5, 5, 1)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207977, 0.048584, -0.0480652)
@@ -756,9 +757,7 @@ transform = Transform3D(1, 0, 0, 0, 0.777289, 0.629144, 0, -0.629144, 0.777289, 
 transform = Transform3D(1, 0, 0, 0, 0.777146, -0.62932, 0, 0.62932, 0.777146, 0, 76.1397, 0)
 
 [node name="Player" parent="." instance=ExtResource("14_ckswi")]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -10.4676, 21.2052, -7.12604)
-slide_on_ceiling = false
-wall_min_slide_angle = 0.0
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -29.9375, -49.3555, -328.396)
 floor_snap_length = 0.42
 safe_margin = 0.2
 
@@ -779,9 +778,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783578, 0)
 [node name="Signals" type="Node3D" parent="."]
 
 [node name="LimitJumpSinal" type="Area3D" parent="Signals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.572, 25.2519, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9501, 37.7003, -289.106)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Signals/LimitJumpSinal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378906, -0.569653, 0)
 shape = SubResource("BoxShape3D_kln0n")
 
 [connection signal="body_entered" from="portals/portal-1/Area3D" to="." method="_on_portal_body_entered" binds= [0]]
@@ -801,3 +801,4 @@ shape = SubResource("BoxShape3D_kln0n")
 [connection signal="body_entered" from="teleports/teleport-1" to="." method="on_teleport_player_entered" binds= [1, 0, false, true]]
 [connection signal="body_entered" from="teleports/teleport-3" to="." method="on_teleport_player_entered" binds= [3, 0, false, true]]
 [connection signal="body_entered" from="teleports/teleport-5" to="." method="on_teleport_player_entered" binds= [5, 90, true, true]]
+[connection signal="body_entered" from="Signals/LimitJumpSinal" to="." method="_on_limit_jump_sinal_body_entered"]

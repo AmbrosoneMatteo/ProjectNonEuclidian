@@ -243,7 +243,7 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -260.0
+offset_top = -316.0
 offset_right = 500.0
 offset_bottom = 260.0
 grow_vertical = 2
@@ -325,5 +325,11 @@ script = ExtResource("8_7502w")
 [connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/save_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_save_button_pressed"]
 [connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/exit_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_exit_button_pressed" flags=18]
 [connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/Control/Control/to_menu_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]
-[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-1" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer" method="reload"]
+[connection signal="visibility_changed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-1" to="." method="_on_slot_button_pressed" binds= [0]]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-2" to="." method="_on_slot_button_pressed" binds= [1]]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-3" to="." method="_on_slot_button_pressed" binds= [2]]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-4" to="." method="_on_slot_button_pressed" binds= [3]]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-5" to="." method="_on_slot_button_pressed" binds= [4]]
+[connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/Slot-6" to="." method="_on_slot_button_pressed" binds= [5]]
 [connection signal="pressed" from="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer/to_menu_button" to="TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer" method="_on_to_menu_button_pressed"]

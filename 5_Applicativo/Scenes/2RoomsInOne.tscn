@@ -1,4 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbc5r1axl672q"]
+[gd_scene load_steps=18 format=3 uid="uid://cbc5r1axl672q"]
+
+[ext_resource type="Material" uid="uid://dl0s8opikovw" path="res://Assets/Materials/blue.tres" id="1_5s1s2"]
+[ext_resource type="Material" uid="uid://dfx1x2sxmvuaa" path="res://Assets/Materials/red.tres" id="1_7ak4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hd2x"]
 resource_name = "Material"
@@ -111,6 +114,20 @@ emission_energy_multiplier = 4.69
 [sub_resource type="BoxMesh" id="BoxMesh_7ipt3"]
 material = SubResource("StandardMaterial3D_f4k7c")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_00oc8"]
+viewport_path = NodePath("Endtext")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gj7bm"]
+material = ExtResource("1_5s1s2")
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m4m2"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oon3g"]
+material = ExtResource("1_7ak4u")
+size = Vector3(5, 1, 5)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
@@ -192,3 +209,54 @@ mesh = SubResource("BoxMesh_7ipt3")
 [node name="OmniLight3D" type="OmniLight3D" parent="RedEmission/Emission-3"]
 light_color = Color(1, 0, 0, 1)
 omni_range = 76.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.58322, 9.34145)
+texture = SubResource("ViewportTexture_00oc8")
+
+[node name="Endtext" type="SubViewport" parent="."]
+size = Vector2i(1269, 232)
+
+[node name="Label" type="Label" parent="Endtext"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 160
+text = "THIS IS THE END"
+
+[node name="Helpers" type="Node3D" parent="."]
+
+[node name="Helper-1" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.921, -3.138, -45.979)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-1"]
+mesh = SubResource("BoxMesh_gj7bm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-1"]
+shape = SubResource("BoxShape3D_5m4m2")
+
+[node name="Helper-2" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.82095, 2.28986, -45.979)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-2"]
+mesh = SubResource("BoxMesh_gj7bm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-2"]
+shape = SubResource("BoxShape3D_5m4m2")
+
+[node name="Helper-3" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7557, -0.547, -45.979)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-3"]
+mesh = SubResource("BoxMesh_gj7bm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-3"]
+shape = SubResource("BoxShape3D_5m4m2")
+
+[node name="Helper-4" type="StaticBody3D" parent="Helpers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31985, -2.68104, 33.2758)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Helpers/Helper-4"]
+mesh = SubResource("BoxMesh_oon3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Helpers/Helper-4"]
+shape = SubResource("BoxShape3D_5m4m2")

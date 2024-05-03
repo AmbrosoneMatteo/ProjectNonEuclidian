@@ -5,7 +5,7 @@ var statue_control = null
 
 
 var SPEED = 14.0
-const JUMP_VELOCITY = 10
+@export var JUMP_VELOCITY = 10
 
 @export var portal = 0
 @export var sensivity = 0.01
@@ -149,7 +149,8 @@ func place_stone():
 
 func _on_slot_button_pressed(slot):
 	var data_to_save = {"player_position": self.global_transform.origin,
-	"player_rotation": $TwistPivot/PitchPivot/Camera3D.global_rotation,
+	"twis_rotation": $TwistPivot.global_rotation,
+	"pitch_rotation": $TwistPivot/PitchPivot.global_rotation,
 	"graviy_direction": "upwards",
 	 "saved_date": Time.get_date_dict_from_system(),
 	 "statues_captured": {},
@@ -165,6 +166,7 @@ func _on_slot_button_pressed(slot):
 	file_access.store_line(json_string)
 	file_access.close()
 	print("game has been saved")
+	get_node("TwistPivot/PitchPivot/Camera3D/CanvasLayer/GameMenu/VBoxContainer/SaveGame/VBoxContainer").reload()
 	
 func reload():
 	pass # Replace with function body.

@@ -2,7 +2,7 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reload()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -19,7 +19,8 @@ func reload():
 			var json_as_text = FileAccess.get_file_as_string(file % (i+1) as String)
 			var json_as_dict = JSON.parse_string(json_as_text)
 			if json_as_dict:
-				get_child(i).text=file % (i+1) as String
+				var node = "Slot-%s"
+				get_node(node % str(i+1)).text=str(file % (i+1))
 
 func loadGame(slot):
 	var file = "user://player_data-%s.json"
@@ -51,3 +52,7 @@ func loadScene():
 	var scene_path = "res://Scenes/start.tscn"
 	# Avvia la scena
 	get_tree().change_scene_to_file(scene_path)
+
+
+func _on_visibility_changed():
+	reload()
