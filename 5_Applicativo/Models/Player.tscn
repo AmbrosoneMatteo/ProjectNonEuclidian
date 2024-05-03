@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cknjhojmvdgjt"]
+[gd_scene load_steps=16 format=3 uid="uid://cknjhojmvdgjt"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_xi7pf"]
 [ext_resource type="Shader" path="res://Assets/Shaders/sky.gdshader" id="2_n22o7"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/AudioControl.gd" id="6_m2gvj"]
 [ext_resource type="Script" path="res://Scripts/loadGames.gd" id="7_4hyvb"]
 [ext_resource type="Script" path="res://Scripts/playerRayCast3D.gd" id="8_7502w"]
+[ext_resource type="Script" path="res://Scripts/LabelStatues.gd" id="8_aacmo"]
 [ext_resource type="Texture2D" uid="uid://cr87p73plw23j" path="res://Assets/MainMenu/point_icon.png" id="8_wmvu6"]
+[ext_resource type="Script" path="res://Scripts/LabelStones.gd" id="9_sn1pl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_02cig"]
 shader = ExtResource("2_n22o7")
@@ -301,17 +303,41 @@ editable = false
 
 [node name="Control" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="PointIcon" type="Sprite2D" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("8_wmvu6")
+[node name="PanelStatues" type="Panel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -50.0
+
+[node name="LabelStatues" type="Label" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control/PanelStatues"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 269.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 35
+text = "Statues: 10/11"
+script = ExtResource("8_aacmo")
+
+[node name="PanelStones" type="Panel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control"]
+offset_left = -300.0
+offset_top = -100.0
+offset_bottom = -50.0
+
+[node name="LabelStones" type="Label" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control/PanelStones"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 299.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 35
+text = "Stones: 10"
+script = ExtResource("9_sn1pl")
 
 [node name="Control2" type="Control" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer"]
 layout_mode = 3
@@ -327,8 +353,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
 
 [node name="PickupMessagePanel" type="Panel" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
 visible = false
@@ -347,8 +371,13 @@ offset_bottom = 40.0
 theme_override_font_sizes/font_size = 30
 text = "Press \"F\" to pickup"
 
+[node name="PointIcon" type="Sprite2D" parent="TwistPivot/PitchPivot/Camera3D/CanvasLayer/Control2"]
+position = Vector2(20, 20)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_wmvu6")
+
 [node name="RayCast3D" type="RayCast3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.355, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27402, 0, 0)
 exclude_parent = false
 target_position = Vector3(0, 0, -4)
 script = ExtResource("8_7502w")

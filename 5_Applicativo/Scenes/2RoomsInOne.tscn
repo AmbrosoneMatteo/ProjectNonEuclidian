@@ -230,10 +230,12 @@ omni_range = 76.0
 
 [node name="End" type="Sprite3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.58322, 9.34145)
+visible = false
 texture = SubResource("ViewportTexture_8hjsn")
 
 [node name="Obj" type="Sprite3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.20694, 9.34145)
+visible = false
 texture = SubResource("ViewportTexture_00oc8")
 
 [node name="Endtext" type="SubViewport" parent="."]
